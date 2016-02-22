@@ -1,0 +1,52 @@
+{
+  "name": "cash-ls",
+  "version": "0.1.0",
+  "description": "Cross-platform implementation of the Unix 'ls' command.",
+  "main": "./dist/commands/ls.js",
+  "scripts": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dthree/cash.git"
+  },
+  "keywords": [
+    "cash",
+    "terminal",
+    "emulator",
+    "cygwin",
+    "cli",
+    "windows",
+    "linux",
+    "unix",
+    "posix",
+    "bash",
+    "tty",
+    "util",
+    "vorpal",
+    "vorpal.js"
+  ],
+  "author": "dthree",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/dthree/cash/issues"
+  },
+  "homepage": "https://github.com/dthree/cash#readme",
+  "devDependencies": {},
+  "bin": {
+    "ls": "./bin/ls.js"
+  },
+  "dependencies": {
+    "lodash": "^4.0.0",
+    "chalk": "^1.1.0",
+    "filesize": "^3.1.3",
+    "vorpal-autocomplete-fs": "0.0.3",
+    "vorpal": "^1.9.5"
+  },
+  "engines": {
+    "node": ">= 0.11.16",
+    "iojs": ">= 1.0.0"
+  },
+  "files": [
+    "dist",
+    "bin"
+  ]
+}

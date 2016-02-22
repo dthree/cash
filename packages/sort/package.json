@@ -1,0 +1,51 @@
+{
+  "name": "cash-sort",
+  "version": "0.1.0",
+  "description": "Cross-platform implementation of the Unix 'sort' command.",
+  "main": "./dist/commands/sort.js",
+  "scripts": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dthree/cash.git"
+  },
+  "keywords": [
+    "cash",
+    "terminal",
+    "emulator",
+    "cygwin",
+    "cli",
+    "windows",
+    "linux",
+    "unix",
+    "posix",
+    "bash",
+    "tty",
+    "util",
+    "vorpal",
+    "vorpal.js"
+  ],
+  "author": "dthree",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/dthree/cash/issues"
+  },
+  "homepage": "https://github.com/dthree/cash#readme",
+  "devDependencies": {},
+  "bin": {
+    "sort": "./bin/sort.js"
+  },
+  "dependencies": {
+    "lodash": "^4.0.0",
+    "vorpal-autocomplete-fs": "0.0.3",
+    "glob": "^6.0.4",
+    "vorpal": "^1.9.5"
+  },
+  "engines": {
+    "node": ">= 0.11.16",
+    "iojs": ">= 1.0.0"
+  },
+  "files": [
+    "dist",
+    "bin"
+  ]
+}

@@ -1,0 +1,50 @@
+{
+  "name": "cash-kill",
+  "version": "0.1.0",
+  "description": "Cross-platform implementation of the Unix 'kill' command.",
+  "main": "./dist/commands/kill.js",
+  "scripts": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dthree/cash.git"
+  },
+  "keywords": [
+    "cash",
+    "terminal",
+    "emulator",
+    "cygwin",
+    "cli",
+    "windows",
+    "linux",
+    "unix",
+    "posix",
+    "bash",
+    "tty",
+    "util",
+    "vorpal",
+    "vorpal.js"
+  ],
+  "author": "dthree",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/dthree/cash/issues"
+  },
+  "homepage": "https://github.com/dthree/cash#readme",
+  "devDependencies": {},
+  "bin": {
+    "kill": "./bin/kill.js"
+  },
+  "dependencies": {
+    "fkill": "^3.1.0",
+    "lodash": "^4.0.0",
+    "vorpal": "^1.9.5"
+  },
+  "engines": {
+    "node": ">= 0.11.16",
+    "iojs": ">= 1.0.0"
+  },
+  "files": [
+    "dist",
+    "bin"
+  ]
+}

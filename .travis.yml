@@ -1,0 +1,9 @@
+sudo: false
+language: node_js
+node_js:
+  - "5"
+  - "4"
+after_success: "cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js"
+branches:
+  only:
+    - master
