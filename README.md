@@ -6,9 +6,9 @@
 
 > Cross-platform Linux commands in pure ES6
 
-[![Build Status](https://travis-ci.org/vorpaljs/cash.svg)](https://travis-ci.org/vorpaljs/cash/)
+[![Build Status](https://travis-ci.org/dthree/cash.svg)](https://travis-ci.org/dthree/cash/)
 [![Windows Build Status](https://ci.appveyor.com/api/projects/status/286om4y0wbxs69fy?svg=true)](https://ci.appveyor.com/project/dthree/cash)
-[![Coverage Status](https://coveralls.io/repos/vorpaljs/cash/badge.svg?branch=master&service=github)](https://coveralls.io/github/vorpaljs/cash?branch=master)
+[![Coverage Status](https://coveralls.io/repos/dthree/cash/badge.svg?branch=master&service=github)](https://coveralls.io/github/dthree/cash?branch=master)
 <a href="https://gitter.im/dthree/cash?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge">
   <img src="https://img.shields.io/badge/gitter-join%20chat-brightgreen.svg" alt="Gitter" />
 </a>
