@@ -37,6 +37,8 @@ $
 
 ### Woah.
 
+[![Join the chat at https://gitter.im/dthree/cash](https://badges.gitter.im/dthree/cash.svg)](https://gitter.im/dthree/cash?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+
 Yeah. But it gets better. 
 
 Let's mix some Windows & Unix commands together:
