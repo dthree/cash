@@ -109,7 +109,6 @@ Love it? Cash is brand new! Give it a :star: or a tweet to help spread the word!
 - [Contributing](#contributing)
 - [FAQ](#faq)
 - [License](#license)
-
 - [Wiki](https://github.com/dthree/cash/wiki)
 
 ## Introduction
@@ -151,8 +150,8 @@ Want more commands?
 
 ## Contributing
 
-- [Editing commands](contributing.md)
-- [Adding new commands](contributing.md)
+- [Editing commands](https://github.com/dthree/cash/wiki/Contributing#editing-existing-commands)
+- [Adding new commands](https://github.com/dthree/cash/wiki/Contributing)
 
 I am currently looking for someone with experience in building Windows installers (`.msi`) to bundle Cash and its individual components into a self-contained wrapper. I you would like to help with this, send me a ping.
 
