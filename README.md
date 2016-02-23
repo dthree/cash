@@ -18,10 +18,10 @@ Cash is a cross-platform implementation of Unix shell commands written in pure E
 
 *Huh?* Okay - think [Cygwin](https://en.wikipedia.org/wiki/Cygwin), except:
 
-- No DLLs
-- Terminal-agnostic
-- 1/15th of the size
 - No native compiling
+- No ugly DLLs
+- Works in any terminal
+- 1/15th of the size
 - Just:
 
 ```bash
