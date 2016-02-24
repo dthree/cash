@@ -4,6 +4,7 @@ const os = require('os');
 const username = require('username');
 const userHome = require('user-home');
 
+const isWindows = process.platform === 'win32';
 const pathConverter = require('./util/converter.path');
 
 module.exports = {
@@ -20,7 +21,7 @@ module.exports = {
         let delimiter = `${user}@${host}:${cwd}$`;
         // If we're on linux-based systems, color
         // the prompt so we don't get confused.
-        if (os.platform().indexOf('win') === -1) {
+        if (!isWindows) {
           delimiter = `\u001b[32m${delimiter}\u001b[39m`;
         }
         vorpal.delimiter(delimiter);
