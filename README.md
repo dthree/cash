@@ -153,7 +153,7 @@ Want more commands?
 - [Editing commands](https://github.com/dthree/cash/wiki/Contributing#editing-existing-commands)
 - [Adding new commands](https://github.com/dthree/cash/wiki/Contributing)
 
-I am currently looking for someone with experience in building Windows installers (`.msi`) to bundle Cash and its individual components into a self-contained wrapper. I you would like to help with this, send me a ping.
+I am currently looking for someone with experience in building Windows installers (`.msi`) to bundle Cash and its individual components into a self-contained wrapper. If you would like to help with this, send me a ping.
 
 
 ## FAQ
