@@ -69,7 +69,7 @@
     "xcopy"
   ],
   "dependencies": {
-    "./dist/delimiter.js": ["username", "./dist/util/converter.path.js"],
+    "./dist/delimiter.js": ["username", "./dist/util/converter.path.js", "user-home"],
     "./dist/util/colorFile.js": ["./dist/util/stripAnsi.js"],
     "./dist/util/columnify.js": ["./dist/util/stripAnsi.js", "./dist/util/pad.js"],
     "./dist/util/converter.path.js": [],
@@ -144,7 +144,7 @@
       ]
     },
     "sort": {
-      "dependencies": ["lodash", "vorpal-autocomplete-fs", "glob"],
+      "dependencies": ["lodash", "vorpal-autocomplete-fs", "glob", "array-shuffle"],
       "files": [
         "./dist/util/fetch.js", 
         "./dist/util/interfacer.js", 

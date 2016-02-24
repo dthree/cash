@@ -7,6 +7,7 @@ var fsAutocomplete = require('vorpal-autocomplete-fs');
 var fetch = require('./../util/fetch');
 var interfacer = require('./../util/interfacer');
 var strip = require('./../util/stripAnsi');
+var shuffle = require('array-shuffle');
 
 var sort = {
 
@@ -169,7 +170,7 @@ var sort = {
       });
 
       if (options.randomsort) {
-        fisherYatesShuffle(parts);
+        parts = shuffle(parts);
       }
 
       if (options.reverse) {
@@ -237,19 +238,6 @@ function parseMonths(str) {
     return monthOrdering[String(str.slice(0, 3).toLowerCase())];
   }
   return 0;
-}
-
-function fisherYatesShuffle(array) {
-  var m = array.length;
-  var t = undefined;
-  var i = undefined;
-  while (m) {
-    i = Math.floor(Math.random() * m--);
-    t = array[m];
-    array[m] = array[i];
-    array[i] = t;
-  }
-  return array;
 }
 
 module.exports = function (vorpal) {

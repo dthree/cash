@@ -2,6 +2,7 @@
 
 const os = require('os');
 const username = require('username');
+const userHome = require('user-home');
 
 const pathConverter = require('./util/converter.path');
 
@@ -9,12 +10,11 @@ module.exports = {
 
   refresh(vorpal, cb) {
     cb = cb || function () {};
-    const self = this;
     username(function (err, username) {
       if (!err) {
         const user = username;
         const host = String(os.hostname()).split('.')[0];
-        const home = pathConverter.unix(self.getHomeDir());
+        const home = pathConverter.unix(userHome);
         let cwd = pathConverter.unix(process.cwd());
         cwd = cwd.replace(home, '~');
         let delimiter = `${user}@${host}:${cwd}$`;
@@ -30,6 +30,6 @@ module.exports = {
   },
 
   getHomeDir() {
-    return process.env[(process.platform === 'win32') ? 'USERPROFILE' : 'HOME'];
+    return userHome;
   }
 };

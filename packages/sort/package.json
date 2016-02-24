@@ -38,6 +38,7 @@
     "lodash": "^4.0.0",
     "vorpal-autocomplete-fs": "0.0.3",
     "glob": "^6.0.4",
+    "array-shuffle": "^1.0.0",
     "vorpal": "^1.9.5"
   },
   "engines": {
