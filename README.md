@@ -184,7 +184,7 @@ No.
 For those who don't know, [Shell.js](https://github.com/shelljs/shelljs) is an awesome Node app that implements Unix shell commands programatically in Javascript. Check it out - really. While Shell.js was tremendously helpful in figuring out how to accomplish Cash, the two do not really conflict.
 
 Shell.js *gives the feel of and approximates* Unix commands in a code environment, but does not aim to precisely implement it. 
-By example, Shell.js' `ls` command supports two arguments and returns an array. Cash supports seventeen arguments and strives to mirror the exact funcionality and output of the POSIX-compliant `ls` command.
+By example, Shell.js' `ls` command supports two arguments and returns an array. Cash supports seventeen arguments and strives to mirror the exact functionality and output of the POSIX-compliant `ls` command.
 
 
 ## License
