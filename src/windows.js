@@ -1,6 +1,5 @@
 'use strict';
 
-const _ = require('lodash');
 const os = require('os');
 
 const commands = require('./../commands.json').windowsCommands;
@@ -26,7 +25,7 @@ module.exports = {
       /* istanbul ignore next */
       .autocomplete(function () {
         /* istanbul ignore next */
-        return _.map(self.vorpal.commands, '_name');
+        return self.vorpal.commands.map(c => c._name);
       })
       .action(function (args, cb) {
         cb = cb || function () {};
