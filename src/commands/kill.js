@@ -1,6 +1,5 @@
 'use strict';
 
-const _ = require('lodash');
 const fkill = require('fkill');
 const os = require('os');
 
@@ -25,7 +24,7 @@ const kill = {
     let procs = args;
     procs = (procs === undefined) ? [] : procs;
     procs = (typeof procs === 'string') ? String(procs).split(' ') : procs;
-    procs = _.filter(procs, arg => String(arg).trim() !== '');
+    procs = procs.filter(arg => String(arg).trim() !== '');
 
     function log(str) {
       if (options.vorpal) {

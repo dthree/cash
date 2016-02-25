@@ -1,6 +1,5 @@
 'use strict';
 
-const _ = require('lodash');
 const fs = require('fs');
 const fsAutocomplete = require('vorpal-autocomplete-fs');
 const path = require('path');
@@ -16,8 +15,8 @@ const cp = {
     options = options || {};
 
     args = (args === undefined) ? [] : args;
-    args = (_.isArray(args)) ? args : args.split(' ');
-    args = _.filter(args, arg => String(arg).trim() !== '');
+    args = (Array.isArray(args)) ? args : args.split(' ');
+    args = args.filter(arg => String(arg).trim() !== '');
 
     options.noclobber = (options.force === true) ? false : options.noclobber;
     options.recursive = (options.R === true) ? true : options.recursive;

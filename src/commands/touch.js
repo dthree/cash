@@ -1,6 +1,5 @@
 'use strict';
 
-const _ = require('lodash');
 const fs = require('fs-extra');
 const fsAutocomplete = require('vorpal-autocomplete-fs');
 
@@ -20,7 +19,7 @@ const touch = {
   exec(files, options) {
     const self = this;
     files = files || ['.'];
-    files = (!_.isArray(files)) ? [files] : files;
+    files = (!Array.isArray(files)) ? [files] : files;
     options = options || {};
 
     // If any version of --no-create is passed, change it to false.

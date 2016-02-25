@@ -1,7 +1,5 @@
 'use strict';
 
-const _ = require('lodash');
-
 const interfacer = require('./../util/interfacer');
 
 const unalias = {
@@ -18,7 +16,7 @@ const unalias = {
 
     vorpal._aliases = vorpal._aliases || [];
 
-    if (_.isString(args)) {
+    if (typeof args === 'string' || args instanceof String) {
       args = String(args).split(' ');
       args = args.filter(str => {
         return String(str).trim() !== '';

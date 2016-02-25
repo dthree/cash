@@ -1,6 +1,5 @@
 'use strict';
 
-const _ = require('lodash');
 const fsAutocomplete = require('vorpal-autocomplete-fs');
 
 const fetch = require('./../util/fetch');
@@ -18,11 +17,11 @@ const cat = {
       args = {
         files: []
       };
-    } else if (_.isString(args)) {
+    } else if (typeof args === 'string' || args instanceof String) {
       args = {
         files: [args]
       };
-    } else if (_.isArray(args)) {
+    } else if (Array.isArray(args)) {
       args = {
         files: args
       };

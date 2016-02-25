@@ -1,7 +1,5 @@
 'use strict';
 
-const _ = require('lodash');
-
 /**
  * Intercepts stdout, passes thru callback
  * also pass console.error thru stdout so it goes to callback too
@@ -17,7 +15,7 @@ module.exports = function (callback) {
   const oldConsoleError = console.error;
   process.stdout.write = (function (write) {
     return function (string) {
-      const args = _.toArray(arguments);
+      const args = Array.from(arguments);
       args[0] = interceptor(string);
       write.apply(process.stdout, args);
     };
@@ -25,7 +23,7 @@ module.exports = function (callback) {
 
   console.error = (function () {
     return function () {
-      const args = _.toArray(arguments);
+      const args = Array.from(arguments);
       args.unshift('\x1b[31m[ERROR]\x1b[0m');
       console.log.apply(console.log, args);
     };
