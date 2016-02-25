@@ -90,6 +90,8 @@ Not terse enough? How about this:
 const out = $('ls -lah');
 ```
 
+*For even better programmatic Unix commands, check out [Shell.Js](https://github.com/shelljs/shelljs).*
+
 [Learn more](https://github.com/dthree/cash/wiki/Usage-|-Programmatic)
 
 
