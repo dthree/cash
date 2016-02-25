@@ -1,6 +1,6 @@
 {
   "name": "cash",
-  "version": "0.2.1",
+  "version": "0.2.2",
   "description": "Cross-platform Linux commands in pure ES6.",
   "main": "./lib/index.js",
   "scripts": {
