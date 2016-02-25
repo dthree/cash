@@ -1,6 +1,5 @@
 'use strict';
 
-var _ = require('lodash');
 var fs = require('fs');
 var fsAutocomplete = require('vorpal-autocomplete-fs');
 var path = require('path');
@@ -14,8 +13,8 @@ var mv = {
     options = options || {};
 
     args = args === undefined ? [] : args;
-    args = _.isArray(args) ? args : args.split(' ');
-    args = _.filter(args, function (arg) {
+    args = Array.isArray(args) ? args : args.split(' ');
+    args = args.filter(function (arg) {
       return String(arg).trim() !== '';
     });
 

@@ -4,7 +4,7 @@
   "description": "Cross-platform Linux commands in pure ES6.",
   "main": "./lib/index.js",
   "scripts": {
-    "test": "./node_modules/istanbul/lib/cli.js cover --root './dist' -x './dist/lib/sugar.js' _mocha -- -R spec && npm run lint",
+    "test": "gulp builder; ./node_modules/istanbul/lib/cli.js cover --root './dist' -x './dist/lib/sugar.js' _mocha -- -R spec && npm run lint",
     "test-win": "mocha",
     "lint": "xo ./src/*.js ./src/**/*.js ./test/*.js"
   },

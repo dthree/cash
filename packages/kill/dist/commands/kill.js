@@ -1,6 +1,5 @@
 'use strict';
 
-var _ = require('lodash');
 var fkill = require('fkill');
 var os = require('os');
 
@@ -24,7 +23,7 @@ var kill = {
     var procs = args;
     procs = procs === undefined ? [] : procs;
     procs = typeof procs === 'string' ? String(procs).split(' ') : procs;
-    procs = _.filter(procs, function (arg) {
+    procs = procs.filter(function (arg) {
       return String(arg).trim() !== '';
     });
 

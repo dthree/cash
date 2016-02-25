@@ -125,3 +125,4 @@ gulp.task('watch', function () {
 
 gulp.task('default', ['babel', 'watch', 'build', 'packages']);
 
+gulp.task('builder', ['babel', 'build', 'packages']);

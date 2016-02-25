@@ -1,6 +1,7 @@
 'use strict';
 
-var _ = require('lodash');
+var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol ? "symbol" : typeof obj; };
+
 var chalk = require('chalk');
 var filesize = require('filesize');
 var fs = require('fs');
@@ -33,9 +34,9 @@ var ls = {
 
   exec: function exec(paths, options) {
     var self = this;
-    paths = !_.isArray(paths) && _.isObject(paths) ? paths.paths : paths;
+    paths = paths !== null && !Array.isArray(paths) && (typeof paths === 'undefined' ? 'undefined' : _typeof(paths)) === 'object' ? paths.paths : paths;
     paths = paths || ['.'];
-    paths = _.isArray(paths) ? paths : [paths];
+    paths = Array.isArray(paths) ? paths : [paths];
     options = options || {};
     try {
       var results = [];
@@ -257,7 +258,7 @@ var ls = {
     // all of the details of each file.
     // Otherwise, just throw the file names
     // into columns.
-    if (_.isArray(files[0])) {
+    if (Array.isArray(files[0])) {
       var longest = {};
       for (var i = 0; i < files.length; ++i) {
         for (var j = 0; j < files[i].length; ++j) {

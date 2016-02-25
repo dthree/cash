@@ -1,6 +1,5 @@
 'use strict';
 
-var _ = require('lodash');
 var fsAutocomplete = require('vorpal-autocomplete-fs');
 
 var fetch = require('./../util/fetch');
@@ -17,11 +16,11 @@ var cat = {
       args = {
         files: []
       };
-    } else if (_.isString(args)) {
+    } else if (typeof args === 'string' || args instanceof String) {
       args = {
         files: [args]
       };
-    } else if (_.isArray(args)) {
+    } else if (Array.isArray(args)) {
       args = {
         files: args
       };

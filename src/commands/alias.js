@@ -62,8 +62,9 @@ const alias = {
     } else {
       if (value) {
         vorpal.localStorage.setItem(`alias|${key}`, value);
-        const index = all.indexOf(key);
-        all.splice(index, 1);
+        all = all.filter(function (val) {
+          return val !== key;
+        });
         all.push(key);
       } else {
         const item = vorpal.localStorage.getItem(`alias|${key}`);
