@@ -1,6 +1,5 @@
 'use strict';
 
-var _ = require('lodash');
 var os = require('os');
 
 var commands = require('./../commands.json').windowsCommands;
@@ -23,7 +22,9 @@ module.exports = {
     /* istanbul ignore next */
     .autocomplete(function () {
       /* istanbul ignore next */
-      return _.map(self.vorpal.commands, '_name');
+      return self.vorpal.commands.map(function (c) {
+        return c._name;
+      });
     }).action(function (args, cb) {
       cb = cb || function () {};
       var spawn = require('child_process').spawn;

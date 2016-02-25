@@ -1,7 +1,5 @@
 'use strict';
 
-var _ = require('lodash');
-
 var interfacer = require('./../util/interfacer');
 
 var alias = {
@@ -20,7 +18,7 @@ var alias = {
       options.p = true;
     }
 
-    if (_.isString(args)) {
+    if (typeof args === 'string' || args instanceof String) {
       args = [args];
     }
 
@@ -63,9 +61,8 @@ var alias = {
     } else {
       if (value) {
         vorpal.localStorage.setItem('alias|' + key, value);
-        _.remove(all, function (val) {
-          return val === key;
-        });
+        var index = all.indexOf(key);
+        all.splice(index, 1);
         all.push(key);
       } else {
         var item = vorpal.localStorage.getItem('alias|' + key);

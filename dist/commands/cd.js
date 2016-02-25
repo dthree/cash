@@ -12,6 +12,10 @@ var cd = {
     options = options || {};
 
     dir = !dir ? delimiter.getHomeDir() : dir;
+
+    // Allow Windows drive letter changes
+    dir = dir && dir.length === 2 && dir[1] === "/" ? dir[0] + ':' : dir;
+
     try {
       process.chdir(dir);
       if (vpl) {

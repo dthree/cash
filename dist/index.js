@@ -1,6 +1,5 @@
 'use strict';
 
-var _ = require('lodash');
 var os = require('os');
 var Vorpal = require('vorpal');
 
@@ -166,7 +165,7 @@ var app = {
     }
 
     app.export.vorpal = app.vorpal;
-    _.extend(app.export, cmds);
+    Object.assign(app.export, cmds);
     return this;
   }
 };

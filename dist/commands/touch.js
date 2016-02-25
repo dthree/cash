@@ -1,6 +1,5 @@
 'use strict';
 
-var _ = require('lodash');
 var fs = require('fs-extra');
 var fsAutocomplete = require('vorpal-autocomplete-fs');
 
@@ -20,7 +19,7 @@ var touch = {
   exec: function exec(files, options) {
     var self = this;
     files = files || ['.'];
-    files = !_.isArray(files) ? [files] : files;
+    files = !Array.isArray(files) ? [files] : files;
     options = options || {};
 
     // If any version of --no-create is passed, change it to false.
@@ -66,6 +65,7 @@ var touch = {
     }
   },
 
+
   /**
    * Returns touch stderr and response codes
    * for errors.
@@ -79,6 +79,7 @@ var touch = {
     this.log(e.message);
     return 2;
   },
+
 
   /**
    * Handler for a single file using touch.

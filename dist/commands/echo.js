@@ -1,7 +1,5 @@
 'use strict';
 
-var _ = require('lodash');
-
 var interfacer = require('./../util/interfacer');
 
 var echo = {
@@ -11,7 +9,7 @@ var echo = {
 
     try {
       var text = arg || '';
-      text = !_.isArray(text) ? [text] : text;
+      text = !Array.isArray(text) ? [text] : text;
       var result = text.join(' ');
       var out = '';
       if (options.e && !options.E) {
