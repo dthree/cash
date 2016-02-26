@@ -20,7 +20,7 @@ module.exports = function (vorpal) {
       args.options = args.options || {};
       return interfacer.call(this, {
         command: clear,
-        args: args,
+        args,
         options: args.options,
         callback
       });
