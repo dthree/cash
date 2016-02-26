@@ -1,6 +1,7 @@
 'use strict';
 
 const interfacer = require('./../util/interfacer');
+const preparser = require('./../preparser');
 
 const echo = {
 
@@ -68,6 +69,7 @@ module.exports = function (vorpal) {
   vorpal.api.echo = echo;
   vorpal
     .command('echo [arg...]')
+    .parse(preparser)
     .option('-e', 'enable interpretation of the following backslash escapes')
     .option('-E', 'explicitly suppress interpretation of backslash escapes')
     .action(function (args, callback) {
