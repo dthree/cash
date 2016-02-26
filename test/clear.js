@@ -3,7 +3,6 @@
 require('assert');
 const should = require('should');
 const cash = require('../dist/index.js');
-const $ = require('shelljs');
 
 describe('clear', function () {
   it('should exist and be a function', function () {
@@ -11,6 +10,6 @@ describe('clear', function () {
   });
 
   it('should clear the terminal screen', function () {
-    //cash.clear().should.
+    // cash.clear().should.
   });
 });
