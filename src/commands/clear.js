@@ -15,13 +15,13 @@ module.exports = function (vorpal) {
   }
   vorpal.api.clear = clear;
   vorpal
-    .command('clear [files...]')
+    .command('clear')
     .action(function (args, callback) {
       args.options = args.options || {};
       return interfacer.call(this, {
         command: clear,
-        args: args.files, // only pass in what you need from Vorpal
-        options: args.options, // split the options into their own arg
+        args: args,
+        options: args.options,
         callback
       });
     });

@@ -6,6 +6,6 @@ Clear the terminal screen
 
 Clear ignores any command-line parameters that may be present.
 
-Report pwd bugs to <https://github.com/dthree/cash>
+Report clear bugs to <https://github.com/dthree/cash>
 Cash home page: <http://cash.js.org/>
 `;
