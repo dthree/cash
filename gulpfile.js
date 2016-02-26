@@ -80,12 +80,14 @@ gulp.task('packages', function () {
       const jsonMain = require('./package.json');
       json.dependencies = {};
       json.devDependencies = {};
+      const preparser = `./dist/preparser.js`;
       const main = `./dist/commands/${name}.js`;
       const help = `./dist/help/${name}.js`;
       const bin = `./bin/${name}.js`;
       $.cp('-f', main, `${dir}/${main}`);
       $.cp('-f', bin, `${dir}/${bin}`);
       $.cp('-f', help, `${dir}/${help}`);
+      $.cp('-f', preparser, `${dir}/${preparser}`);
       $.cp('-f', './bin/parser.js', `${dir}/bin/parser.js`);
       $.cp('-fr', `./packages/template.README.md`, `${dir}/README.md`);
       let readme = String($.cat(`${dir}/README.md`));
