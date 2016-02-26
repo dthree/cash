@@ -90,6 +90,8 @@ Not terse enough? How about this:
 const out = $('ls -lah');
 ```
 
+*For even better programmatic Unix commands, check out [Shell.JS](https://github.com/shelljs/shelljs).*
+
 [Learn more](https://github.com/dthree/cash/wiki/Usage-|-Programmatic)
 
 
@@ -179,12 +181,25 @@ Shout out to [@aseemk](https://github.com/aseemk) for donating the name.
 
 #### Doesn't Shell.js do this?
 
-No. 
+No.
+ 
+For those who don't know, [Shell.JS](https://github.com/shelljs/shelljs) is an awesome Node package that implements UNIX shell commands programatically in Javascript. Check it out - really. While Shell.JS was tremendously helpful in figuring out how to accomplish Cash, the two do not really conflict.
 
-For those who don't know, [Shell.js](https://github.com/shelljs/shelljs) is an awesome Node app that implements Unix shell commands programatically in Javascript. Check it out - really. While Shell.js was tremendously helpful in figuring out how to accomplish Cash, the two do not really conflict.
+Shell.JS gives the feel of UNIX commands in a code environmenmt, but aims to implement the commands in a way that makes sense for a javascript library. This means that many commands return JavaScript objects, and some of the rougher and more dangerous edges of bash have been softened a bit.
 
-Shell.js *gives the feel of and approximates* Unix commands in a code environment, but does not aim to precisely implement it. 
-By example, Shell.js' `ls` command supports two arguments and returns an array. Cash supports seventeen arguments and strives to mirror the exact functionality and output of the POSIX-compliant `ls` command.
+For example, with cash:
+```javascript
+$('ls'); // 'node_modules\n'
+
+$('echo foo > foo.txt');
+```
+
+With Shell.JS:
+```javascript
+ls(); // ['node_modules'];
+
+echo('foo').to('foo.txt');
+```
 
 
 ## License
