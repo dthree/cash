@@ -9,7 +9,9 @@ describe('clear', function () {
     should.exist(cash.clear);
   });
 
-  (function () {
-    cash.clear; 
-  }).should.not.throw();
+  it('should run without throwing', function () {
+    (function () {
+      cash.clear();
+    }).should.not.throw();
+  });
 });
