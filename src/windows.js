@@ -1,8 +1,9 @@
 'use strict';
 
 const os = require('os');
+const windows = (os.platform() === 'win32');
 
-const commands = require('./../commands.json').windowsCommands;
+const exclusions = require('./../commands.json').windowsExclusions;
 
 module.exports = {
 
@@ -22,7 +23,6 @@ module.exports = {
         }
         return out;
       })
-      /* istanbul ignore next */
       .autocomplete(function () {
         /* istanbul ignore next */
         return self.vorpal.commands.map(c => c._name);
@@ -38,13 +38,21 @@ module.exports = {
         let cmd;
         // Only register commands if on Windows.
         /* istanbul ignore next */
-        if (os.platform() === 'win32') {
-          for (let i = 0; i < commands.length; ++i) {
-            if (String(words.slice(0, commands[i].length)).toLowerCase() === commands[i].toLowerCase()) {
-              cmd = commands[i];
-              argus = String(words.slice(commands[i].length, words.length)).trim().split(' ');
-              argus = (argus.length === 1 && argus[0] === '') ? [] : argus;
+        if (windows) {
+          let excluded = false;
+          for (let i = 0; i < exclusions.length; ++i) {
+            if (String(words.slice(0, exclusions[i].length)).toLowerCase() === exclusions[i].toLowerCase()) {
+              excluded = true;
+              cmd = undefined;
+              argus = undefined;
             }
+          }
+
+          if (!excluded) {
+            const parts = words.split(' ');
+            cmd = parts.shift();
+            argus = parts;
+            argus = (argus.length === 1 && argus[0] === '') ? [] : argus;
           }
         }
 
@@ -93,6 +101,12 @@ module.exports = {
         }
         print();
 
+        // See if we get a Windows help on an
+        // invalid command and instead throw
+        // Cash help.
+        let windowsHelpFlag = false;
+        const windowsCommandReject = 'is not recognized as an internal or external command';
+
         /* istanbul ignore next */
         proc.stdout.on('data', function (data) {
           out += data.toString('utf8');
@@ -100,7 +114,12 @@ module.exports = {
 
         /* istanbul ignore next */
         proc.stderr.on('data', function (data) {
-          out += data.toString('utf8');
+          const str = data.toString('utf8');
+          if (windows && str.indexOf(windowsCommandReject) > -1) {
+            windowsHelpFlag = true;
+            return;
+          }
+          out += str;
         });
 
         proc.on('close', function () {
@@ -108,6 +127,9 @@ module.exports = {
           if (String(out).trim() !== '') {
             slf.log(String(out).replace(/\r\r/g, '\r'));
             out = '';
+          }
+          if (windowsHelpFlag) {
+            slf.help();
           }
           /* istanbul ignore next */
           setTimeout(function () {
