@@ -9,7 +9,5 @@ describe('clear', function () {
     should.exist(cash.clear);
   });
 
-  it('should clear the terminal screen', function () {
-    // cash.clear().should.
-  });
+  (function(){ cash.clear }).should.not.throw();
 });
