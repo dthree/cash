@@ -22,7 +22,9 @@ var app = {
   _fatal: false,
 
   export: function _export(str, cbk) {
-    cbk = cbk || function () {};
+    // Is this a tagged template literal?
+    var tmpl = Array.isArray(str) && Array.isArray(str.raw);
+    cbk = tmpl && cbk || function () {};
     var options = {
       fatal: app._fatal || false
     };
@@ -34,7 +36,24 @@ var app = {
       out += str + '\n';
       return '';
     });
-    app.vorpal.execSync(str, options);
+    var commands = undefined;
+    if (tmpl) {
+      // Render into a single string, inserting interpolated values.
+      var interpVals = [].concat(Array.prototype.slice.call(arguments)).slice(1);
+      var interpStr = str[0];
+      for (var i = 0, l = interpVals.length; i < l; i++) {
+        interpStr += '' + interpVals[i] + str[i + 1];
+      }
+      // Split into lines.  Remove blank lines and comments (start with #)
+      commands = interpStr.split(/\r\n|\r|\n/).filter(function (command) {
+        return !/^\s*(?:#|$)/.test(command);
+      });
+    } else {
+      commands = [str];
+    }
+    commands.forEach(function (command) {
+      app.vorpal.execSync(command, options);
+    });
     unhook();
     return String(out).replace(/\n$/, '');
   },
