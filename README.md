@@ -126,6 +126,7 @@ The following commands are currently implemented:
 
 - alias
 - cat
+- clear
 - cd
 - cp
 - echo
