@@ -156,6 +156,11 @@ Want more commands?
 I am currently looking for someone with experience in building Windows installers (`.msi`) to bundle Cash and its individual components into a self-contained wrapper. If you would like to help with this, send me a ping.
 
 
+### Awesome contributors
+
+- [@safinn](https://github.com/safinn): Added `clear` command.
+
+
 ## FAQ
 
 
