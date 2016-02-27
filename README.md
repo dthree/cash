@@ -123,9 +123,9 @@ Love it? Cash is brand new! Give it a :star: or a tweet to help spread the word!
 
 ## Introduction
 
-Cash is a project working on a cross-platform implementation of the most used Unix-based commands in pure Javascript and with no external dependencies.
+Cash is a project working on a cross-platform implementation of the most used Unix-based commands in pure JavaScript and with no external dependencies.
 
-The goal of Cash is to open up these commands to the massive Javascript community for the first time, and to provide a cleaner, simpler and flexible alternative to applications like Cygwin for those wanting the Linux feel on Windows.
+The goal of Cash is to open up these commands to the massive JavaScript community for the first time, and to provide a cleaner, simpler and flexible alternative to applications like Cygwin for those wanting the Linux feel on Windows.
 
 Cash was built with strict attention to nearly exact implementations and excellent test coverage of over 200 unit tests.
 
@@ -198,9 +198,9 @@ Shout out to [@aseemk](https://github.com/aseemk) for donating the name.
 
 No.
  
-For those who don't know, [Shell.JS](https://github.com/shelljs/shelljs) is an awesome Node package that implements UNIX shell commands programatically in Javascript. Check it out - really. While Shell.JS was tremendously helpful in figuring out how to accomplish Cash, the two do not really conflict.
+For those who don't know, [Shell.JS](https://github.com/shelljs/shelljs) is an awesome Node package that implements UNIX shell commands programatically in JavaScript. Check it out - really. While Shell.JS was tremendously helpful in figuring out how to accomplish Cash, the two do not really conflict.
 
-Shell.JS gives the feel of UNIX commands in a code environmenmt, but aims to implement the commands in a way that makes sense for a javascript library. This means that many commands return JavaScript objects, and some of the rougher and more dangerous edges of bash have been softened a bit.
+Shell.JS gives the feel of UNIX commands in a code environmenmt, but aims to implement the commands in a way that makes sense for a JavaScript library. This means that many commands return JavaScript objects, and some of the rougher and more dangerous edges of bash have been softened a bit.
 
 For example, with cash:
 ```javascript
