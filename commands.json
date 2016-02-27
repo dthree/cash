@@ -1,10 +1,12 @@
 {
   "commands": [
     "alias",
+    "cat",
     "cd",
     "clear",
     "cp",
     "echo",
+    "head",
     "kill",
     "ls",
     "mkdir",
@@ -12,7 +14,6 @@
     "pwd",
     "sort",
     "touch",
-    "cat",
     "less",
     "grep",
     "rm",
