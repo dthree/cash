@@ -3,24 +3,16 @@
 var os = require('os');
 var windows = os.platform() === 'win32';
 
-var preparser = function preparser(input) {
-  // Replace out env variables.
-  /* istanbul ignore next */
-  var regex1 = undefined;
-  var regex2 = undefined;
-  if (windows) {
-    regex1 = /(\%.*?\%)/;
-    regex2 = /^\%|\%$/g;
-  } else {
-    regex1 = /(\${[^\$]*}|\$[^\$]*)/;
-    regex2 = /^\${|}$|^\$/g;
-  }
+// Replace out env variables.
+var parseEnvVariables = function parseEnvVariables(input) {
+  var regex1 = windows ? /(\%.*?\%)/ : /(\${[^\$]*}|\$[^\$]*)/;
+  var regex2 = windows ? /^\%|\%$/g : /^\${|}$|^\$/g;
+
   var total = '';
-  function roll(str) {
+  function iterate(str) {
     var match = regex1.exec(str);
     if (match !== null) {
       var string = match[0];
-      var sliceLength = parseFloat(string.length) + parseFloat(match.index);
       var stripped = String(string.replace(regex2, '')).toLowerCase();
       var value = null;
       for (var name in process.env) {
@@ -33,24 +25,25 @@ var preparser = function preparser(input) {
           }
         }
       }
-      var prefix = undefined;
-      var suffix = undefined;
+      var sliceLength = parseFloat(string.length) + parseFloat(match.index) - (value !== null ? 0 : 1);
+      var prefix = str.slice(0, sliceLength);
+      var suffix = str.slice(sliceLength, str.length);
       if (value !== null) {
-        prefix = str.slice(0, sliceLength);
-        suffix = str.slice(sliceLength, str.length);
         prefix = prefix.replace(string, value);
-      } else {
-        prefix = str.slice(0, sliceLength - 1);
-        suffix = str.slice(sliceLength - 1, str.length);
       }
       total += prefix;
-      return roll(suffix);
+      return iterate(suffix);
     }
     return str;
   }
-  var remainder = roll(input);
-  total += remainder;
-  input = total;
+
+  var out = iterate(input);
+  total += out;
+  return total;
+};
+
+var preparser = function preparser(input) {
+  input = parseEnvVariables(input);
   return input;
 };
 
