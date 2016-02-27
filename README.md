@@ -88,6 +88,16 @@ Not terse enough? How about this:
 const out = $('ls -lah');
 ```
 
+Not :sunglasses: enough? Try this:
+
+```js
+require('cash') `
+  cp -R ./src ./dest
+  ls | grep *-spec.js | cat
+  rm ./specResults.html 
+`;
+```
+
 *For even better programmatic Unix commands, check out [Shell.JS](https://github.com/shelljs/shelljs).*
 
 [Learn more](https://github.com/dthree/cash/wiki/Usage-|-Programmatic)
@@ -160,6 +170,7 @@ I am currently looking for someone with experience in building Windows installer
 ### Awesome contributors
 
 - [@safinn](https://github.com/safinn): Added `clear` command.
+- [@cspotcode](https://github.com/cspotcode): Implemented template literal execution.
 
 
 ## FAQ
