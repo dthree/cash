@@ -1,23 +1,24 @@
 {
   "commands": [
-    "alias", 
-    "cd", 
-    "cp", 
-    "echo", 
-    "kill", 
-    "ls", 
-    "mkdir", 
-    "mv", 
-    "pwd", 
-    "sort", 
-    "touch", 
-    "cat", 
+    "alias",
+    "cd",
+    "clear",
+    "cp",
+    "echo",
+    "kill",
+    "ls",
+    "mkdir",
+    "mv",
+    "pwd",
+    "sort",
+    "touch",
+    "cat",
     "less",
     "grep",
     "rm",
     "unalias"
     ],
-  "globalExclusions": [ 
+  "globalExclusions": [
     "alias",
     "cd",
     "echo",
@@ -54,17 +55,17 @@
     "cat": {
       "dependencies": ["lodash", "vorpal-autocomplete-fs", "glob"],
       "files": [
-        "./dist/util/fetch.js", 
-        "./dist/util/interfacer.js", 
-        "./dist/util/lpad.js", 
-        "./dist/util/stripAnsi.js", 
+        "./dist/util/fetch.js",
+        "./dist/util/interfacer.js",
+        "./dist/util/lpad.js",
+        "./dist/util/stripAnsi.js",
         "./dist/util/expand.js"
       ]
     },
     "cp": {
       "dependencies": ["lodash", "vorpal-autocomplete-fs", "glob"],
       "files": [
-        "./dist/util/expand.js", 
+        "./dist/util/expand.js",
         "./dist/util/interfacer.js"
       ]
     },
@@ -77,8 +78,8 @@
     "ls": {
       "dependencies": ["lodash", "chalk", "filesize", "vorpal-autocomplete-fs"],
       "files": [
-        "./dist/util/colorFile.js", 
-        "./dist/util/columnify.js", 
+        "./dist/util/colorFile.js",
+        "./dist/util/columnify.js",
         "./dist/util/converter.date.js",
         "./dist/util/fileFromPath.js",
         "./dist/util/interfacer.js",
@@ -110,24 +111,24 @@
     "sort": {
       "dependencies": ["lodash", "vorpal-autocomplete-fs", "glob", "array-shuffle"],
       "files": [
-        "./dist/util/fetch.js", 
-        "./dist/util/interfacer.js", 
-        "./dist/util/stripAnsi.js", 
+        "./dist/util/fetch.js",
+        "./dist/util/interfacer.js",
+        "./dist/util/stripAnsi.js",
         "./dist/util/expand.js"
       ]
     },
     "touch": {
       "dependencies": ["lodash", "fs-extra", "vorpal-autocomplete-fs"],
       "files": [
-        "./dist/util/interfacer.js", 
+        "./dist/util/interfacer.js",
         "./dist/lib/sugar.js"
       ]
     },
     "rm": {
       "dependencies": ["vorpal-autocomplete-fs", "glob"],
       "files": [
-        "./dist/util/expand.js", 
-        "./dist/util/interfacer.js", 
+        "./dist/util/expand.js",
+        "./dist/util/interfacer.js",
         "./dist/util/unlinkSync.js"
       ]
     }

@@ -6,6 +6,7 @@ const commands = [
   'alias [-p] [name=[value]]',
   'cat [-AbeEnstTv] [files ...]',
   'cd [dir]',
+  'clear',
   'cp [-fnr] source ... dest',
   'echo [eE] [arg ...]',
   'grep [-bHhinqsvw] [-m max] [--silent] [--include pattern] pattern [files ...]',
