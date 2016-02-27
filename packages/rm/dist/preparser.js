@@ -5,7 +5,7 @@ var windows = os.platform() === 'win32';
 
 // Replace out env variables.
 var parseEnvVariables = function parseEnvVariables(input) {
-  var regex1 = windows ? /(\%.*?\%)/ : /(\${[^\$]*}|\$[^\$]*)/;
+  var regex1 = windows ? /(\%.*?\%)/ : /(\${[a-zA-Z_][a-zA-Z0-9_]*}|\$[a-zA-Z_][a-zA-Z0-9_]*)/;
   var regex2 = windows ? /^\%|\%$/g : /^\${|}$|^\$/g;
 
   var total = '';

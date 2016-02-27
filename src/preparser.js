@@ -7,7 +7,7 @@ const windows = (os.platform() === 'win32');
 const parseEnvVariables = function (input) {
   const regex1 = (windows) ?
     /(\%.*?\%)/ :
-    /(\${[^\$]*}|\$[^\$]*)/;
+    /(\${[a-zA-Z_][a-zA-Z0-9_]*}|\$[a-zA-Z_][a-zA-Z0-9_]*)/;
   const regex2 = (windows) ?
     /^\%|\%$/g :
     /^\${|}$|^\$/g;
