@@ -3,9 +3,8 @@
 const os = require('os');
 const windows = (os.platform() === 'win32');
 
-
 // Replace out env variables.
-const parseEnvVariables = function(input) {
+const parseEnvVariables = function (input) {
   const regex1 = (windows) ?
     /(\%.*?\%)/ :
     /(\${[^\$]*}|\$[^\$]*)/;
@@ -32,7 +31,7 @@ const parseEnvVariables = function(input) {
       }
       const sliceLength = ((parseFloat(string.length) + parseFloat(match.index)) - ((value !== null) ? 0 : 1));
       let prefix = str.slice(0, sliceLength);
-      let suffix = str.slice(sliceLength, str.length);
+      const suffix = str.slice(sliceLength, str.length);
       if (value !== null) {
         prefix = prefix.replace(string, value);
       }
@@ -42,10 +41,10 @@ const parseEnvVariables = function(input) {
     return str;
   }
 
-  let out = iterate(input);
+  const out = iterate(input);
   total += out;
   return total;
-}
+};
 
 const preparser = function (input) {
   input = parseEnvVariables(input);
