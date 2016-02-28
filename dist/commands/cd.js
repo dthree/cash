@@ -4,6 +4,7 @@ var fsAutocomplete = require('vorpal-autocomplete-fs');
 var delimiter = require('./../delimiter');
 
 var interfacer = require('./../util/interfacer');
+var preparser = require('./../preparser');
 
 var cd = {
   exec: function exec(dir, options) {
@@ -46,7 +47,7 @@ module.exports = function (vorpal) {
     return cd;
   }
   vorpal.api.cd = cd;
-  vorpal.command('cd [dir]').autocomplete(fsAutocomplete({ directory: true })).action(function (args, callback) {
+  vorpal.command('cd [dir]').parse(preparser).autocomplete(fsAutocomplete({ directory: true })).action(function (args, callback) {
     args.options = args.options || {};
     args.options.vorpal = vorpal;
     return interfacer.call(this, {

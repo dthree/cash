@@ -12,6 +12,7 @@ const columnify = require('./../util/columnify');
 const dateConverter = require('./../util/converter.date');
 const fileFromPath = require('./../util/fileFromPath');
 const interfacer = require('./../util/interfacer');
+const preparser = require('./../preparser');
 const pad = require('./../util/pad');
 const lpad = require('./../util/lpad');
 const permissionsConverter = require('./../util/converter.permissions');
@@ -349,6 +350,7 @@ module.exports = function (vorpal) {
   vorpal.api.ls = ls;
   vorpal
     .command('ls [paths...]')
+    .parse(preparser)
     .option('-a, --all', 'do not ignore entries starting with .')
     .option('-A, --almost-all', 'do not list implied . and ..')
     .option('-d, --directory', 'list directory entries instead of contents, and do not dereference symbolic links')

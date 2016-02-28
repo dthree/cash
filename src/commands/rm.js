@@ -5,6 +5,7 @@ const fsAutocomplete = require('vorpal-autocomplete-fs');
 
 const expand = require('./../util/expand');
 const interfacer = require('./../util/interfacer');
+const preparser = require('./../preparser');
 const unlinkSync = require('./../util/unlinkSync');
 
 const rm = {
@@ -163,6 +164,7 @@ module.exports = function (vorpal) {
   vorpal.api.rm = rm;
   vorpal
     .command('rm [files...]')
+    .parse(preparser)
     .option('-f, --force', 'ignore nonexistent files and arguments, never prompt')
     .option('-r, --recursive', 'remove directories and their contents recursively')
     .option('-R', 'remove directories and their contents recursively')

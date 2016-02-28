@@ -1,6 +1,7 @@
 'use strict';
 
 const interfacer = require('./../util/interfacer');
+const preparser = require('./../preparser');
 
 const alias = {
 
@@ -97,6 +98,7 @@ module.exports = function (vorpal) {
   vorpal.api.alias = alias;
   vorpal
     .command('alias [name...]')
+    .parse(preparser)
     .option('-p', 'print all defined aliases in a reusable format')
     .action(function (args, callback) {
       args.options = args.options || {};

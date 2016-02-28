@@ -4,6 +4,7 @@ const fkill = require('fkill');
 const os = require('os');
 
 const interfacer = require('./../util/interfacer');
+const preparser = require('./../preparser');
 
 const usage = `kill: usage: kill [-s sigspec | -n signum | -sigspec] pid | jobspec ... or kill -l [sigspec]`;
 const windows = (os.platform().indexOf('win') > -1);
@@ -85,6 +86,7 @@ module.exports = function (vorpal) {
   vorpal.api.kill = kill;
   vorpal
     .command('kill [process...]')
+    .parse(preparser)
     .option('-9', 'sigkill')
     .option('-s [sig]', 'sig is a signal name')
     .option('-n [sig]', 'sig is a signal number')
