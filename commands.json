@@ -5,6 +5,7 @@
     "clear",
     "cp",
     "echo",
+    "export",
     "kill",
     "ls",
     "mkdir",
@@ -22,6 +23,7 @@
     "alias",
     "cd",
     "echo",
+    "export",
     "less",
     "sort",
     "unalias"
