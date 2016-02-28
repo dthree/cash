@@ -5,41 +5,30 @@ var windows = os.platform() === 'win32';
 
 // Replace out env variables.
 var parseEnvVariables = function parseEnvVariables(input) {
-  var regex1 = windows ? /(\%.*?\%)/ : /(\${[a-zA-Z_][a-zA-Z0-9_]*}|\$[a-zA-Z_][a-zA-Z0-9_]*)/;
-  var regex2 = windows ? /^\%|\%$/g : /^\${|}$|^\$/g;
+  var referenceRegex = /%(.*)%|\${([a-zA-Z_][a-zA-Z0-9_]*)}|\$([a-zA-Z_][a-zA-Z0-9_]*)/g;
+  // = /\${([a-zA-Z_][a-zA-Z0-9_]*)}|\$([a-zA-Z_][a-zA-Z0-9_]*)/g;
 
-  var total = '';
-  function iterate(str) {
-    var match = regex1.exec(str);
-    if (match !== null) {
-      var string = match[0];
-      var stripped = String(string.replace(regex2, '')).toLowerCase();
-      var value = null;
+  var winRefRegex = /\%.*?\%/;
+
+  return input.replace(referenceRegex, function (varRef, capture1, capture2, capture3) {
+    var varName = capture1 || capture2 || capture3;
+    var value = '';
+    if (windows) {
       for (var name in process.env) {
         if (process.env.hasOwnProperty(name)) {
-          if (String(name).toLowerCase() === stripped) {
+          // Windows is case insensitive
+          if (String(name).toLowerCase() === varName.toLowerCase()) {
             value = process.env[name];
             break;
-          } else if (!windows) {
-            value = ''; // default to empty string on Unix
           }
         }
       }
-      var sliceLength = parseFloat(string.length) + parseFloat(match.index) - (value !== null ? 0 : 1);
-      var prefix = str.slice(0, sliceLength);
-      var suffix = str.slice(sliceLength, str.length);
-      if (value !== null) {
-        prefix = prefix.replace(string, value);
-      }
-      total += prefix;
-      return iterate(suffix);
+    } else {
+      // default to empty string on Unix
+      value = process.env.hasOwnProperty(varName) ? process.env[varName] : '';
     }
-    return str;
-  }
-
-  var out = iterate(input);
-  total += out;
-  return total;
+    return value;
+  });
 };
 
 var preparser = function preparser(input) {

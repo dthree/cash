@@ -30,76 +30,68 @@ describe('preparser', function () {
   });
 
   describe('environmental variables', function () {
-    it('should convert them according to os', function () {
-      if (windows) {
-        cash('echo %PATH%').should.equal(`${path}\n`);
-      } else {
-        cash('echo $PATH').should.equal(`${path}\n`);
-      }
+    before(function () {
+      process.env.FOO = 'This*string\'has $pecial${characters}';
+    });
+    it('should convert simple variable references', function () {
+      cash('echo $PATH').should.equal(`${path}\n`);
     });
 
-    it('concatenate variables with no space', function () {
-      if (windows) {
-        cash('echo %PATH%%PATH%').should.equal(`${path}${path}\n`);
-      } else {
-        cash('echo $PATH$PATH').should.equal(`${path}${path}\n`);
-      }
+    it('should convert variable references using the ${.*} syntax', function () {
+      cash('echo ${PATH}').should.equal(`${path}\n`);
     });
 
-    it('display variables with one or more spaces in between', function () {
-      if (windows) {
-        cash('echo %PATH% %PATH%').should.equal(`${path} ${path}\n`);
-      } else {
-        cash('echo $PATH $PATH').should.equal(`${path} ${path}\n`);
-      }
+    it('should concatenate variables with no space', function () {
+      cash('echo $PATH$PATH').should.equal(`${path}${path}\n`);
+      cash('echo ${PATH}${PATH}').should.equal(`${path}${path}\n`);
     });
 
-    it('display variable references from inside double quotes', function () {
-      if (windows) {
-        cash('echo "%PATH%   %PATH%"').should.equal(`${path}   ${path}\n`);
-      } else {
-        cash('echo "$PATH   $PATH"').should.equal(`${path}   ${path}\n`);
-      }
+    it('should display variables with one or more spaces in between', function () {
+      cash('echo $PATH $PATH').should.equal(`${path} ${path}\n`);
+      cash('echo ${PATH} ${PATH}').should.equal(`${path} ${path}\n`);
     });
 
-    it('separate variable references from strings with slash or dot', function () {
-      if (windows) {
-        cash('echo foo/%PATH%/%PATH%.bar').should.equal(`foo/${path}/${path}.bar\n`);
-      } else {
-        cash('echo foo/$PATH/$PATH.bar').should.equal(`foo/${path}/${path}.bar\n`);
-      }
+    it('should display variable references from inside double quotes', function () {
+      cash('echo "$PATH   $PATH"').should.equal(`${path}   ${path}\n`);
     });
 
-    it('non-existent variables default to the empty string for unix', function () {
-      if (!windows) {
-        cash('echo $FAKE_ENV_VAR').should.equal('\n');
-      }
+    it('should separate variable references from strings with slash or dot', function () {
+      cash('echo foo/$PATH/$PATH.bar').should.equal(`foo/${path}/${path}.bar\n`);
     });
 
-    it('underscores can be in environmental variable names', function () {
+    it('should show non-existent variables as the empty string', function () {
+      cash('echo $FAKE_ENV_VAR').should.equal('\n');
+    });
+
+    it('should allow underscores in environmental variable names', function () {
       if (nvmDir) {
-        if (windows) {
-          cash('echo %NVM_DIR%').should.equal(`${nvmDir}\n`);
-        } else {
-          cash('echo $NVM_DIR').should.equal(`${nvmDir}\n`);
-        }
+        cash('echo $NVM_DIR').should.equal(`${nvmDir}\n`);
       }
     });
 
-    it('append variables and strings', function () {
+    it('should append variables and strings', function () {
+      cash('echo foo${PATH}bar').should.equal(`foo${path}bar\n`);
+    });
+
+    it('should have proper case sensitivity', function () {
       if (windows) {
-        cash('echo foo%PATH%bar').should.equal(`foo${path}bar\n`);
+        // Case insensitive
+        cash('echo %path%.%PATH%').should.equal(`${path}.${path}\n`);
       } else {
-        cash('echo foo${PATH}bar').should.equal(`foo${path}bar\n`);
+        // Case sensitive
+        cash('echo $path.$PATH').should.equal(`.${path}\n`);
       }
+    });
+
+    it('should handle variables with weird characters inside', function () {
+      cash('echo $FOO').should.equal(`${process.env.FOO}\n`);
     });
 
     it('should convert the same variable twice', function () {
-      if (windows) {
-        cash('echo %PATH%-%PATH%').should.equal(`${path}-${path}\n`);
-      } else {
-        cash('echo $PATH-$PATH').should.equal(`${path}-${path}\n`);
-      }
+      cash('echo $PATH-$PATH').should.equal(`${path}-${path}\n`);
+    });
+    after(function () {
+      delete process.env.FOO;
     });
   });
 });
