@@ -1,6 +1,7 @@
 'use strict';
 
 const interfacer = require('./../util/interfacer');
+const preparser = require('./../preparser');
 
 /**
  * This is a boilerplate for implementing a new command.
@@ -83,6 +84,7 @@ module.exports = function (vorpal) {
    */
   vorpal
     .command('cmdName [files...]')
+    .parse(preparser)
     .option('-o, --option', 'option description')
     .action(function (args, callback) {
       args.options = args.options || {};

@@ -6,6 +6,7 @@ var path = require('path');
 
 var expand = require('./../util/expand');
 var interfacer = require('./../util/interfacer');
+var preparser = require('./../preparser');
 
 var mv = {
   exec: function exec(args, options) {
@@ -91,7 +92,7 @@ module.exports = function (vorpal) {
     return mv;
   }
   vorpal.api.mv = mv;
-  vorpal.command('mv [args...]').option('-f, --force', 'do not prompt before overwriting').option('-n, --no-clobber', 'do not overwrite an existing file').option('--striptrailingslashes', 'remove any trailing slashes from each source') // vorpal bug, need to add dashes between words
+  vorpal.command('mv [args...]').parse(preparser).option('-f, --force', 'do not prompt before overwriting').option('-n, --no-clobber', 'do not overwrite an existing file').option('--striptrailingslashes', 'remove any trailing slashes from each source') // vorpal bug, need to add dashes between words
   .option('-v, --verbose', 'explain what is being done').autocomplete(fsAutocomplete()).action(function (args, callback) {
     args.options = args.options || {};
     return interfacer.call(this, {

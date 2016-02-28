@@ -90,6 +90,49 @@ describe('preparser', function () {
     it('should convert the same variable twice', function () {
       cash('echo $PATH-$PATH').should.equal(`${path}-${path}\n`);
     });
+
+    after(function () {
+      delete process.env.FOO;
+    });
+  });
+  describe('commands are preparsed', function () {
+    before(function () {
+      process.env.FOO = 'thisfiledoesntexist';
+    });
+
+    it('should work for cat', function () {
+      cash('cat $FOO').should.equal(`cat: ${process.env.FOO}: No such file or directory\n`);
+    });
+
+    it('should work for cd', function () {
+      cash('cd $FOO').should.equal(`-bash: cd: ${process.env.FOO}: No such file or directory\n`);
+    });
+
+    it('should work for cp', function () {
+      cash('cp $FOO dest').should.equal(`cp: cannot stat ${process.env.FOO}: No such file or directory\n`);
+    });
+
+    it('should work for ls', function () {
+      cash('ls $FOO').should.equal('');
+      cash('ls $NOSUCHENVVAR').should.equal(cash('ls'));
+    });
+
+    it('should work for mv', function () {
+      cash('mv $FOO dest').should.equal(`mv: cannot stat ${process.env.FOO}: No such file or directory\n`);
+    });
+
+    it('should work for rm', function () {
+      cash('rm $FOO').should.equal(`rm: cannot remove ${process.env.FOO}: No such file or directory\n`);
+    });
+
+    it('should work for sort', function () {
+      cash('sort $FOO').should.equal(`sort: cannot read: ${process.env.FOO}: No such file or directory\n`);
+    });
+
+    it('should work for kill', function () {
+      cash('kill $FOO').should.equal(`-cash: kill: (${process.env.FOO}) - No such process\n`);
+    });
+
     after(function () {
       delete process.env.FOO;
     });

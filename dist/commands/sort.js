@@ -5,6 +5,7 @@ var fsAutocomplete = require('vorpal-autocomplete-fs');
 
 var fetch = require('./../util/fetch');
 var interfacer = require('./../util/interfacer');
+var preparser = require('./../preparser');
 var strip = require('./../util/stripAnsi');
 var shuffle = require('array-shuffle');
 
@@ -244,7 +245,7 @@ module.exports = function (vorpal) {
     return sort;
   }
   vorpal.api.sort = sort;
-  vorpal.command('sort [files...]').option('-M, --month-sort', 'compare (unknown) < \'JAN\' < ... < \'DEC\'').option('-h, --human-numeric-sort', 'compare human readable numbers (e.g., 2K 1G)').option('-n, --numeric-sort', 'compare according to string numerical value').option('-R, --random-sort', 'sort by random hash of keys').option('-r, --reverse', 'reverse the result of comparisons').option('-c, --check', 'check for sorted input; do not sort').option('-o, --output [file]', 'write result to file instead of standard output').autocomplete(fsAutocomplete()).action(function (args, callback) {
+  vorpal.command('sort [files...]').parse(preparser).option('-M, --month-sort', 'compare (unknown) < \'JAN\' < ... < \'DEC\'').option('-h, --human-numeric-sort', 'compare human readable numbers (e.g., 2K 1G)').option('-n, --numeric-sort', 'compare according to string numerical value').option('-R, --random-sort', 'sort by random hash of keys').option('-r, --reverse', 'reverse the result of comparisons').option('-c, --check', 'check for sorted input; do not sort').option('-o, --output [file]', 'write result to file instead of standard output').autocomplete(fsAutocomplete()).action(function (args, callback) {
     args.options = args.options || {};
     return interfacer.call(this, {
       command: sort,
