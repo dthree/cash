@@ -59,7 +59,7 @@ module.exports = function (vorpal) {
   if (vorpal === undefined) {
     return _export;
   }
-  vorpal.api._export = _export;
+  vorpal.api.export = _export;
   vorpal.command('export [name...]').parse(preparser).option('-p', 'print all defined aliases in a reusable format').action(function (args, callback) {
     args.options = args.options || {};
     return interfacer.call(this, {
