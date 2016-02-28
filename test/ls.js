@@ -72,6 +72,11 @@ if (os.platform() !== 'win32') {
         strip(res).should.equal(`.:\n${expected.rootDirFlat}\n./sub:\n${expected.subDirFlat}`);
       });
 
+      it('should handle globs', function () {
+        const res = ls('*.gif');
+        strip(res).should.equal(`e.gif\n`);
+      });
+
       it('should list a parent directory', function () {
         process.chdir('./sub/');
         const res = ls('..');

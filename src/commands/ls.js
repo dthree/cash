@@ -6,6 +6,7 @@ const fs = require('fs');
 const fsAutocomplete = require('vorpal-autocomplete-fs');
 const os = require('os');
 
+const expand = require('./../util/expand');
 const colorFile = require('./../util/colorFile');
 const columnify = require('./../util/columnify');
 const dateConverter = require('./../util/converter.date');
@@ -35,6 +36,7 @@ const ls = {
     paths = (paths !== null && !Array.isArray(paths) && (typeof paths === 'object')) ? paths.paths : paths;
     paths = paths || ['.'];
     paths = (Array.isArray(paths)) ? paths : [paths];
+    paths = expand(paths);
     options = options || {};
     try {
       let results = [];
