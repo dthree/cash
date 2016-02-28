@@ -169,6 +169,7 @@ I am currently looking for someone with experience in building Windows installer
 
 ### Awesome contributors
 
+- [@nfischer](https://github.com/nfischer): Multiple contributions & suggestions.
 - [@safinn](https://github.com/safinn): Added `clear` command.
 - [@cspotcode](https://github.com/cspotcode): Implemented template literal execution.
 
