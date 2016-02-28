@@ -76,7 +76,7 @@ describe('preparser', function () {
     it('should have proper case sensitivity', function () {
       if (windows) {
         // Case insensitive
-        cash('echo %path%.%PATH%').should.equal(`${path}.${path}\n`);
+        cash('echo $path.$PATH').should.equal(`${path}.${path}\n`);
       } else {
         // Case sensitive
         cash('echo $path.$PATH').should.equal(`.${path}\n`);

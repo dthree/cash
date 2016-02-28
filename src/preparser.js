@@ -1,8 +1,5 @@
 'use strict';
 
-const os = require('os');
-const windows = (os.platform() === 'win32');
-
 // Replace out env variables.
 const parseEnvVariables = function (input) {
   const referenceRegex =
@@ -10,22 +7,8 @@ const parseEnvVariables = function (input) {
 
   return input.replace(referenceRegex, function (varRef, capture1, capture2, capture3) {
     const varName = capture1 || capture2 || capture3;
-    let value = '';
-    if (windows) {
-      for (const name in process.env) {
-        if (process.env.hasOwnProperty(name)) {
-          // Windows is case insensitive
-          if (String(name).toLowerCase() === varName.toLowerCase()) {
-            value = process.env[name];
-            break;
-          }
-        }
-      }
-    } else {
-      // default to empty string on Unix
-      value = process.env.hasOwnProperty(varName) ? process.env[varName] : '';
-    }
-    return value;
+    // Return the value of the variable, or the empty string if not there
+    return process.env.hasOwnProperty(varName) ? process.env[varName] : '';
   });
 };
 
