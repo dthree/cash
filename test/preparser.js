@@ -129,7 +129,7 @@ describe('preparser', function () {
       cash('sort $FOO').should.equal(`sort: cannot read: ${process.env.FOO}: No such file or directory\n`);
     });
 
-    it('should work for kill', function () {
+    it.skip('should work for kill', function () {
       cash('kill $FOO').should.equal(`-cash: kill: (${process.env.FOO}) - No such process\n`);
     });
 
