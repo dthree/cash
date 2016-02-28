@@ -112,6 +112,14 @@ describe('preparser', function () {
       cash('cp $FOO dest').should.equal(`cp: cannot stat ${process.env.FOO}: No such file or directory\n`);
     });
 
+    it('should work for export', function () {
+      (function () {
+        cash('export BAR=$FOO').should.equal('');
+      }).should.not.throw();
+      cash('echo $BAR').should.equal(`${process.env.FOO}\n`);
+      delete process.env.BAR;
+    });
+
     it('should work for ls', function () {
       cash('ls $FOO').should.equal('');
       cash('ls $NOSUCHENVVAR').should.equal(cash('ls'));
