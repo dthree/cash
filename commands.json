@@ -76,11 +76,12 @@
       ]
     },
     "ls": {
-      "dependencies": ["lodash", "chalk", "filesize", "vorpal-autocomplete-fs"],
+      "dependencies": ["lodash", "chalk", "filesize", "vorpal-autocomplete-fs", "glob"],
       "files": [
         "./dist/util/colorFile.js",
         "./dist/util/columnify.js",
         "./dist/util/converter.date.js",
+        "./dist/util/expand.js",
         "./dist/util/fileFromPath.js",
         "./dist/util/interfacer.js",
         "./dist/util/pad.js",
