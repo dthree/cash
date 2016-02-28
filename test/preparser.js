@@ -31,7 +31,7 @@ describe('preparser', function () {
 
   describe('environmental variables', function () {
     before(function () {
-      process.env.FOO = 'This*string\'has $pecial${characters}';
+      process.env.FOO = 'This*string\'has   $pecial${characters}';
     });
     it('should convert simple variable references', function () {
       cash('echo $PATH').should.equal(`${path}\n`);
@@ -84,7 +84,7 @@ describe('preparser', function () {
     });
 
     it('should handle variables with weird characters inside', function () {
-      cash('echo $FOO').should.equal(`${process.env.FOO}\n`);
+      cash('echo "$FOO"').should.equal(`${process.env.FOO}\n`);
     });
 
     it('should convert the same variable twice', function () {

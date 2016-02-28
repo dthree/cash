@@ -5,10 +5,7 @@ var windows = os.platform() === 'win32';
 
 // Replace out env variables.
 var parseEnvVariables = function parseEnvVariables(input) {
-  var referenceRegex = /%(.*)%|\${([a-zA-Z_][a-zA-Z0-9_]*)}|\$([a-zA-Z_][a-zA-Z0-9_]*)/g;
-  // = /\${([a-zA-Z_][a-zA-Z0-9_]*)}|\$([a-zA-Z_][a-zA-Z0-9_]*)/g;
-
-  var winRefRegex = /\%.*?\%/;
+  var referenceRegex = /\${([a-zA-Z_][a-zA-Z0-9_]*)}|\$([a-zA-Z_][a-zA-Z0-9_]*)/g;
 
   return input.replace(referenceRegex, function (varRef, capture1, capture2, capture3) {
     var varName = capture1 || capture2 || capture3;
