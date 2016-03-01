@@ -1,20 +1,20 @@
-# cash-kill
+# cash-false
 
 ---
 
 
-This is a cross-platform, 100% ES6 implementation of the Unix `kill` command.
+This is a cross-platform, 100% ES6 implementation of the Unix `false` command.
 
 ```bash
-npm install cash-kill -g
+npm install cash-false -g
 ```
 
-This will install `kill` globally in your system path.
+This will install `false` globally in your system path.
 
 For help on the command, type:
 
 ```bash
-> kill --help
+> false --help
 ```
 
 ## More
