@@ -140,6 +140,7 @@ The following commands are currently implemented:
 - cd
 - cp
 - echo
+- false
 - export
 - grep
 - kill
@@ -151,6 +152,7 @@ The following commands are currently implemented:
 - rm
 - sort
 - touch
+- true
 - unalias
 
 Want more commands?
@@ -170,7 +172,7 @@ I am currently looking for someone with experience in building Windows installer
 
 ### Awesome contributors
 
-- [@nfischer](https://github.com/nfischer): Added `export` command, along with several other contributions.
+- [@nfischer](https://github.com/nfischer): Added `export`, `true` and `false` commands, among several other contributions.
 - [@safinn](https://github.com/safinn): Added `clear` command.
 - [@cspotcode](https://github.com/cspotcode): Implemented template literal execution.
 
