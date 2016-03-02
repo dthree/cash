@@ -48,7 +48,10 @@ describe('source', function () {
   });
 
   it('should print msg when given a nonreadable file', function () {
-    cash.source({file: 'nonreadable.txt'}).should.equal('-cash: nonreadable.txt: Permission denied\n');
+    // ShellJS's $.chmod() doesn't have good Windows support, so skip this test for now
+    if (process.platform !== 'win32') {
+      cash.source({file: 'nonreadable.txt'}).should.equal('-cash: nonreadable.txt: Permission denied\n');
+    }
   });
 
   it('should modify current environment', function () {

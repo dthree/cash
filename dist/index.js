@@ -191,6 +191,7 @@ var app = {
     /* instanbul ignore next */
     try {
       if (!fs.statSync(rcFile).isDirectory()) {
+        /* instanbul ignore next */
         app.vorpal.execSync('source ' + rcFile);
       }
     } catch (e) {
