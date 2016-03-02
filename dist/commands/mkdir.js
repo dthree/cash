@@ -5,6 +5,7 @@ var path = require('path');
 var fsAutocomplete = require('vorpal-autocomplete-fs');
 
 var interfacer = require('./../util/interfacer');
+var preparser = require('./../preparser');
 
 var mkdir = {
   exec: function exec(args, options) {
@@ -73,7 +74,7 @@ module.exports = function (vorpal) {
     return mkdir;
   }
   vorpal.api.mkdir = mkdir;
-  vorpal.command('mkdir [directory...]').option('-p, --parents', 'no error if existing, make parent directories as needed').option('-v, --verbose', 'print a message for each created directory').autocomplete(fsAutocomplete({ directory: true })).action(function (args, callback) {
+  vorpal.command('mkdir [directory...]').parse(preparser).option('-p, --parents', 'no error if existing, make parent directories as needed').option('-v, --verbose', 'print a message for each created directory').autocomplete(fsAutocomplete({ directory: true })).action(function (args, callback) {
     args.options = args.options || {};
     args.options.vorpal = vorpal;
     return interfacer.call(this, {

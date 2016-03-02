@@ -7,6 +7,7 @@ const os = require('os');
 
 const expand = require('./../util/expand');
 const interfacer = require('./../util/interfacer');
+const preparser = require('./../preparser');
 
 const cp = {
 
@@ -195,6 +196,7 @@ module.exports = function (vorpal) {
   vorpal.api.cp = cp;
   vorpal
     .command('cp [args...]')
+    .parse(preparser)
     .option('-f, --force', 'do not prompt before overwriting')
     .option('-n, --no-clobber', 'do not overwrite an existing file')
     .option('-r, --recursive', 'copy directories recursively')

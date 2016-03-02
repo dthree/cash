@@ -7,6 +7,8 @@
     "cp",
     "echo",
     "head",
+    "export",
+    "false",
     "kill",
     "ls",
     "mkdir",
@@ -14,6 +16,8 @@
     "pwd",
     "sort",
     "touch",
+    "true",
+    "cat",
     "less",
     "grep",
     "rm",
@@ -23,6 +27,7 @@
     "alias",
     "cd",
     "echo",
+    "export",
     "less",
     "sort",
     "unalias"
@@ -70,6 +75,12 @@
         "./dist/util/interfacer.js"
       ]
     },
+    "false": {
+      "dependencies": [],
+      "files": [
+        "./dist/util/interfacer.js"
+      ]
+    },
     "kill": {
       "dependencies": ["fkill", "lodash"],
       "files": [
@@ -77,11 +88,12 @@
       ]
     },
     "ls": {
-      "dependencies": ["lodash", "chalk", "filesize", "vorpal-autocomplete-fs"],
+      "dependencies": ["lodash", "chalk", "filesize", "vorpal-autocomplete-fs", "glob"],
       "files": [
         "./dist/util/colorFile.js",
         "./dist/util/columnify.js",
         "./dist/util/converter.date.js",
+        "./dist/util/expand.js",
         "./dist/util/fileFromPath.js",
         "./dist/util/interfacer.js",
         "./dist/util/pad.js",
@@ -123,6 +135,12 @@
       "files": [
         "./dist/util/interfacer.js",
         "./dist/lib/sugar.js"
+      ]
+    },
+    "true": {
+      "dependencies": [],
+      "files": [
+        "./dist/util/interfacer.js"
       ]
     },
     "rm": {

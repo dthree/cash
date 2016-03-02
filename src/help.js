@@ -8,7 +8,9 @@ const commands = [
   'cd [dir]',
   'clear',
   'cp [-fnr] source ... dest',
-  'echo [eE] [arg ...]',
+  'echo [-eE] [arg ...]',
+  'export [-p][id=[value]]',
+  'false',
   'grep [-bHhinqsvw] [-m max] [--silent] [--include pattern] pattern [files ...]',
   'head [-n number] [files...]',
   'kill [-s sigspec | -n signum | -sigspec] pid | jobspec ... or kill -l',
@@ -20,6 +22,7 @@ const commands = [
   'rm [-frR] [files ...]',
   'sort [-chMnrR] [-o file] [files ...]',
   'touch [-acm] [-d date] [-r ref] [--time word] file ...',
+  'true',
   'unalias [-a] name [names ...]'
 ];
 
