@@ -1,6 +1,7 @@
 'use strict';
 
 var interfacer = require('./../util/interfacer');
+var preparser = require('./../preparser');
 
 /**
  * This is a boilerplate for implementing a new command.
@@ -81,7 +82,7 @@ module.exports = function (vorpal) {
    * descriptions should exactly emulate
    * existing commands.
    */
-  vorpal.command('cmdName [files...]').option('-o, --option', 'option description').action(function (args, callback) {
+  vorpal.command('cmdName [files...]').parse(preparser).option('-o, --option', 'option description').action(function (args, callback) {
     args.options = args.options || {};
     /**
      * The interfacer method does a

@@ -6,6 +6,7 @@ const path = require('path');
 
 const expand = require('./../util/expand');
 const interfacer = require('./../util/interfacer');
+const preparser = require('./../preparser');
 
 const mv = {
 
@@ -90,6 +91,7 @@ module.exports = function (vorpal) {
   vorpal.api.mv = mv;
   vorpal
     .command('mv [args...]')
+    .parse(preparser)
     .option('-f, --force', 'do not prompt before overwriting')
     .option('-n, --no-clobber', 'do not overwrite an existing file')
     .option('--striptrailingslashes', 'remove any trailing slashes from each source') // vorpal bug, need to add dashes between words

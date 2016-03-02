@@ -4,7 +4,6 @@ require('assert');
 const should = require('should');
 const cash = require('../dist/index.js');
 const $ = require('shelljs');
-require('shelljs/global');
 
 describe('cat', function () {
   before(function () {

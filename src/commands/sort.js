@@ -5,6 +5,7 @@ const fsAutocomplete = require('vorpal-autocomplete-fs');
 
 const fetch = require('./../util/fetch');
 const interfacer = require('./../util/interfacer');
+const preparser = require('./../preparser');
 const strip = require('./../util/stripAnsi');
 const shuffle = require('array-shuffle');
 
@@ -246,6 +247,7 @@ module.exports = function (vorpal) {
   vorpal.api.sort = sort;
   vorpal
     .command('sort [files...]')
+    .parse(preparser)
     .option('-M, --month-sort', 'compare (unknown) < \'JAN\' < ... < \'DEC\'')
     .option('-h, --human-numeric-sort', 'compare human readable numbers (e.g., 2K 1G)')
     .option('-n, --numeric-sort', 'compare according to string numerical value')

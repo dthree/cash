@@ -5,6 +5,7 @@ var fsAutocomplete = require('vorpal-autocomplete-fs');
 
 var expand = require('./../util/expand');
 var interfacer = require('./../util/interfacer');
+var preparser = require('./../preparser');
 var unlinkSync = require('./../util/unlinkSync');
 
 var rm = {
@@ -159,7 +160,7 @@ module.exports = function (vorpal) {
     return rm;
   }
   vorpal.api.rm = rm;
-  vorpal.command('rm [files...]').option('-f, --force', 'ignore nonexistent files and arguments, never prompt').option('-r, --recursive', 'remove directories and their contents recursively').option('-R', 'remove directories and their contents recursively').autocomplete(fsAutocomplete()).action(function (args, callback) {
+  vorpal.command('rm [files...]').parse(preparser).option('-f, --force', 'ignore nonexistent files and arguments, never prompt').option('-r, --recursive', 'remove directories and their contents recursively').option('-R', 'remove directories and their contents recursively').autocomplete(fsAutocomplete()).action(function (args, callback) {
     args.options = args.options || {};
     return interfacer.call(this, {
       command: rm,

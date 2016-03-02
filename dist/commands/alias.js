@@ -1,6 +1,7 @@
 'use strict';
 
 var interfacer = require('./../util/interfacer');
+var preparser = require('./../preparser');
 
 var alias = {
   exec: function exec(args, options) {
@@ -94,7 +95,7 @@ module.exports = function (vorpal) {
     return alias;
   }
   vorpal.api.alias = alias;
-  vorpal.command('alias [name...]').option('-p', 'print all defined aliases in a reusable format').action(function (args, callback) {
+  vorpal.command('alias [name...]').parse(preparser).option('-p', 'print all defined aliases in a reusable format').action(function (args, callback) {
     args.options = args.options || {};
     args.options.vorpal = vorpal;
     return interfacer.call(this, {

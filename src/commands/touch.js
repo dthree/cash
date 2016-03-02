@@ -4,6 +4,7 @@ const fs = require('fs-extra');
 const fsAutocomplete = require('vorpal-autocomplete-fs');
 
 const interfacer = require('./../util/interfacer');
+const preparser = require('./../preparser');
 require('./../lib/sugar');
 
 const touch = {
@@ -150,6 +151,7 @@ module.exports = function (vorpal) {
   vorpal.api.touch = touch;
   vorpal
     .command('touch <files...>')
+    .parse(preparser)
     .option('-a', 'change only the access time')
     .option('-c, --no-create', 'do not create any files')
     .option('-d, --date [STRING]', 'parse STRING and use it instead of current time')

@@ -8,11 +8,13 @@ var fs = require('fs');
 var fsAutocomplete = require('vorpal-autocomplete-fs');
 var os = require('os');
 
+var expand = require('./../util/expand');
 var colorFile = require('./../util/colorFile');
 var columnify = require('./../util/columnify');
 var dateConverter = require('./../util/converter.date');
 var fileFromPath = require('./../util/fileFromPath');
 var interfacer = require('./../util/interfacer');
+var preparser = require('./../preparser');
 var pad = require('./../util/pad');
 var lpad = require('./../util/lpad');
 var permissionsConverter = require('./../util/converter.permissions');
@@ -37,6 +39,7 @@ var ls = {
     paths = paths !== null && !Array.isArray(paths) && (typeof paths === 'undefined' ? 'undefined' : _typeof(paths)) === 'object' ? paths.paths : paths;
     paths = paths || ['.'];
     paths = Array.isArray(paths) ? paths : [paths];
+    paths = expand(paths);
     options = options || {};
     try {
       var results = [];
@@ -343,7 +346,7 @@ module.exports = function (vorpal) {
     return ls;
   }
   vorpal.api.ls = ls;
-  vorpal.command('ls [paths...]').option('-a, --all', 'do not ignore entries starting with .').option('-A, --almost-all', 'do not list implied . and ..').option('-d, --directory', 'list directory entries instead of contents, and do not dereference symbolic links').option('-F, --classify', 'append indicator (one of */=>@|) to entries').option('-h, --human-readable', 'with -l, print sizes in human readable format (e.g., 1K 234M 2G)').option('-i, --inode', 'print the index number of each file').option('-l', 'use a long listing format').option('-Q, --quote-name', 'enclose entry names in double quotes').option('-r, --reverse', 'reverse order while sorting').option('-R, --recursive', 'list subdirectories recursively').option('-S', 'sort by file size').option('-t', 'sort by modification time, newest first').option('-U', 'do not sort; list entries in directory order').option('-w, --width [COLS]', 'assume screen width instead of current value').option('-x', 'list entries by lines instead of columns').option('-1', 'list one file per line').autocomplete(fsAutocomplete()).action(function (args, cb) {
+  vorpal.command('ls [paths...]').parse(preparser).option('-a, --all', 'do not ignore entries starting with .').option('-A, --almost-all', 'do not list implied . and ..').option('-d, --directory', 'list directory entries instead of contents, and do not dereference symbolic links').option('-F, --classify', 'append indicator (one of */=>@|) to entries').option('-h, --human-readable', 'with -l, print sizes in human readable format (e.g., 1K 234M 2G)').option('-i, --inode', 'print the index number of each file').option('-l', 'use a long listing format').option('-Q, --quote-name', 'enclose entry names in double quotes').option('-r, --reverse', 'reverse order while sorting').option('-R, --recursive', 'list subdirectories recursively').option('-S', 'sort by file size').option('-t', 'sort by modification time, newest first').option('-U', 'do not sort; list entries in directory order').option('-w, --width [COLS]', 'assume screen width instead of current value').option('-x', 'list entries by lines instead of columns').option('-1', 'list one file per line').autocomplete(fsAutocomplete()).action(function (args, cb) {
     return interfacer.call(this, {
       command: ls,
       args: args.paths,

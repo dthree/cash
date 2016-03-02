@@ -89,7 +89,7 @@ gulp.task('packages', function () {
       $.cp('-f', help, `${dir}/${help}`);
       $.cp('-f', preparser, `${dir}/${preparser}`);
       $.cp('-f', './bin/parser.js', `${dir}/bin/parser.js`);
-      $.cp('-fr', `./packages/template.README.md`, `${dir}/README.md`);
+      $.cp('-f', `./packages/template.README.md`, `${dir}/README.md`);
       let readme = String($.cat(`${dir}/README.md`));
       readme = readme.replace(/\{package\-name\}/g, `cash-${name}`);
       readme = readme.replace(/\{command\-name\}/g, `${name}`);

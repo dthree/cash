@@ -1,6 +1,7 @@
 'use strict';
 
 var interfacer = require('./../util/interfacer');
+var preparser = require('./../preparser');
 
 var unalias = {
   exec: function exec(args, options) {
@@ -85,7 +86,7 @@ module.exports = function (vorpal) {
     return unalias;
   }
   vorpal.api.unalias = unalias;
-  vorpal.command('unalias [name...]').option('-a', 'remove all alias definitions').action(function (args, callback) {
+  vorpal.command('unalias [name...]').parse(preparser).option('-a', 'remove all alias definitions').action(function (args, callback) {
     args.options = args.options || {};
     args.options.vorpal = vorpal;
     return interfacer.call(this, {

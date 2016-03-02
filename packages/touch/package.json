@@ -38,7 +38,7 @@
     "lodash": "^4.0.0",
     "fs-extra": "^0.23.1",
     "vorpal-autocomplete-fs": "0.0.3",
-    "vorpal": "^1.9.5"
+    "vorpal": "^1.10.2"
   },
   "engines": {
     "node": ">= 0.11.16",
