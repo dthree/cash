@@ -6,6 +6,6 @@ This command simply exits with status 1 (failure).
 
       --help   display this help and exit
 
-Report export bugs to <https://github.com/dthree/cash>
+Report false bugs to <https://github.com/dthree/cash>
 Cash home page: <http://cash.js.org/>
 `;
