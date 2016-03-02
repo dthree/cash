@@ -6,6 +6,9 @@ var Vorpal = require('vorpal');
 var commands = require('./../commands.json');
 var help = require('./help');
 var interfacer = require('./util/interfacer');
+var delimiter = require('./delimiter.js');
+var path = require('path');
+var fs = require('fs');
 
 var cmds = undefined;
 
@@ -181,6 +184,17 @@ var app = {
           return;
         });
       })();
+    }
+
+    // Load rcFile upon startup
+    var rcFile = path.join(delimiter.getHomeDir(), '.cashrc');
+    /* instanbul ignore next */
+    try {
+      if (!fs.statSync(rcFile).isDirectory()) {
+        app.vorpal.execSync('source ' + rcFile);
+      }
+    } catch (e) {
+      // File doesn't exist, so just don't load defaults
     }
 
     app.export.vorpal = app.vorpal;

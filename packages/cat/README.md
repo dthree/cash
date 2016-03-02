@@ -39,6 +39,7 @@ This module is part of [Cash](https://github.com/dthree/cash), a project providi
 - [cash-mv](https://npmjs.com/package/cash-mv)
 - [cash-pwd](https://npmjs.com/package/cash-pwd)
 - [cash-sort](https://npmjs.com/package/cash-sort)
+- [cash-tail](https://npmjs.com/package/cash-tail)
 - [cash-touch](https://npmjs.com/package/cash-touch)
 - [cash-true](https://npmjs.com/package/cash-true)
 - [cash-rm](https://npmjs.com/package/cash-rm)

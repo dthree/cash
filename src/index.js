@@ -6,6 +6,9 @@ const Vorpal = require('vorpal');
 const commands = require('./../commands.json');
 const help = require('./help');
 const interfacer = require('./util/interfacer');
+const delimiter = require('./delimiter.js');
+const path = require('path');
+const fs = require('fs');
 
 let cmds;
 
@@ -179,6 +182,17 @@ const app = {
         }
         return;
       });
+    }
+
+    // Load rcFile upon startup
+    const rcFile = path.join(delimiter.getHomeDir(), '.cashrc');
+    /* instanbul ignore next */
+    try {
+      if (!fs.statSync(rcFile).isDirectory()) {
+        app.vorpal.execSync(`source ${rcFile}`);
+      }
+    } catch (e) {
+      // File doesn't exist, so just don't load defaults
     }
 
     app.export.vorpal = app.vorpal;
