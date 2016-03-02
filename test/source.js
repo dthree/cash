@@ -13,12 +13,10 @@ describe('source', function () {
   before(function () {
     oldCwd = process.cwd();
     oldProcessEnv = process.env;
-    `echo 'hello world'`.to('a.sh');
-    'echo "hello world"\nalias foo bar\n'.to('b.sh');
+    'echo "hello world"\nalias foo bar\n'.to('a.sh');
     `export FOO=hello
     export BAR=$FOO$FOO
-    cd ..`.to('c.sh');
-    `echo $BAZ`.to('d.sh');
+    cd ..`.to('b.sh');
     $.touch('nonreadable.txt');
     $.chmod('000', 'nonreadable.txt');
   });
@@ -26,7 +24,7 @@ describe('source', function () {
   after(function () {
     process.env = oldProcessEnv;
     $.chmod('555', 'nonreadable.txt'); // to allow deletion
-    $.rm('-f', ['a.sh', 'b.sh', 'c.sh', 'd.sh', 'nonreadable.txt']);
+    $.rm('-f', ['a.sh', 'b.sh', 'nonreadable.txt']);
   });
 
   beforeEach(function () {
@@ -56,21 +54,21 @@ describe('source', function () {
   it('should modify current environment', function () {
     (function () {
       cash.export(['FOO=cows']);
-      cash.source('c.sh');
+      cash.source('b.sh');
     }).should.not.throw();
     cash('echo $FOO $BAR').should.equal('hello hellohello\n');
   });
 
   it('should change current directory', function () {
     (function () {
-      cash.source('c.sh');
+      cash.source('b.sh');
     }).should.not.throw();
     process.cwd().should.equal(path.resolve(oldCwd, '..'));
   });
 
   it('should add alias', function () {
-    console.log(cash.cat('b.sh'));
-    cash.source('b.sh');
+    console.log(cash.cat('a.sh'));
+    cash.source('a.sh');
     cash.alias('foo').should.equal('alias foo=\'bar\'\n');
   });
 });

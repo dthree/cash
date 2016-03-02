@@ -1,0 +1,48 @@
+{
+  "name": "cash-source",
+  "version": "0.0.1",
+  "description": "Cross-platform implementation of the Unix 'source' command.",
+  "main": "./dist/commands/source.js",
+  "scripts": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dthree/cash.git"
+  },
+  "keywords": [
+    "cash",
+    "terminal",
+    "emulator",
+    "cygwin",
+    "cli",
+    "windows",
+    "linux",
+    "unix",
+    "posix",
+    "bash",
+    "tty",
+    "util",
+    "vorpal",
+    "vorpal.js"
+  ],
+  "author": "dthree",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/dthree/cash/issues"
+  },
+  "homepage": "https://github.com/dthree/cash#readme",
+  "devDependencies": {},
+  "bin": {
+    "source": "./bin/source.js"
+  },
+  "dependencies": {
+    "vorpal": "^1.10.2"
+  },
+  "engines": {
+    "node": ">= 4",
+    "iojs": ">= 1.0.0"
+  },
+  "files": [
+    "dist",
+    "bin"
+  ]
+}
