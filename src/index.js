@@ -185,7 +185,8 @@ const app = {
     }
 
     // Load rcFile upon startup
-    const rcFile = path.join(delimiter.getHomeDir(), '.cashrc');
+    const rcFile = path.join(delimiter.getHomeDir(),
+        (process.platform === 'win32' ? '_cashrc' : '.cashrc'));
     /* instanbul ignore next */
     try {
       if (!fs.statSync(rcFile).isDirectory()) {

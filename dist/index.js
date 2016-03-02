@@ -187,7 +187,7 @@ var app = {
     }
 
     // Load rcFile upon startup
-    var rcFile = path.join(delimiter.getHomeDir(), '.cashrc');
+    var rcFile = path.join(delimiter.getHomeDir(), process.platform === 'win32' ? '_cashrc' : '.cashrc');
     /* instanbul ignore next */
     try {
       if (!fs.statSync(rcFile).isDirectory()) {
