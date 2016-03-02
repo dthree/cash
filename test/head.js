@@ -33,6 +33,6 @@ describe('head', function () {
 
   it('should write header when used with more than one file', function () {
     const result = cash.head(['eleven.test', 'ten.test'], {n: 2});
-    result.should.be.equal('==> eleven.test <==\n\nline1\nline2\n\n==> ten.test <==\n\nline1\nline2\n');
+    result.should.be.equal('==> eleven.test <==\nline1\nline2\n\n==> ten.test <==\nline1\nline2\n');
   });
 });
