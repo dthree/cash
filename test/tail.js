@@ -13,7 +13,7 @@ describe('tail', function () {
 
   after(function () {
     $.rm(['eleven.test', 'ten.test']);
-  })
+  });
 
   it('should exist and be a function', function () {
     should.exist(cash.tail);
