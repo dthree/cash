@@ -40,22 +40,22 @@ describe('tail', function () {
   });
 
   it('should print the last ten lines for each file with headers', function () {
-    var result = cash.tail('eleven.test').split("\n");
+    var result = cash.tail('*.test').split("\n");
     (result.length).should.be.exactly(24);
   });
 
   it('should print the last ten lines for each file without headers', function () {
-    var result = cash.tail('eleven.test', {q:true}).split("\n");
+    var result = cash.tail('*.test', {q:true}).split("\n");
     (result.length).should.be.exactly(22);
   });
 
   it('should print the last six lines for each file without headers', function () {
-    var result = cash.tail('eleven.test', {n: 6, q: true}).split("\n");
+    var result = cash.tail('*.test', {n: 6, q: true}).split("\n");
     (result.length).should.be.exactly(14);
   });
 
   it('should print the last six lines for each file with headers', function () {
-    var result = cash.tail('eleven.test', {n: 6}).split("\n");
+    var result = cash.tail('*.test', {n: 6}).split("\n");
     (result.length).should.be.exactly(16);
   });
 
