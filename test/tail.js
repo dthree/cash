@@ -20,43 +20,47 @@ describe('tail', function () {
   });
 
   it('should print the last ten lines in file', function () {
-    const result = String(cash.tail('eleven.test')).split("\n");
+    const result = cash.tail('eleven.test').split("\n");
     (result.length).should.be.exactly(11);
   });
 
   it('should print the last five lines in file', function () {
-    var result = String(cash('tail -n5 test.txt')).split("\n");
+    var result = cash.tail('eleven.test', {n: 5}).split("\n");
     (result.length).should.be.exactly(6);
   });
 
   it('should print the last five lines in file with header', function () {
-    var result = String(cash('tail test.txt -n5 -v')).split("\n");
+    var result = cash.tail('eleven.test', {n: 5, v: true}).split("\n");
     (result.length).should.be.exactly(7);
   });
 
   it('should print the last ten lines in file with header', function () {
-    var result = String(cash('tail test.txt -v')).split("\n");
-    fs.writeFileSync('test3.txt', result, 'utf8');
+    var result = cash.tail('eleven.test', {v: true}).split("\n");
     (result.length).should.be.exactly(12);
   });
 
   it('should print the last ten lines for each file with headers', function () {
-    var result = String(cash('tail te*.txt')).split("\n");
+    var result = cash.tail('eleven.test').split("\n");
     (result.length).should.be.exactly(24);
   });
 
   it('should print the last ten lines for each file without headers', function () {
-    var result = String(cash('tail te*.txt -q')).split("\n");
+    var result = cash.tail('eleven.test', {q:true}).split("\n");
     (result.length).should.be.exactly(22);
   });
 
   it('should print the last six lines for each file without headers', function () {
-    var result = String(cash('tail te*.txt -n6 -q')).split("\n");
+    var result = cash.tail('eleven.test', {n: 6, q: true}).split("\n");
     (result.length).should.be.exactly(14);
   });
 
   it('should print the last six lines for each file with headers', function () {
-    var result = String(cash('tail te*.txt')).split("\n");
+    var result = cash.tail('eleven.test', {n: 6}).split("\n");
+    (result.length).should.be.exactly(16);
+  });
+
+  it('should print the last ten lines for each file with headers', function () {
+    var result = cash.tail(['ten.txt', 'eleven.test']).split("\n");
     (result.length).should.be.exactly(16);
   });
 });
