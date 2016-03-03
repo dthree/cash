@@ -1,0 +1,44 @@
+{
+  "name": "",
+  "version": "0.0.1",
+  "description": "",
+  "main": "",
+  "scripts": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dthree/cash.git"
+  },
+  "keywords": [
+    "cash",
+    "terminal",
+    "emulator",
+    "cygwin",
+    "cli",
+    "windows",
+    "linux",
+    "unix",
+    "posix",
+    "bash",
+    "tty",
+    "util",
+    "vorpal",
+    "vorpal.js"
+  ],
+  "author": "dthree",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/dthree/cash/issues"
+  },
+  "homepage": "https://github.com/dthree/cash#readme",
+  "devDependencies": {},
+  "bin": {},
+  "dependencies": {},
+  "engines": {
+    "node": ">= 4",
+    "iojs": ">= 1.0.0"
+  },
+  "files": [
+    "dist",
+    "bin"
+  ]
+}

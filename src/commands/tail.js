@@ -1,7 +1,6 @@
 'use strict';
 
 const interfacer = require('./../util/interfacer');
-const preparser = require('./../preparser');
 const path = require('path');
 const fs = require('fs');
 const glob = require("glob");
@@ -44,22 +43,22 @@ const tail = {
           if(isFile) {
             var fileName = allFiles[0].replace(path.resolve(process.cwd()).replace(/\\/g, '/') + '/', '');
             var fileContents = fs.readFileSync(allFiles[o], 'utf8');
-            var lines = fileContents.split("\n");
+            var lines = fileContents.trim().split("\n");
 
             if(((args.length > 1 || allFiles.length > 1) && !options.silent) || options.verbose) {
               this.log(`==> ${fileName} <==`);
             }
 
             for(var p = 0; p < lines.length; p++){
-              if(p >= lines.length-1-options.lines) {
+              if(p > lines.length-1-options.lines) {
                 this.log(lines[p]);
               }
             }
+            this.log("\n");
           }
         }
       }
     }
-
     return 0;
   }
 };
@@ -71,7 +70,6 @@ module.exports = function (vorpal) {
   vorpal.api.tail = tail;
   vorpal
     .command('tail <files...>')
-    .parse(preparser)
     .option('-n, --lines <number>', 'Output the last N lines, instead of the last 10')
     .option('-q, --silent', 'Suppresses printing of headers when multiple files are being examined.')
     .option('-v, --verbose', 'Always output headers giving file names.')
