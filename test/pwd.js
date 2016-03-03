@@ -4,7 +4,6 @@ require('assert');
 const should = require('should');
 const cash = require('../dist/index.js');
 const $ = require('shelljs');
-const fs = require('fs');
 
 describe('pwd', function () {
   it('should exist and be a function', function () {
