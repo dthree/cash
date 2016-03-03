@@ -53,7 +53,7 @@ var tail = {
                 this.log(lines[p]);
               }
             }
-            this.log("\n");
+            this.log('');
           }
         }
       }
