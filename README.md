@@ -140,6 +140,7 @@ The following commands are currently implemented:
 - cd
 - cp
 - echo
+- false
 - export
 - grep
 - kill
@@ -150,7 +151,9 @@ The following commands are currently implemented:
 - pwd
 - rm
 - sort
+- tail
 - touch
+- true
 - unalias
 
 Want more commands?
@@ -170,10 +173,9 @@ I am currently looking for someone with experience in building Windows installer
 
 ### Awesome contributors
 
-- [@nfischer](https://github.com/nfischer): Added `export` command, along with several other contributions.
-- [@safinn](https://github.com/safinn): Added `clear` command.
+- [@nfischer](https://github.com/nfischer): Added `export`, `true` and `false` commands, among several other contributions.
+- [@safinn](https://github.com/safinn): Added `clear` and `tail` commands.
 - [@cspotcode](https://github.com/cspotcode): Implemented template literal execution.
-
 
 ## FAQ
 
@@ -202,7 +204,7 @@ No.
  
 For those who don't know, [Shell.JS](https://github.com/shelljs/shelljs) is an awesome Node package that implements UNIX shell commands programatically in JavaScript. Check it out - really. While Shell.JS was tremendously helpful in figuring out how to accomplish Cash, the two do not really conflict.
 
-Shell.JS gives the feel of UNIX commands in a code environmenmt, but aims to implement the commands in a way that makes sense for a JavaScript library. This means that many commands return JavaScript objects, and some of the rougher and more dangerous edges of bash have been softened a bit.
+Shell.JS gives the feel of UNIX commands in a code environment, but aims to implement the commands in a way that makes sense for a JavaScript library. This means that many commands return JavaScript objects, and some of the rougher and more dangerous edges of bash have been softened a bit.
 
 For example, with cash:
 ```javascript

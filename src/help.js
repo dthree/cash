@@ -21,6 +21,7 @@ const commands = [
   'pwd [files ...]',
   'rm [-frR] [files ...]',
   'sort [-chMnrR] [-o file] [files ...]',
+  'tail [options] <files ...>',
   'touch [-acm] [-d date] [-r ref] [--time word] file ...',
   'true',
   'unalias [-a] name [names ...]'

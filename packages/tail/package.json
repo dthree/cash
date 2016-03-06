@@ -1,8 +1,8 @@
 {
-  "name": "cash-cp",
-  "version": "0.2.0",
-  "description": "Cross-platform implementation of the Unix 'cp' command.",
-  "main": "./dist/commands/cp.js",
+  "name": "cash-tail",
+  "version": "0.0.2",
+  "description": "Cross-platform implementation of the Unix 'tail' command.",
+  "main": "./dist/commands/tail.js",
   "scripts": {},
   "repository": {
     "type": "git",
@@ -32,16 +32,15 @@
   "homepage": "https://github.com/dthree/cash#readme",
   "devDependencies": {},
   "bin": {
-    "cp": "./bin/cp.js"
+    "tail": "./bin/tail.js"
   },
   "dependencies": {
-    "lodash": "^4.0.0",
     "vorpal-autocomplete-fs": "0.0.3",
     "glob": "^6.0.4",
     "vorpal": "^1.10.8"
   },
   "engines": {
-    "node": ">= 0.11.16",
+    "node": ">= 4",
     "iojs": ">= 1.0.0"
   },
   "files": [

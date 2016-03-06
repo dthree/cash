@@ -35,7 +35,7 @@
     "true": "./bin/true.js"
   },
   "dependencies": {
-    "vorpal": "^1.10.2"
+    "vorpal": "^1.10.8"
   },
   "engines": {
     "node": ">= 4",
