@@ -1,6 +1,6 @@
 {
   "name": "cash-false",
-  "version": "0.0.2",
+  "version": "0.0.1",
   "description": "Cross-platform implementation of the Unix 'false' command.",
   "main": "./dist/commands/false.js",
   "scripts": {},

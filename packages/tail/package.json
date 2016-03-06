@@ -1,8 +1,8 @@
 {
-  "name": "cash-true",
+  "name": "cash-tail",
   "version": "0.0.1",
-  "description": "Cross-platform implementation of the Unix 'true' command.",
-  "main": "./dist/commands/true.js",
+  "description": "Cross-platform implementation of the Unix 'tail' command.",
+  "main": "./dist/commands/tail.js",
   "scripts": {},
   "repository": {
     "type": "git",
@@ -32,9 +32,11 @@
   "homepage": "https://github.com/dthree/cash#readme",
   "devDependencies": {},
   "bin": {
-    "true": "./bin/true.js"
+    "tail": "./bin/tail.js"
   },
   "dependencies": {
+    "vorpal-autocomplete-fs": "0.0.3",
+    "glob": "^6.0.4",
     "vorpal": "^1.10.8"
   },
   "engines": {

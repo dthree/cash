@@ -13,6 +13,7 @@
     "mv",
     "pwd",
     "sort",
+    "tail",
     "touch",
     "true",
     "cat",
@@ -125,6 +126,14 @@
         "./dist/util/fetch.js",
         "./dist/util/interfacer.js",
         "./dist/util/stripAnsi.js",
+        "./dist/util/expand.js"
+      ]
+    },
+    "tail": {
+      "dependencies": ["vorpal-autocomplete-fs", "glob"],
+      "files": [
+        "./dist/util/interfacer.js",
+        "./dist/util/converter.path.js",
         "./dist/util/expand.js"
       ]
     },
