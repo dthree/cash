@@ -1,6 +1,6 @@
 {
   "name": "cash-touch",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "Cross-platform implementation of the Unix 'touch' command.",
   "main": "./dist/commands/touch.js",
   "scripts": {},

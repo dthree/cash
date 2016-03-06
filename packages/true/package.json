@@ -1,6 +1,6 @@
 {
   "name": "cash-true",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Cross-platform implementation of the Unix 'true' command.",
   "main": "./dist/commands/true.js",
   "scripts": {},
