@@ -13,6 +13,7 @@
     "mv",
     "pwd",
     "sort",
+    "source",
     "tail",
     "touch",
     "true",
@@ -29,6 +30,7 @@
     "export",
     "less",
     "sort",
+    "source",
     "unalias"
   ],
   "importedCommands": [
