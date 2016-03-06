@@ -30,6 +30,7 @@
     "export",
     "less",
     "sort",
+    "source",
     "unalias"
   ],
   "importedCommands": [
@@ -128,12 +129,6 @@
         "./dist/util/interfacer.js",
         "./dist/util/stripAnsi.js",
         "./dist/util/expand.js"
-      ]
-    },
-    "source": {
-      "dependencies": [],
-      "files": [
-        "./dist/util/interfacer.js"
       ]
     },
     "tail": {
