@@ -202,7 +202,7 @@ No.
  
 For those who don't know, [Shell.JS](https://github.com/shelljs/shelljs) is an awesome Node package that implements UNIX shell commands programatically in JavaScript. Check it out - really. While Shell.JS was tremendously helpful in figuring out how to accomplish Cash, the two do not really conflict.
 
-Shell.JS gives the feel of UNIX commands in a code environmenmt, but aims to implement the commands in a way that makes sense for a JavaScript library. This means that many commands return JavaScript objects, and some of the rougher and more dangerous edges of bash have been softened a bit.
+Shell.JS gives the feel of UNIX commands in a code environment, but aims to implement the commands in a way that makes sense for a JavaScript library. This means that many commands return JavaScript objects, and some of the rougher and more dangerous edges of bash have been softened a bit.
 
 For example, with cash:
 ```javascript
