@@ -82,18 +82,22 @@ const cat = {
             ctr++;
           }
           const numStr = (numbered) ?
-            `${lpad(String(ctr), 6, ' ')}  ` :
-            '';
+              `${lpad(String(ctr), 6, ' ')}  ` :
+              '';
           // If -E, append a $ to each line end.
           const dollarStr = (options.showends) ? '$' : '';
           const line =
-            numStr +
-            parts[j] +
-            dollarStr;
-          self.log(line);
+              numStr +
+              parts[j] +
+              dollarStr;
           stdout += `${line}\n`;
         }
       }
+
+      if (stdout.length > 0) {
+        self.log(stdout.slice(0, stdout.length - 1));
+      }
+
       return 0;
     } catch (e) {
       /* istanbul ignore next */
@@ -110,25 +114,25 @@ module.exports = function (vorpal) {
   }
   vorpal.api.cat = cat;
   vorpal
-    .command('cat [files...]')
-    .parse(preparser)
-    .option('-A, --show-all', 'equivalent to -vET')
-    .option('-b, --number-nonblank', 'number nonempty output lines, overrides -n')
-    .option('-e', 'equivalent to -vE')
-    .option('-E, --show-ends', 'display $ at end of each line')
-    .option('-n, --number', 'number all output lines')
-    .option('-s, --squeeze-blank', 'suppress repeated empty output lines')
-    .option('-t', 'equivalent to -vT')
-    .option('-T, --show-tabs', 'display TAB characters as ^I')
-    .option('-v, --show-nonprinting', 'use ^ and M- notation, except for LFD and TAB') // this doesn't work yet...
-    .autocomplete(fsAutocomplete())
-    .action(function (args, cb) {
-      args.options = args.options || {};
-      return interfacer.call(this, {
-        command: cat,
-        args,
-        options: args.options,
-        callback: cb
+      .command('cat [files...]')
+      .parse(preparser)
+      .option('-A, --show-all', 'equivalent to -vET')
+      .option('-b, --number-nonblank', 'number nonempty output lines, overrides -n')
+      .option('-e', 'equivalent to -vE')
+      .option('-E, --show-ends', 'display $ at end of each line')
+      .option('-n, --number', 'number all output lines')
+      .option('-s, --squeeze-blank', 'suppress repeated empty output lines')
+      .option('-t', 'equivalent to -vT')
+      .option('-T, --show-tabs', 'display TAB characters as ^I')
+      .option('-v, --show-nonprinting', 'use ^ and M- notation, except for LFD and TAB') // this doesn't work yet...
+      .autocomplete(fsAutocomplete())
+      .action(function (args, cb) {
+        args.options = args.options || {};
+        return interfacer.call(this, {
+          command: cat,
+          args,
+          options: args.options,
+          callback: cb
+        });
       });
-    });
 };

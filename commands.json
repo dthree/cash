@@ -1,10 +1,12 @@
 {
   "commands": [
     "alias",
+    "cat",
     "cd",
     "clear",
     "cp",
     "echo",
+    "head",
     "export",
     "false",
     "kill",
@@ -17,7 +19,6 @@
     "tail",
     "touch",
     "true",
-    "cat",
     "less",
     "grep",
     "rm",

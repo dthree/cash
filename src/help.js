@@ -12,6 +12,7 @@ const commands = [
   'export [-p][id=[value]]',
   'false',
   'grep [-bHhinqsvw] [-m max] [--silent] [--include pattern] pattern [files ...]',
+  'head [-n number] [files...]',
   'kill [-s sigspec | -n signum | -sigspec] pid | jobspec ... or kill -l',
   'less [files ...]',
   'ls [-aAdFhilQrRStUwx1] [paths ...]',
