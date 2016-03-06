@@ -151,6 +151,7 @@ The following commands are currently implemented:
 - pwd
 - rm
 - sort
+- tail
 - touch
 - true
 - unalias
@@ -173,9 +174,8 @@ I am currently looking for someone with experience in building Windows installer
 ### Awesome contributors
 
 - [@nfischer](https://github.com/nfischer): Added `export`, `true` and `false` commands, among several other contributions.
-- [@safinn](https://github.com/safinn): Added `clear` command.
+- [@safinn](https://github.com/safinn): Added `clear` and `tail` commands.
 - [@cspotcode](https://github.com/cspotcode): Implemented template literal execution.
-
 
 ## FAQ
 
