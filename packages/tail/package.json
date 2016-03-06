@@ -1,6 +1,6 @@
 {
   "name": "cash-tail",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Cross-platform implementation of the Unix 'tail' command.",
   "main": "./dist/commands/tail.js",
   "scripts": {},
