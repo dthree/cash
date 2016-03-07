@@ -91,6 +91,7 @@ var cat = {
       if (stdout.length > 0) {
         self.log(stdout.slice(0, stdout.length - 1));
       }
+
       return 0;
     } catch (e) {
       /* istanbul ignore next */

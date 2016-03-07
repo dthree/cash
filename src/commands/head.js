@@ -4,55 +4,58 @@ const interfacer = require('./../util/interfacer');
 const fs = require('fs');
 const fsAutocomplete = require('vorpal-autocomplete-fs');
 
+const expand = require('./../util/expand');
+
 const head = {
 
   exec(args, options) {
-    const self = this;
     options = options || {};
+    args = args || '';
+    const source = (args.stdin === undefined) ? 'files' : 'stdin';
 
-    options.argsType = args.stdin === undefined ? 'files' : 'stdin';
-    options.n = options.n === undefined ? 10 : options.n;
-
-    if (options.n < 1) {
-      self.log('Option n must be a positive integer.');
-      return 1;
+    const lines = (options.lines) ? Math.abs(options.lines) : 10;
+    if (!Number.isInteger(lines)) {
+      this.log(`head: ${options.lines}: invalid number of lines`);
+      return 0;
     }
 
-    if (options.argsType === 'stdin') {
-      self.log(head.readLines(args.stdin[0], options.n));
+    /* istanbul ignore next */
+    if (source === 'stdin') {
+      let stdout = head.readLines(args.stdin[0], lines);
+      stdout = stdout.replace(/\n$/, '');
+      if (stdout.trim() !== '') {
+        this.log(stdout);
+      }
       return 0;
     }
 
     let files = args.files || args;
+    files = (typeof files === 'object' && files !== null && !Array.isArray(files)) ? [] : files;
     files = (files === undefined) ? [] : files;
     files = (typeof files === 'string') ? String(files).split(' ') : files;
     files = files.filter(arg => String(arg).trim() !== '');
+    files = expand(files);
 
     let stdout = '';
-    let writeHeaders = false;
-    if (files.length > 1) {
-      writeHeaders = true;
-    }
+    const verbose = ((files.length > 1 && !options.silent) || options.verbose);
 
-    const content = [];
     for (let i = 0; i < files.length; i++) {
       try {
-        content[i] = fs.readFileSync(files[i]).toString();
+        const content = fs.readFileSync(files[i]).toString();
+        if (verbose) {
+          stdout += `${i > 0 ? '\n' : ''}==> ${files[i]} <==\n`;
+        }
+        stdout += head.readLines(content, lines);
       } catch (e) {
-        self.log(`head: ${files[i]}: No such file or directory`);
-        return 1;
+        stdout += `head: cannot open ${files[i]} for reading: No such file or directory`;
       }
     }
 
-    for (let i = 0; i < files.length; i++) {
-      if (writeHeaders) {
-        stdout += `${i > 0 ? '\n\n' : ''}==> ${files[i]} <==\n`;
-      }
-
-      stdout += head.readLines(content[i], options.n);
+    stdout = stdout.replace(/\n$/, '');
+    if (stdout.trim() !== '') {
+      this.log(stdout);
     }
 
-    self.log(stdout);
     return 0;
   },
 
@@ -62,13 +65,11 @@ const head = {
     const linesToRead = numberOfLines >= contentArray.length ? contentArray.length : numberOfLines;
     for (let i = 0; i < linesToRead; i++) {
       if (stdout === '') {
-        stdout = contentArray[i];
+        stdout = `${contentArray[i]}\n`;
         continue;
       }
-
-      stdout += `\n${contentArray[i]}`;
+      stdout += `${contentArray[i]}\n`;
     }
-
     return stdout;
   }
 };
@@ -80,7 +81,9 @@ module.exports = function (vorpal) {
   vorpal.api.head = head;
   vorpal
       .command('head [files...]')
-      .option('-n [number]', 'The first number of lines will be copied to stdout.')
+      .option('-n, --lines [number]', 'print the first K lines instead of the first 10')
+      .option('-q, --silent', 'Suppresses printing of headers when multiple files are being examined.')
+      .option('-v, --verbose', 'Always output headers giving file names.')
       .autocomplete(fsAutocomplete())
       .action(function (args, callback) {
         args.options = args.options || {};

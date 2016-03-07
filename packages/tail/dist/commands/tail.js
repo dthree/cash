@@ -18,7 +18,7 @@ var tail = {
 
     var files = args;
     files = files === undefined ? [] : files;
-    files = typeof files === 'string' ? [files] : files;
+    files = typeof files === 'string' ? String(files).split(' ') : files;
     files = files.filter(function (file) {
       return String(file).trim() !== '';
     });

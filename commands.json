@@ -83,6 +83,13 @@
         "./dist/util/interfacer.js"
       ]
     },
+    "head": {
+      "dependencies": ["vorpal-autocomplete-fs", "glob"],
+      "files": [
+        "./dist/util/interfacer.js",
+        "./dist/util/expand.js"
+      ]
+    },
     "kill": {
       "dependencies": ["fkill", "lodash"],
       "files": [
