@@ -48,8 +48,8 @@ var ls = {
           var result = ls.execDirRecursive(paths[i], options);
           results = results.concat(result);
         } else {
-          var result = ls.execDir(paths[i], options);
-          results.push(result);
+          var _result = ls.execDir(paths[i], options);
+          results.push(_result);
         }
       }
       var stdout = ls.formatAll(results, options);
@@ -75,9 +75,9 @@ var ls = {
 
   error: function error(e) {
     /* istanbul ignore next */
-    var status = undefined;
+    var status = void 0;
     /* istanbul ignore next */
-    var stdout = undefined;
+    var stdout = void 0;
     /* istanbul ignore next */
     if (e.code === 'ENOENT' && e.syscall === 'scandir') {
       status = 1;
@@ -255,7 +255,7 @@ var ls = {
       _loop(i);
     }
 
-    var result = undefined;
+    var result = void 0;
 
     // If we have the detail view, draw out
     // all of the details of each file.
@@ -263,23 +263,23 @@ var ls = {
     // into columns.
     if (Array.isArray(files[0])) {
       var longest = {};
-      for (var i = 0; i < files.length; ++i) {
-        for (var j = 0; j < files[i].length; ++j) {
-          var len = String(files[i][j]).length;
+      for (var _i = 0; _i < files.length; ++_i) {
+        for (var j = 0; j < files[_i].length; ++j) {
+          var len = String(files[_i][j]).length;
           longest[j] = longest[j] || 0;
           longest[j] = len > longest[j] ? len : longest[j];
         }
       }
 
       var newFiles = [];
-      for (var i = 0; i < files.length; ++i) {
+      for (var _i2 = 0; _i2 < files.length; ++_i2) {
         var glob = '';
-        for (var j = 0; j < files[i].length; ++j) {
-          var padFn = j === files[i].length - 1 ? 'pad' : 'lpad';
-          if (j === files[i].length - 1) {
-            glob += String(files[i][j]);
+        for (var _j = 0; _j < files[_i2].length; ++_j) {
+          var padFn = _j === files[_i2].length - 1 ? 'pad' : 'lpad';
+          if (_j === files[_i2].length - 1) {
+            glob += String(files[_i2][_j]);
           } else {
-            glob += pads[padFn](String(files[i][j]), longest[j], ' ') + ' ';
+            glob += pads[padFn](String(files[_i2][_j]), longest[_j], ' ') + ' ';
           }
         }
         newFiles.push(String(glob));
