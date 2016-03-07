@@ -19,7 +19,7 @@ const tail = {
 
     let files = args;
     files = (files === undefined) ? [] : files;
-    files = (typeof files === 'string') ? [files] : files;
+    files = (typeof files === 'string') ? String(files).split(' ') : files;
     files = files.filter(file => String(file).trim() !== '');
     files = expand(files);
 
