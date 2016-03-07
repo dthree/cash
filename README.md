@@ -140,9 +140,10 @@ The following commands are currently implemented:
 - cd
 - cp
 - echo
-- false
 - export
+- false
 - grep
+- head
 - kill
 - less
 - ls
@@ -175,6 +176,7 @@ I am currently looking for someone with experience in building Windows installer
 
 - [@nfischer](https://github.com/nfischer): Added `export`, `true` and `false` commands, among several other contributions.
 - [@safinn](https://github.com/safinn): Added `clear` and `tail` commands.
+- [@legien](https://github.com/legien): Added `head` command.
 - [@cspotcode](https://github.com/cspotcode): Implemented template literal execution.
 
 ## FAQ
