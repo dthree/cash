@@ -2,7 +2,7 @@
 
 var pad = require('./util/pad');
 
-var commands = ['alias [-p] [name=[value]]', 'cat [-AbeEnstTv] [files ...]', 'cd [dir]', 'clear', 'cp [-fnr] source ... dest', 'echo [-eE] [arg ...]', 'export [-p][id=[value]]', 'false', 'grep [-bHhinqsvw] [-m max] [--silent] [--include pattern] pattern [files ...]', 'head [-n number] [files...]', 'kill [-s sigspec | -n signum | -sigspec] pid | jobspec ... or kill -l', 'less [files ...]', 'ls [-aAdFhilQrRStUwx1] [paths ...]', 'mkdir [-pv] [directories ...]', 'mv [-fnv] source ... dest', 'pwd [files ...]', 'rm [-frR] [files ...]', 'sort [-chMnrR] [-o file] [files ...]', 'source filename [arguments...]', 'tail [options] <files ...>', 'touch [-acm] [-d date] [-r ref] [--time word] file ...', 'true', 'unalias [-a] name [names ...]'];
+var commands = ['alias [-p] [name=[value]]', 'cat [-AbeEnstTv] [files ...]', 'cd [dir]', 'clear', 'cp [-fnr] source ... dest', 'echo [-eE] [arg ...]', 'export [-p][id=[value]]', 'false', 'grep [-bHhinqsvw] [-m max] [--silent] [--include pattern] pattern [files ...]', 'head [-nqv] <files ...>', 'kill [-s sigspec | -n signum | -sigspec] pid | jobspec ... or kill -l', 'less [files ...]', 'ls [-aAdFhilQrRStUwx1] [paths ...]', 'mkdir [-pv] [directories ...]', 'mv [-fnv] source ... dest', 'pwd [files ...]', 'rm [-frR] [files ...]', 'sort [-chMnrR] [-o file] [files ...]', 'source filename [arguments...]', 'tail [options] <files ...>', 'touch [-acm] [-d date] [-r ref] [--time word] file ...', 'true', 'unalias [-a] name [names ...]'];
 
 function chop(str, len) {
   var res = String(str).slice(0, len - 2);
