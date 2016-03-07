@@ -33,6 +33,7 @@ This module is part of [Cash](https://github.com/dthree/cash), a project providi
 - [cash-cat](https://npmjs.com/package/cash-cat)
 - [cash-cp](https://npmjs.com/package/cash-cp)
 - [cash-false](https://npmjs.com/package/cash-false)
+- [cash-head](https://npmjs.com/package/cash-head)
 - [cash-kill](https://npmjs.com/package/cash-kill)
 - [cash-ls](https://npmjs.com/package/cash-ls)
 - [cash-mkdir](https://npmjs.com/package/cash-mkdir)

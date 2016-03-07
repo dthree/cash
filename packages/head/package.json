@@ -1,8 +1,8 @@
 {
-  "name": "",
+  "name": "cash-head",
   "version": "0.0.1",
-  "description": "",
-  "main": "",
+  "description": "Cross-platform implementation of the Unix 'head' command.",
+  "main": "./dist/commands/head.js",
   "scripts": {},
   "repository": {
     "type": "git",
@@ -31,8 +31,14 @@
   },
   "homepage": "https://github.com/dthree/cash#readme",
   "devDependencies": {},
-  "bin": {},
-  "dependencies": {},
+  "bin": {
+    "head": "./bin/head.js"
+  },
+  "dependencies": {
+    "vorpal-autocomplete-fs": "0.0.3",
+    "glob": "^6.0.4",
+    "vorpal": "^1.10.8"
+  },
   "engines": {
     "node": ">= 4",
     "iojs": ">= 1.0.0"
