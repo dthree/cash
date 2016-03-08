@@ -184,17 +184,25 @@ const app = {
       });
     }
 
-    // Load rcFile upon startup
-    const rcFile = path.join(delimiter.getHomeDir(),
-        (process.platform === 'win32' ? '_cashrc' : '.cashrc'));
-    /* instanbul ignore next */
-    try {
-      if (!fs.statSync(rcFile).isDirectory()) {
-        /* instanbul ignore next */
-        app.vorpal.execSync(`source ${rcFile}`);
+    // Load .cashrc upon startup
+    let locations = ['.cashrc'];
+    if (process.platform === 'win32') {
+      /* istanbul ignore next */
+      locations.push('_cashrc');
+    }
+    locations = locations.map(function (str) {
+      return path.join(delimiter.getHomeDir(), str);
+    });
+
+    for (let i = 0; i < locations.length; ++i) {
+      try {
+        if (!fs.statSync(locations[i]).isDirectory()) {
+          app.vorpal.execSync(`source ${locations[i]}`);
+          break;
+        }
+      } catch (e) {
+        // File doesn't exist, so just don't load defaults
       }
-    } catch (e) {
-      // File doesn't exist, so just don't load defaults
     }
 
     app.export.vorpal = app.vorpal;

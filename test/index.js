@@ -3,6 +3,7 @@
 require('assert');
 const should = require('should');
 const $ = require('shelljs');
+const delimiter = require('./../dist/delimiter.js');
 
 let cash;
 
@@ -11,6 +12,21 @@ describe('cash', function () {
     should.exist(require('..'));
   });
 
+  describe('.cashrc', function () {
+    before(function () {
+      'touch fizzlecrumbs'.to(`${delimiter.getHomeDir()}/.cashrc`);
+      cash = require('..');
+    });
+
+    after(function () {
+      $.rm('-rf', '.cashrc');
+      $.rm('-rf', 'fizzlecrumbs');
+    });
+
+    it('should load a .cashrc file', function () {
+      $.test('-e', 'fizzlecrumbs').should.equal(true);
+    });
+  });
 
   describe('template literals', function () {
     before(function () {
@@ -22,7 +38,7 @@ describe('cash', function () {
       $.rm('-rf', 'test-template');
     });
 
-    it('execute multiple lines as template literals', function () {
+    it('should execute multiple lines as template literals', function () {
       const out = cash `
         mkdir test-template
         cd test-template
@@ -32,7 +48,7 @@ describe('cash', function () {
       out.should.equal('hi\n');
       $.test('-e', './../test-template/foo').should.equal(true);
     });
-    it('execute later literals in the same context', function () {
+    it('should execute later literals in the same context', function () {
       cash `
         cd ..
       `;

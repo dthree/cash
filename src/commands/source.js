@@ -4,6 +4,8 @@ const interfacer = require('./../util/interfacer');
 const preparser = require('./../preparser');
 const fs = require('fs');
 
+const usage = `-cash: source: filename argument required\nsource: usage: source filename [arguments]`;
+
 const source = {
 
   exec(args, options) {
@@ -21,12 +23,13 @@ const source = {
 
     const vorpal = options.vorpal;
 
+    /* istanbul ignore next */
     if (!vorpal) {
       throw new Error('Source is not programatically supported.');
     }
 
     if (!args.file) {
-      this.log('-cash: source: filename argument required');
+      this.log(usage);
       return 2;
     }
     try {
@@ -45,7 +48,7 @@ const source = {
       } else if (e.code === 'EISDIR') {
         this.log(`-cash: source: ${args.file}: is a directory`);
       } else {
-        // Some other error
+        /* istanbul ignore next */
         this.log(`-cash: source: unable to read ${args.file}`);
       }
       return 1;
@@ -61,7 +64,7 @@ module.exports = function (vorpal) {
   }
   vorpal.api.source = source;
   vorpal
-    .command('source <file> [params...]')
+    .command('source [file] [params...]')
     .alias('.')
     .parse(preparser)
     .action(function (args, callback) {
@@ -69,6 +72,7 @@ module.exports = function (vorpal) {
       args.options.vorpal = vorpal;
       return interfacer.call(this, {
         command: source,
+        args,
         options: args.options,
         callback
       });
