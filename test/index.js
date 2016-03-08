@@ -8,16 +8,16 @@ const delimiter = require('./../dist/delimiter.js');
 let cash;
 
 describe('cash', function () {
+  before(function () {
+    'touch fizzlecrumbs'.to(`${delimiter.getHomeDir()}/.cashrc`);
+    cash = require('..');
+  });
+
   it('should export properly', function () {
     should.exist(require('..'));
   });
 
   describe('.cashrc', function () {
-    before(function () {
-      'touch fizzlecrumbs'.to(`${delimiter.getHomeDir()}/.cashrc`);
-      cash = require('..');
-    });
-
     after(function () {
       $.rm('-rf', '.cashrc');
       $.rm('-rf', 'fizzlecrumbs');
