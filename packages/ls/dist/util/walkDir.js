@@ -11,31 +11,37 @@ var path = require('path');
  *
  * @param {String} currentDirPath
  * @param {Function} callback
+ * @param {Function} errorCallback
  * @api public
  */
-
-module.exports = function (currentDirPath, callback) {
-  function readFile(path, cbk) {
-    var stat = undefined;
+module.exports = function (currentDirPath, callback, errorCallback) {
+  /**
+   * @param {String} path
+   * @param {Function} cbk
+   * @param {Function} ecbk
+   */
+  function readFile(path, cbk, ecbk) {
     try {
-      stat = fs.statSync(path);
+      var stat = fs.statSync(path);
       if (stat.isFile() || stat.isDirectory()) {
         cbk(path, stat);
       }
     } catch (e) {
-      // .. if we can't read the file, forget
-      // about it for now.
+      ecbk(path, e);
     }
   }
+
   try {
     var dirs = fs.readdirSync(currentDirPath);
     dirs.forEach(function (name) {
       var filePath = path.join(currentDirPath, name);
-      readFile(filePath, callback);
+      readFile(filePath, callback, errorCallback);
     });
   } catch (e) {
     if (e.code === 'ENOTDIR') {
-      readFile(currentDirPath, callback);
+      readFile(currentDirPath, callback, errorCallback);
+    } else {
+      errorCallback(currentDirPath, e);
     }
   }
 };

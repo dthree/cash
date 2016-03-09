@@ -24,71 +24,100 @@ const pads = {pad, lpad};
 
 const ls = {
 
+  self: null,
+
   /**
    * Main command execution.
    *
-   * @param {Object} args
    * @return {Object} { status, stdout }
    * @api public
+   * @param paths
+   * @param options
    */
-
   exec(paths, options) {
-    const self = this;
+    ls.self = this;
     paths = (paths !== null && !Array.isArray(paths) && (typeof paths === 'object')) ? paths.paths : paths;
     paths = paths || ['.'];
     paths = (Array.isArray(paths)) ? paths : [paths];
     paths = expand(paths);
+
     options = options || {};
-    try {
-      let results = [];
-      for (let i = 0; i < paths.length; ++i) {
-        if (options.recursive) {
-          const result = ls.execDirRecursive(paths[i], options);
-          results = results.concat(result);
-        } else {
-          const result = ls.execDir(paths[i], options);
-          results.push(result);
-        }
+
+    const preSortedPaths = ls.preSortPaths(paths);
+
+    let dirResults = [];
+    for (let i = 0; i < preSortedPaths.dirs.length; ++i) {
+      if (options.recursive) {
+        const result = ls.execDirRecursive(preSortedPaths.dirs[i], options);
+        dirResults = dirResults.concat(result);
+      } else {
+        dirResults.push(ls.execDir(preSortedPaths.dirs[i], options));
       }
-      const stdout = ls.formatAll(results, options);
-      if (strip(stdout).trim() !== '') {
-        self.log(String(stdout).replace(/\\/g, '/'));
-      }
-      return 0;
-    } catch (e) {
-      /* istanbul ignore next */
-      return ls.error.call(self, e);
     }
+
+    let stdout = '';
+    if (preSortedPaths.files.length > 0) {
+      stdout += ls.execLsOnFiles('.', preSortedPaths.files, options).results;
+    }
+
+    stdout += ls.formatAll(dirResults, options);
+    if (strip(stdout).trim() !== '') {
+      ls.self.log(String(stdout).replace(/\\/g, '/'));
+    }
+
+    return 0;
+  },
+
+  preSortPaths(paths) {
+    const dirs = [];
+    const files = [];
+
+    for (let i = 0; i < paths.length; i++) {
+      const p = paths[i];
+      try {
+        const stat = fs.statSync(p);
+        if (stat.isDirectory()) {
+          dirs.push(p);
+        } else if (stat.isFile()) {
+          files.push({
+            file: p,
+            data: stat
+          });
+        }
+      } catch (e) {
+        e.syscall = 'scandir';
+        ls.error(p, e);
+      }
+    }
+
+    return {files, dirs};
   },
 
   /**
    * Returns ls stderr and response codes
    * for errors.
    *
+   * @param {String} path
    * @param {Error} e
-   * @return {Object} { status, stdout }
+   * @param {String} e.code
+   * @param {String} e.syscall
+   * @param {String} e.stack
    * @api private
    */
-
-  error(e) {
-    /* istanbul ignore next */
+  error(path, e) {
     let status;
-    /* istanbul ignore next */
     let stdout;
-    /* istanbul ignore next */
+
     if (e.code === 'ENOENT' && e.syscall === 'scandir') {
       status = 1;
-      stdout = `ls: cannot access: No such file or directory`;
+      stdout = `ls: cannot access ${path}: No such file or directory`;
     } else {
-      /* istanbul ignore next */
       status = 2;
-      /* istanbul ignore next */
       stdout = e.stack;
     }
-    /* istanbul ignore next */
-    this.log(stdout);
-    /* istanbul ignore next */
-    return status;
+
+    ls.self.log(stdout);
+    return {status, stdout};
   },
 
   /**
@@ -97,7 +126,7 @@ const ls = {
    *
    * @param {String} path
    * @param {Object} options
-   * @return {String} results
+   * @return {Array} results
    * @api private
    */
 
@@ -108,6 +137,7 @@ const ls = {
       const result = self.execDir(pth, options);
       results.push(result);
     });
+
     return results;
   },
 
@@ -117,14 +147,11 @@ const ls = {
    *
    * @param {String} path
    * @param {Object} options
-   * @return {String} results
+   * @return {{path: String, size: *, results: *}} results
    * @api private
    */
-
   execDir(path, options) {
-    const files = [];
-    let rawFiles = [];
-    let totalSize = 0;
+    const rawFiles = [];
 
     function pushFile(file, data) {
       rawFiles.push({
@@ -139,7 +166,16 @@ const ls = {
 
     // Walk the passed in directory,
     // pushing the results into `rawFiles`.
-    walkDir(path, pushFile);
+    walkDir(path, pushFile, ls.error);
+
+    const o = ls.execLsOnFiles(path, rawFiles, options);
+    o.path = path;
+    return o;
+  },
+
+  execLsOnFiles(path, rawFiles, options) {
+    const files = [];
+    let totalSize = 0;
 
     // Sort alphabetically be default,
     // unless -U is specified, in which case
@@ -160,18 +196,18 @@ const ls = {
         if (options.t) {
           // Sort by date modified.
           return ((a.data.mtime < b.data.mtime) ? 1 :
-            (b.data.mtime < a.data.mtime) ? -1 :
-            0);
+              (b.data.mtime < a.data.mtime) ? -1 :
+                  0);
         }
         // Sort alphabetically - default.
         const aFileName = fileFromPath(a.file)
-          .trim()
-          .toLowerCase()
-          .replace(/\W/g, '');
+            .trim()
+            .toLowerCase()
+            .replace(/\W/g, '');
         const bFileName = fileFromPath(b.file)
-          .trim()
-          .toLowerCase()
-          .replace(/\W/g, '');
+            .trim()
+            .toLowerCase()
+            .replace(/\W/g, '');
         return (aFileName > bFileName) ? 1 : (aFileName < bFileName) ? -1 : 0;
       });
     }
@@ -201,9 +237,7 @@ const ls = {
       let fileName = fileShort;
 
       // If --classify, add '/' to end of folders.
-      fileName = (options.classify && data.isDirectory()) ?
-        `${fileName}/` :
-        fileName;
+      fileName = (options.classify && data.isDirectory()) ? `${fileName}/` : fileName;
 
       // If getting --directory, give full path.
       fileName = (options.directory && file === '.') ? path : fileName;
@@ -249,15 +283,17 @@ const ls = {
         details.unshift(inode);
       }
 
-      const result =
-        (options.l && !options.x) ? details :
-        fileName;
+      const result = (options.l && !options.x) ? details : fileName;
 
       if (include) {
         files.push(result);
       }
     }
 
+    return ls.formatDetails(files, totalSize, options);
+  },
+
+  formatDetails(files, totalSize, options) {
     let result;
 
     // If we have the detail view, draw out
@@ -295,11 +331,11 @@ const ls = {
       if (options.width) {
         opt.width = options.width;
       }
+
       result = columnify(files, opt);
     }
 
     return ({
-      path,
       size: (options.humanreadable) ? filesize(totalSize, {unix: true}) : totalSize,
       results: result
     });
@@ -310,7 +346,7 @@ const ls = {
    * `execDir` functions into their proper
    * form based on options provided.
    *
-   * @param {String} results
+   * @param {Array} results
    * @param {Object} options
    * @return {String} stdout
    * @api private
@@ -349,31 +385,31 @@ module.exports = function (vorpal) {
   }
   vorpal.api.ls = ls;
   vorpal
-    .command('ls [paths...]')
-    .parse(preparser)
-    .option('-a, --all', 'do not ignore entries starting with .')
-    .option('-A, --almost-all', 'do not list implied . and ..')
-    .option('-d, --directory', 'list directory entries instead of contents, and do not dereference symbolic links')
-    .option('-F, --classify', 'append indicator (one of */=>@|) to entries')
-    .option('-h, --human-readable', 'with -l, print sizes in human readable format (e.g., 1K 234M 2G)')
-    .option('-i, --inode', 'print the index number of each file')
-    .option('-l', 'use a long listing format')
-    .option('-Q, --quote-name', 'enclose entry names in double quotes')
-    .option('-r, --reverse', 'reverse order while sorting')
-    .option('-R, --recursive', 'list subdirectories recursively')
-    .option('-S', 'sort by file size')
-    .option('-t', 'sort by modification time, newest first')
-    .option('-U', 'do not sort; list entries in directory order')
-    .option('-w, --width [COLS]', 'assume screen width instead of current value')
-    .option('-x', 'list entries by lines instead of columns')
-    .option('-1', 'list one file per line')
-    .autocomplete(fsAutocomplete())
-    .action(function (args, cb) {
-      return interfacer.call(this, {
-        command: ls,
-        args: args.paths,
-        options: args.options,
-        callback: cb
+      .command('ls [paths...]')
+      .parse(preparser)
+      .option('-a, --all', 'do not ignore entries starting with .')
+      .option('-A, --almost-all', 'do not list implied . and ..')
+      .option('-d, --directory', 'list directory entries instead of contents, and do not dereference symbolic links')
+      .option('-F, --classify', 'append indicator (one of */=>@|) to entries')
+      .option('-h, --human-readable', 'with -l, print sizes in human readable format (e.g., 1K 234M 2G)')
+      .option('-i, --inode', 'print the index number of each file')
+      .option('-l', 'use a long listing format')
+      .option('-Q, --quote-name', 'enclose entry names in double quotes')
+      .option('-r, --reverse', 'reverse order while sorting')
+      .option('-R, --recursive', 'list subdirectories recursively')
+      .option('-S', 'sort by file size')
+      .option('-t', 'sort by modification time, newest first')
+      .option('-U', 'do not sort; list entries in directory order')
+      .option('-w, --width [COLS]', 'assume screen width instead of current value')
+      .option('-x', 'list entries by lines instead of columns')
+      .option('-1', 'list one file per line')
+      .autocomplete(fsAutocomplete())
+      .action(function (args, cb) {
+        return interfacer.call(this, {
+          command: ls,
+          args: args.paths,
+          options: args.options,
+          callback: cb
+        });
       });
-    });
 };
