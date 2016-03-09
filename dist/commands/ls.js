@@ -26,41 +26,72 @@ var pads = { pad: pad, lpad: lpad };
 
 var ls = {
 
+  self: null,
+
   /**
    * Main command execution.
    *
-   * @param {Object} args
    * @return {Object} { status, stdout }
    * @api public
+   * @param paths
+   * @param options
    */
-
   exec: function exec(paths, options) {
-    var self = this;
+    ls.self = this;
     paths = paths !== null && !Array.isArray(paths) && (typeof paths === 'undefined' ? 'undefined' : _typeof(paths)) === 'object' ? paths.paths : paths;
     paths = paths || ['.'];
     paths = Array.isArray(paths) ? paths : [paths];
     paths = expand(paths);
+
     options = options || {};
-    try {
-      var results = [];
-      for (var i = 0; i < paths.length; ++i) {
-        if (options.recursive) {
-          var result = ls.execDirRecursive(paths[i], options);
-          results = results.concat(result);
-        } else {
-          var result = ls.execDir(paths[i], options);
-          results.push(result);
-        }
+
+    var preSortedPaths = ls.preSortPaths(paths);
+
+    var dirResults = [];
+    for (var i = 0; i < preSortedPaths.dirs.length; ++i) {
+      if (options.recursive) {
+        var result = ls.execDirRecursive(preSortedPaths.dirs[i], options);
+        dirResults = dirResults.concat(result);
+      } else {
+        dirResults.push(ls.execDir(preSortedPaths.dirs[i], options));
       }
-      var stdout = ls.formatAll(results, options);
-      if (strip(stdout).trim() !== '') {
-        self.log(String(stdout).replace(/\\/g, '/'));
-      }
-      return 0;
-    } catch (e) {
-      /* istanbul ignore next */
-      return ls.error.call(self, e);
     }
+
+    var stdout = '';
+    if (preSortedPaths.files.length > 0) {
+      stdout += ls.execLsOnFiles('.', preSortedPaths.files, options).results;
+    }
+
+    stdout += ls.formatAll(dirResults, options);
+    if (strip(stdout).trim() !== '') {
+      ls.self.log(String(stdout).replace(/\\/g, '/'));
+    }
+
+    return 0;
+  },
+  preSortPaths: function preSortPaths(paths) {
+    var dirs = [];
+    var files = [];
+
+    for (var i = 0; i < paths.length; i++) {
+      var p = paths[i];
+      try {
+        var stat = fs.statSync(p);
+        if (stat.isDirectory()) {
+          dirs.push(p);
+        } else if (stat.isFile()) {
+          files.push({
+            file: p,
+            data: stat
+          });
+        }
+      } catch (e) {
+        e.syscall = 'scandir';
+        ls.error(p, e);
+      }
+    }
+
+    return { files: files, dirs: dirs };
   },
 
 
@@ -68,30 +99,27 @@ var ls = {
    * Returns ls stderr and response codes
    * for errors.
    *
+   * @param {String} path
    * @param {Error} e
-   * @return {Object} { status, stdout }
+   * @param {String} e.code
+   * @param {String} e.syscall
+   * @param {String} e.stack
    * @api private
    */
+  error: function error(path, e) {
+    var status = void 0;
+    var stdout = void 0;
 
-  error: function error(e) {
-    /* istanbul ignore next */
-    var status = undefined;
-    /* istanbul ignore next */
-    var stdout = undefined;
-    /* istanbul ignore next */
     if (e.code === 'ENOENT' && e.syscall === 'scandir') {
       status = 1;
-      stdout = 'ls: cannot access: No such file or directory';
+      stdout = 'ls: cannot access ' + path + ': No such file or directory';
     } else {
-      /* istanbul ignore next */
       status = 2;
-      /* istanbul ignore next */
       stdout = e.stack;
     }
-    /* istanbul ignore next */
-    this.log(stdout);
-    /* istanbul ignore next */
-    return status;
+
+    ls.self.log(stdout);
+    return { status: status, stdout: stdout };
   },
 
 
@@ -101,7 +129,7 @@ var ls = {
    *
    * @param {String} path
    * @param {Object} options
-   * @return {String} results
+   * @return {Array} results
    * @api private
    */
 
@@ -112,6 +140,7 @@ var ls = {
       var result = self.execDir(pth, options);
       results.push(result);
     });
+
     return results;
   },
 
@@ -122,14 +151,11 @@ var ls = {
    *
    * @param {String} path
    * @param {Object} options
-   * @return {String} results
+   * @return {{path: String, size: *, results: *}} results
    * @api private
    */
-
   execDir: function execDir(path, options) {
-    var files = [];
     var rawFiles = [];
-    var totalSize = 0;
 
     function pushFile(file, data) {
       rawFiles.push({
@@ -144,7 +170,15 @@ var ls = {
 
     // Walk the passed in directory,
     // pushing the results into `rawFiles`.
-    walkDir(path, pushFile);
+    walkDir(path, pushFile, ls.error);
+
+    var o = ls.execLsOnFiles(path, rawFiles, options);
+    o.path = path;
+    return o;
+  },
+  execLsOnFiles: function execLsOnFiles(path, rawFiles, options) {
+    var files = [];
+    var totalSize = 0;
 
     // Sort alphabetically be default,
     // unless -U is specified, in which case
@@ -255,7 +289,10 @@ var ls = {
       _loop(i);
     }
 
-    var result = undefined;
+    return ls.formatDetails(files, totalSize, options);
+  },
+  formatDetails: function formatDetails(files, totalSize, options) {
+    var result = void 0;
 
     // If we have the detail view, draw out
     // all of the details of each file.
@@ -272,14 +309,14 @@ var ls = {
       }
 
       var newFiles = [];
-      for (var i = 0; i < files.length; ++i) {
+      for (var _i = 0; _i < files.length; ++_i) {
         var glob = '';
-        for (var j = 0; j < files[i].length; ++j) {
-          var padFn = j === files[i].length - 1 ? 'pad' : 'lpad';
-          if (j === files[i].length - 1) {
-            glob += String(files[i][j]);
+        for (var _j = 0; _j < files[_i].length; ++_j) {
+          var padFn = _j === files[_i].length - 1 ? 'pad' : 'lpad';
+          if (_j === files[_i].length - 1) {
+            glob += String(files[_i][_j]);
           } else {
-            glob += pads[padFn](String(files[i][j]), longest[j], ' ') + ' ';
+            glob += pads[padFn](String(files[_i][_j]), longest[_j], ' ') + ' ';
           }
         }
         newFiles.push(String(glob));
@@ -292,11 +329,11 @@ var ls = {
       if (options.width) {
         opt.width = options.width;
       }
+
       result = columnify(files, opt);
     }
 
     return {
-      path: path,
       size: options.humanreadable ? filesize(totalSize, { unix: true }) : totalSize,
       results: result
     };
@@ -308,7 +345,7 @@ var ls = {
    * `execDir` functions into their proper
    * form based on options provided.
    *
-   * @param {String} results
+   * @param {Array} results
    * @param {Object} options
    * @return {String} stdout
    * @api private

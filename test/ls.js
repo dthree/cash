@@ -24,11 +24,10 @@ function ls(path, opts) {
   opts = opts || {};
   opts.options = opts.options || {};
   try {
-    const result = cash.ls(path, opts);
-    return result;
+    return cash.ls(path, opts);
   } catch (e) {
     console.log(e);
-    throw new Error(e);
+    throw e;
   }
 }
 
@@ -82,6 +81,23 @@ if (os.platform() !== 'win32') {
         const res = ls('..');
         strip(res).should.equal(expected.rootDirFlat);
         process.chdir('..');
+      });
+    });
+
+    describe('failures', function () {
+      it('should return an error if file cannot be found', function () {
+        const output = ls('aaa');
+        output.should.equal('ls: cannot access aaa: No such file or directory\n');
+      });
+
+      it('should return two errors if two files cannot be found', function () {
+        const output = ls(['aaa', 'bbb']);
+        output.should.equal('ls: cannot access aaa: No such file or directory\nls: cannot access bbb: No such file or directory\n');
+      });
+
+      it('should return one error and one file if one file cannot be found', function () {
+        const output = ls(['aaa', 'e.gif']);
+        output.should.equal('ls: cannot access aaa: No such file or directory\n\u001b[2me.gif\u001b[39m\n');
       });
     });
 

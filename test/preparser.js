@@ -121,7 +121,7 @@ describe('preparser', function () {
     });
 
     it('should work for ls', function () {
-      cash('ls $FOO').should.equal('');
+      cash('ls $FOO').should.equal('ls: cannot access thisfiledoesntexist: No such file or directory\n');
       cash('ls $NOSUCHENVVAR').should.equal(cash('ls'));
     });
 
