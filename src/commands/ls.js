@@ -60,7 +60,8 @@ const ls = {
       stdout += ls.execLsOnFiles('.', preSortedPaths.files, options).results;
     }
 
-    stdout += ls.formatAll(dirResults, options);
+    const dirOutput = ls.formatAll(dirResults, options, (dirResults.length + preSortedPaths.files.length > 1));
+    stdout += (stdout && dirOutput) ? `\n\n${dirOutput}` : dirOutput;
     if (strip(stdout).trim() !== '') {
       ls.self.log(String(stdout).replace(/\\/g, '/'));
     }
@@ -89,6 +90,8 @@ const ls = {
         ls.error(p, e);
       }
     }
+    files.sort();
+    dirs.sort();
 
     return {files, dirs};
   },
@@ -348,13 +351,14 @@ const ls = {
    *
    * @param {Array} results
    * @param {Object} options
+   * @param {boolean} showName
    * @return {String} stdout
    * @api private
    */
 
-  formatAll(results, options) {
+  formatAll(results, options, showName) {
     let stdout = '';
-    if (results.length > 1) {
+    if (showName) {
       for (let i = 0; i < results.length; ++i) {
         stdout += `${results[i].path}:\n`;
         if (options.l) {
