@@ -10,7 +10,7 @@ var delimiter = require('./delimiter.js');
 var path = require('path');
 var fs = require('fs');
 
-var cmds = undefined;
+var cmds = void 0;
 
 var app = {
 
@@ -39,7 +39,7 @@ var app = {
       out += str + '\n';
       return '';
     });
-    var commands = undefined;
+    var commands = void 0;
     if (tmpl) {
       // Render into a single string, inserting interpolated values.
       var interpVals = [].concat(Array.prototype.slice.call(arguments)).slice(1);
@@ -70,7 +70,7 @@ var app = {
       try {
         (function () {
           var mod = require('./commands/' + cmd + '.js');
-          var help = undefined;
+          var help = void 0;
           try {
             help = require('./help/' + cmd + '.js');
             help = String(help).replace(/^\n|\n$/g, '');
@@ -141,7 +141,7 @@ var app = {
     });
 
     // Load aliases
-    var all = undefined;
+    var all = void 0;
     try {
       all = JSON.parse(app.vorpal.localStorage.getItem('aliases') || []);
     } catch (e) {
@@ -196,10 +196,10 @@ var app = {
       return path.join(delimiter.getHomeDir(), str);
     });
 
-    for (var i = 0; i < locations.length; ++i) {
+    for (var _i = 0; _i < locations.length; ++_i) {
       try {
-        if (!fs.statSync(locations[i]).isDirectory()) {
-          app.vorpal.execSync('source ' + locations[i]);
+        if (!fs.statSync(locations[_i]).isDirectory()) {
+          app.vorpal.execSync('source ' + locations[_i]);
           break;
         }
       } catch (e) {

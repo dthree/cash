@@ -66,6 +66,16 @@ if (os.platform() !== 'win32') {
         strip(res).should.equal(expected.subDirFlat);
       });
 
+      it('should list files and directories', function () {
+        const res = ls(['a.txt', 'b.tgz', './sub/']);
+        strip(res).should.equal(`a.txt  b.tgz\n\n./sub/:\n${expected.subDirFlat}`);
+      });
+
+      it('should sort files and directories, with files being first', function () {
+        const res = ls(['./sub', 'b.tgz', '.', 'a.txt']);
+        strip(res).should.equal(`a.txt  b.tgz\n\n.:\n${expected.rootDirFlat}\n./sub:\n${expected.subDirFlat}`);
+      });
+
       it('should list multiple directories', function () {
         const res = ls(['.', './sub']);
         strip(res).should.equal(`.:\n${expected.rootDirFlat}\n./sub:\n${expected.subDirFlat}`);
