@@ -118,6 +118,7 @@ Love it? Cash is brand new! Give it a :star: or a tweet to help spread the word!
 - [Supported commands](#supported-commands)
 - [Contributing](#contributing)
 - [FAQ](#faq)
+- [Team](#team)
 - [License](#license)
 - [Wiki](https://github.com/dthree/cash/wiki)
 
@@ -170,8 +171,7 @@ Want more commands?
 - [Editing commands](https://github.com/dthree/cash/wiki/Contributing#editing-existing-commands)
 - [Adding new commands](https://github.com/dthree/cash/wiki/Contributing)
 
-I am currently looking for someone with experience in building Windows installers (`.msi`) to bundle Cash and its individual components into a self-contained wrapper. If you would like to help with this, send me a ping.
-
+We are currently looking for Core Team members who can push forward Cash at a rapid rate. Are you an awesome developer up to the challenge? Send me a ping.
 
 ### Awesome contributors
 
@@ -222,6 +222,13 @@ ls(); // ['node_modules'];
 
 echo('foo').to('foo.txt');
 ```
+
+
+## Team
+
+[![David Caccavella](https://avatars.githubusercontent.com/u/10319897?s=130)](http://github.com/dthree) | [![Nate Fischer](https://avatars.githubusercontent.com/u/5801521?s=130)](https://github.com/nfischer)
+---|---|---|---|---
+[David Caccavella](http://github.com/dthree) | [Nate Fischer](https://github.com/nfischer)
 
 
 ## License
