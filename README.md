@@ -98,7 +98,7 @@ require('cash') `
 `;
 ```
 
-*For even better programmatic Unix commands, check out [Shell.JS](https://github.com/shelljs/shelljs).*
+*For even better programmatic Unix commands, check out [ShellJS](https://github.com/shelljs/shelljs).*
 
 [Learn more](https://github.com/dthree/cash/wiki/Usage-|-Programmatic)
 
@@ -116,6 +116,7 @@ Love it? Cash is brand new! Give it a :star: or a tweet to help spread the word!
 
 - [Introduction](#introduction)
 - [Supported commands](#supported-commands)
+- [Configuration (.cashrc)](#configuration)
 - [Contributing](#contributing)
 - [FAQ](#faq)
 - [Team](#team)
@@ -166,6 +167,10 @@ Want more commands?
 - [Contribute](#contributing)
 
 
+## Configuration
+
+Want to configure things to your heart's content? Just add your configurations in a `.cashrc` file (`_cashrc` also works, for Windows folk) and put that in your home directory. This supports anything you can do inside a cash command prompt (`export`ing environmental variables, aliases, etc.).
+
 ## Contributing
 
 - [Editing commands](https://github.com/dthree/cash/wiki/Contributing#editing-existing-commands)
@@ -201,13 +206,13 @@ Cash is also a play on the word `bash`, and is actually[\[1\]](https://xkcd.com/
 Shout out to [@aseemk](https://github.com/aseemk) for donating the name.
 
 
-#### Doesn't Shell.js do this?
+#### Doesn't ShellJS do this?
 
 No.
  
-For those who don't know, [Shell.JS](https://github.com/shelljs/shelljs) is an awesome Node package that implements UNIX shell commands programatically in JavaScript. Check it out - really. While Shell.JS was tremendously helpful in figuring out how to accomplish Cash, the two do not really conflict.
+For those who don't know, [ShellJS](https://github.com/shelljs/shelljs) is an awesome Node package that implements UNIX shell commands programatically in JavaScript. Check it out - really. While ShellJS was tremendously helpful in figuring out how to accomplish Cash, the two do not really conflict.
 
-Shell.JS gives the feel of UNIX commands in a code environment, but aims to implement the commands in a way that makes sense for a JavaScript library. This means that many commands return JavaScript objects, and some of the rougher and more dangerous edges of bash have been softened a bit.
+ShellJS gives the feel of UNIX commands in a code environment, but aims to implement the commands in a way that makes sense for a JavaScript library. This means that many commands return JavaScript objects, and some of the rougher and more dangerous edges of bash have been softened a bit.
 
 For example, with cash:
 ```javascript
@@ -216,7 +221,7 @@ $('ls'); // 'node_modules\n'
 $('echo foo > foo.txt');
 ```
 
-With Shell.JS:
+With ShellJS:
 ```javascript
 ls(); // ['node_modules'];
 
