@@ -6,27 +6,44 @@ const $ = require('shelljs');
 const delimiter = require('./../dist/delimiter.js');
 
 let cash;
+let cashrcCopy;
+let cashrcPath;
 
 describe('cash', function () {
-  before(function () {
-    'touch fizzlecrumbs'.to(`${delimiter.getHomeDir()}/.cashrc`);
-    cash = require('..');
-  });
-
   it('should export properly', function () {
     should.exist(require('..'));
   });
 
   describe('.cashrc', function () {
+    before(function () {
+      cashrcPath = `${delimiter.getHomeDir()}/.cashrc`;
+      cashrcCopy = `${cashrcPath}_${String(Math.random())}`;
+      if ($.test('-f', cashrcPath)) {
+        $.mv(cashrcPath, cashrcCopy);
+        if ($.error()) {
+          console.error('warning: unable to save your cashrc file');
+        }
+      }
+      'touch fizzlecrumbs'.to(cashrcPath);
+      cash = require('..');
+    });
+
     after(function () {
-      $.rm('-rf', '.cashrc');
+      if ($.test('-f', cashrcCopy)) {
+        $.mv(cashrcCopy, cashrcPath);
+        if ($.error()) {
+          console.error('warning: unable to restore your cashrc file');
+        }
+      } else {
+        $.rm('-f', cashrcPath);
+      }
       $.rm('-rf', 'fizzlecrumbs');
     });
 
     // I think this is an import problem between test
     // problems.
     it.skip('should load a .cashrc file', function () {
-      $.test('-e', 'fizzlecrumbs').should.equal(true);
+      $.test('-f', 'fizzlecrumbs').should.equal(true);
     });
   });
 
