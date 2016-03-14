@@ -70,7 +70,8 @@
     "vorpal": "^1.10.8",
     "vorpal-autocomplete-fs": "0.0.3",
     "vorpal-grep": "^0.1.2",
-    "vorpal-less": "0.0.13"
+    "vorpal-less": "0.0.13",
+    "which": "^1.2.4"
   },
   "engines": {
     "node": ">= 4",

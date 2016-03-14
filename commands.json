@@ -22,7 +22,8 @@
     "less",
     "grep",
     "rm",
-    "unalias"
+    "unalias",
+    "which"
     ],
   "globalExclusions": [
     "alias",
