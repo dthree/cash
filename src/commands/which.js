@@ -7,7 +7,7 @@ const which = {
   exec(args, options) {
     options = options || {};
 
-    let command = ((args instanceof Array) ? args : [args]).join(' ');
+    const command = ((args instanceof Array) ? args : [args]).join(' ');
     if (command.length <= 0) {
       return 0;
     }
