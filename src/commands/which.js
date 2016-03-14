@@ -7,16 +7,16 @@ const which = {
   exec(args, options) {
     options = options || {};
 
-    var command = ((args instanceof Array) ? args : [args]).join(' ');
+    let command = ((args instanceof Array) ? args : [args]).join(' ');
     if (command.length <= 0) {
-        return 0;
+      return 0;
     }
     try {
-        this.log(require('which').sync(command));
-        return 0;
+      this.log(require('which').sync(command));
+      return 0;
     } catch (error) {
-        this.log(error);
-        return 1;
+      this.log(error);
+      return 1;
     }
   }
 };
