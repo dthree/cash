@@ -168,6 +168,12 @@
         "./dist/util/interfacer.js",
         "./dist/util/unlinkSync.js"
       ]
+    },
+    "which": {
+      "dependencies": ["which"],
+      "files": [
+        "./dist/util/interfacer.js"
+      ]
     }
   }
 }

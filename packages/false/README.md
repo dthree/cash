@@ -44,6 +44,7 @@ This module is part of [Cash](https://github.com/dthree/cash), a project providi
 - [cash-touch](https://npmjs.com/package/cash-touch)
 - [cash-true](https://npmjs.com/package/cash-true)
 - [cash-rm](https://npmjs.com/package/cash-rm)
+- [cash-which](https://npmjs.com/package/cash-which)
 
 
 ## License

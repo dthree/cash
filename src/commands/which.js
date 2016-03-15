@@ -30,13 +30,11 @@ module.exports = function (vorpal) {
   vorpal
     .command('which [command]')
     .parse(preparser)
-    // .option('-o, --option', 'option description')
     .action(function (args, callback) {
-    //   args.options = args.options || {};
       return interfacer.call(this, {
         command: which,
-        args: args.command, // only pass in what you need from Vorpal
-        // options: args.options, // split the options into their own arg
+        args: args.command,
+        options: {},
         callback
       });
     });
