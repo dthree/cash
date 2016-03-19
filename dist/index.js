@@ -9,6 +9,7 @@ var interfacer = require('./util/interfacer');
 var delimiter = require('./delimiter.js');
 var path = require('path');
 var fs = require('fs');
+var minimist = require('minimist');
 
 var cmds = void 0;
 
@@ -132,6 +133,21 @@ var app = {
     for (var cmd in app.vorpal.api) {
       _loop(cmd);
     }
+
+    self.vorpal.localEnv = {};
+    var argv = minimist(process.argv.slice(2));
+
+    if (argv.c || argv._.length > 0) {
+      for (var k = 0; k < argv._.length; k++) {
+        self.vorpal.localEnv.k = argv._[k];
+      }
+      // If -c is used, use that string, otherwise use the script-name instead
+      var script = argv.c || 'source ' + argv._[0];
+      process.exit(app.vorpal.execSync(script));
+    }
+
+    // Otherwise, start an interactive shell
+    self.vorpal.localEnv[0] = 'cash';
 
     app.vorpal.history('cash').localStorage('cash').help(help);
 
