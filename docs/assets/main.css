@@ -1,0 +1,51 @@
+/**
+ * Main layout styles
+ */
+
+@import 'header.css';
+@import 'footer.css';
+@import 'stats.css';
+
+html, body {
+  font-family: 'Roboto', 'Helvetica', sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+.hero {
+  background: rgb(0,130,116);
+  color: white;
+  text-align: center;
+  padding: 4em 40px;
+}
+
+.hero__title {
+  font-family: 'Syncopate', 'Helvetica', sans-serif;
+  padding: 0;
+  margin: 0 0 16px;
+}
+
+.hero__desc {
+  font-size: 24px;
+}
+
+.page {
+  padding: 0 40px;
+}
+
+.container {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+@media screen and (max-width: 1024px) {
+
+  .hero {
+    padding: 1.5em 16px;
+  }
+
+  .page {
+    padding: 0 16px;
+  }
+
+}
