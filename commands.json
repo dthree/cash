@@ -22,7 +22,8 @@
     "less",
     "grep",
     "rm",
-    "unalias"
+    "unalias",
+    "which"
     ],
   "globalExclusions": [
     "alias",
@@ -166,6 +167,12 @@
         "./dist/util/expand.js",
         "./dist/util/interfacer.js",
         "./dist/util/unlinkSync.js"
+      ]
+    },
+    "which": {
+      "dependencies": ["which"],
+      "files": [
+        "./dist/util/interfacer.js"
       ]
     }
   }

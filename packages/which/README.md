@@ -1,20 +1,20 @@
-# cash-mv
+# cash-which
 
 ---
 
 
-This is a cross-platform, 100% ES6 implementation of the Unix `mv` command.
+This is a cross-platform, 100% ES6 implementation of the Unix `which` command.
 
 ```bash
-npm install cash-mv -g
+npm install cash-which -g
 ```
 
-This will install `mv` globally in your system path.
+This will install `which` globally in your system path.
 
 For help on the command, type:
 
 ```bash
-> mv --help
+> which --help
 ```
 
 ## More

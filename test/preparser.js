@@ -141,6 +141,10 @@ describe('preparser', function () {
       cash('kill $FOO').should.equal(`-cash: kill: (${process.env.FOO}) - No such process\n`);
     });
 
+    it.skip('should work for which', function () {
+      cash('which $FOO').should.equal(`[Error: not found: ${process.env.FOO}]\n`);
+    });
+
     after(function () {
       delete process.env.FOO;
     });

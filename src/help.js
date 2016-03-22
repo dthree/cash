@@ -25,7 +25,8 @@ const commands = [
   'tail [options] <files ...>',
   'touch [-acm] [-d date] [-r ref] [--time word] file ...',
   'true',
-  'unalias [-a] name [names ...]'
+  'unalias [-a] name [names ...]',
+  'which [command]'
 ];
 
 function chop(str, len) {
