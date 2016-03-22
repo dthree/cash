@@ -12,15 +12,9 @@
 [![Gitter](https://img.shields.io/badge/gitter-join%20chat-brightgreen.svg)](https://gitter.im/dthree/cash?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge)
 [![XO code style](https://img.shields.io/badge/code_style-XO-5ed9c7.svg)](https://github.com/sindresorhus/xo)
 
-Cash is a cross-platform implementation of Unix shell commands written in pure ES6. 
+Cash is a cross-platform implementation of Unix shell commands written in straight ES6. No native compiling and no external dependencies.
 
-*Huh?* Okay - think [Cygwin](https://en.wikipedia.org/wiki/Cygwin), except:
-
-- No native compiling
-- No ugly DLLs
-- Works in any terminal
-- 1/15th of the size
-- Just:
+While young, Cash aims to offer an alternative Linux feel on Windows and to open the door to cross-platform bash scripting in a Javascript environment.
 
 ```bash
 > npm install cash -g
@@ -235,6 +229,7 @@ echo('foo').to('foo.txt');
 ---|---|---|---|---
 [David Caccavella](http://github.com/dthree) | [Nate Fischer](https://github.com/nfischer)
 
+Want to join the team? [Let us know](mailto:threedeecee@gmail.com).
 
 ## License
 
