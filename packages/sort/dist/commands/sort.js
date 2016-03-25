@@ -108,10 +108,10 @@ var sort = {
       if (options.check) {
         // Check if the thing was already sorted.
         var original = String(combined).split('\n');
-        var disorder = undefined;
-        for (var i = 0; i < original.length; ++i) {
-          var a = original[i];
-          var b = original[i + 1];
+        var disorder = void 0;
+        for (var _i = 0; _i < original.length; ++_i) {
+          var a = original[_i];
+          var b = original[_i + 1];
           if (a && b) {
             if (!isNaN(a) && !isNaN(b) && parseFloat(a) > parseFloat(b)) {
               /* istanbul ignore next */
@@ -124,7 +124,7 @@ var sort = {
               // name of the bad sorted item - I have to
               // figure this out as I join all the files
               // together beforehand and lose track.
-              disorder = 'sort: -:' + (i + 2) + ': disorder: ' + b;
+              disorder = 'sort: -:' + (_i + 2) + ': disorder: ' + b;
               break;
             }
           }
@@ -162,9 +162,9 @@ var sort = {
           }
           return result;
         } else if (options.numericsort) {
-          var result = aNumeric - bNumeric;
-          result = result === 0 ? aAlpha.localeCompare(bAlpha) : result;
-          return result;
+          var _result = aNumeric - bNumeric;
+          _result = _result === 0 ? aAlpha.localeCompare(bAlpha) : _result;
+          return _result;
         }
         return aAlpha.localeCompare(bAlpha);
       });

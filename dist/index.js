@@ -46,6 +46,7 @@ var app = {
       var interpVals = [].concat(Array.prototype.slice.call(arguments)).slice(1);
       var interpStr = str[0];
       for (var i = 0, l = interpVals.length; i < l; i++) {
+        /* istanbul ignore next */
         interpStr += '' + interpVals[i] + str[i + 1];
       }
       // Split into lines.  Remove blank lines and comments (start with #)
@@ -134,16 +135,21 @@ var app = {
       _loop(cmd);
     }
 
-    self.vorpal.localEnv = {};
+    self.vorpal.localEnv = Object.create(process.env);
     var argv = minimist(process.argv.slice(2));
 
-    if (argv.c || argv._.length > 0) {
+    /* istanbul ignore next */
+    if (typeof argv.c !== 'undefined' && typeof argv.c !== 'string') {
+      console.error('cash: -c: option requires an argument');
+      process.exit(2);
+    } else if (typeof argv.c === 'string' || argv._.length > 0) {
       for (var k = 0; k < argv._.length; k++) {
         self.vorpal.localEnv.k = argv._[k];
       }
       // If -c is used, use that string, otherwise use the script-name instead
       var script = argv.c || 'source ' + argv._[0];
-      process.exit(app.vorpal.execSync(script));
+      app.vorpal.execSync(script);
+      process.exit(0);
     }
 
     // Otherwise, start an interactive shell
@@ -214,6 +220,7 @@ var app = {
 
     for (var _i = 0; _i < locations.length; ++_i) {
       try {
+        /* istanbul ignore if */
         if (!fs.statSync(locations[_i]).isDirectory()) {
           app.vorpal.execSync('source ' + locations[_i]);
           break;

@@ -27,15 +27,15 @@ var alias = {
     // alias foo=bar, or
     // alias foo 'bar and so on'.
     var key = args.join(' ');
-    var value = undefined;
+    var value = void 0;
     if (String(key).indexOf('=') > -1) {
       var parts = String(key).trim().split('=');
       key = parts[0];
       value = parts[1] || value;
     } else {
-      var parts = String(key).trim().split(' ');
-      key = parts.shift();
-      value = parts.join(' ');
+      var _parts = String(key).trim().split(' ');
+      key = _parts.shift();
+      value = _parts.join(' ');
     }
 
     // Remove wrapped quotes from value.
@@ -44,7 +44,7 @@ var alias = {
     }
 
     // Pull list of aliases
-    var all = undefined;
+    var all = void 0;
     try {
       all = JSON.parse(vorpal.localStorage.getItem('aliases') || []);
     } catch (e) {
@@ -67,19 +67,19 @@ var alias = {
         });
         all.push(key);
       } else {
-        var item = vorpal.localStorage.getItem('alias|' + key);
-        if (item !== undefined && item !== null) {
-          this.log('alias ' + key + '=\'' + item + '\'');
+        var _item = vorpal.localStorage.getItem('alias|' + key);
+        if (_item !== undefined && _item !== null) {
+          this.log('alias ' + key + '=\'' + _item + '\'');
         } else {
           this.log('-cash: alias: ' + key + ': not found');
         }
       }
 
       var aliases = {};
-      for (var i = 0; i < all.length; ++i) {
-        var item = vorpal.localStorage.getItem('alias|' + all[i]);
-        if (item !== undefined && item !== null) {
-          aliases[all[i]] = item;
+      for (var _i = 0; _i < all.length; ++_i) {
+        var _item2 = vorpal.localStorage.getItem('alias|' + all[_i]);
+        if (_item2 !== undefined && _item2 !== null) {
+          aliases[all[_i]] = _item2;
         }
       }
       vorpal._aliases = aliases;
