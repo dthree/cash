@@ -65,7 +65,7 @@ var rm = {
 
 function rmdirSyncRecursive(dir, force, removeEmptyDir) {
   var self = this;
-  var files = undefined;
+  var files = void 0;
   files = fs.readdirSync(dir);
 
   // Loop through and delete everything in the sub-tree after checking it
@@ -76,17 +76,6 @@ function rmdirSyncRecursive(dir, force, removeEmptyDir) {
     if (currFile.isDirectory()) {
       // Recursive function back to the beginning
       rmdirSyncRecursive(file, force, removeEmptyDir);
-    } else if (currFile.isSymbolicLink()) {
-      // Unlink symlinks
-      /* istanbul ignore next */
-      if (force || isWriteable(file)) {
-        try {
-          unlinkSync(file);
-        } catch (e) {
-          self.log('rm: cannot remove ' + file + ': code ' + e.code);
-          return 2;
-        }
-      }
     } else if (force || isWriteable(file)) {
       // Assume it's a file.
       try {
@@ -102,7 +91,7 @@ function rmdirSyncRecursive(dir, force, removeEmptyDir) {
 
   // Now that we know everything in the sub-tree has been deleted,
   // we can delete the main directory.
-  var result = undefined;
+  var result = void 0;
   try {
     // Retry on windows, sometimes it takes a little time before all the files in the directory are gone
     var start = Date.now();
