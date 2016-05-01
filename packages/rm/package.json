@@ -2,7 +2,7 @@
   "name": "cash-rm",
   "version": "0.2.0",
   "description": "Cross-platform implementation of the Unix 'rm' command.",
-  "main": "./dist/commands/rm.js",
+  "main": "./src/commands/rm.js",
   "scripts": {},
   "repository": {
     "type": "git",

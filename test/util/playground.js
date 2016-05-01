@@ -1,6 +1,6 @@
 'use strict';
 
-const cash = require('../../dist/index.js');
+const cash = require('../../src/index.js');
 
 
 let result = cash('fooo!!!!!');

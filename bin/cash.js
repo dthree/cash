@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 'use strict';
-var cash = require('../dist/index');
-var delimiter = require('./../dist/delimiter')
+var cash = require('../src/index');
+var delimiter = require('./../src/delimiter')
 delimiter.refresh(cash.vorpal, function () {
   cash.show();
 });

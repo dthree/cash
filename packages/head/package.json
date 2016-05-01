@@ -2,7 +2,7 @@
   "name": "cash-head",
   "version": "0.1.0",
   "description": "Cross-platform implementation of the Unix 'head' command.",
-  "main": "./dist/commands/head.js",
+  "main": "./src/commands/head.js",
   "scripts": {},
   "repository": {
     "type": "git",

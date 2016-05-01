@@ -2,7 +2,7 @@
 
 require('assert');
 const should = require('should');
-const cash = require('../dist/index.js');
+const cash = require('../src/index.js');
 const util = require('./util/util');
 const fs = require('fs-extra');
 

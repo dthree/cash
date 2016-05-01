@@ -43,136 +43,136 @@
     "time"
   ],
   "dependencies": {
-    "./dist/delimiter.js": ["username", "./dist/util/converter.path.js", "user-home"],
-    "./dist/util/colorFile.js": ["./dist/util/stripAnsi.js"],
-    "./dist/util/columnify.js": ["./dist/util/stripAnsi.js", "./dist/util/pad.js"],
-    "./dist/util/converter.path.js": [],
-    "./dist/util/converter.permissions.js": [],
-    "./dist/util/converter.date.js": [],
-    "./dist/util/expand.js": ["glob"],
-    "./dist/util/fetch.js": ["./dist/util/expand.js"],
-    "./dist/util/fileFromPath.js": [],
-    "./dist/util/interfacer.js": [],
-    "./dist/util/lpad.js": ["./dist/util/stripAnsi.js"],
-    "./dist/util/pad.js": ["./dist/util/stripAnsi.js"],
-    "./dist/util/stripAnsi.js": [],
-    "./dist/util/walkDir.js": [],
-    "./dist/util/walkDirRecursive.js": [],
-    "./dist/util/unlinkSync.js": []
+    "./src/delimiter.js": ["username", "./dist/util/converter.path.js", "user-home"],
+    "./src/util/colorFile.js": ["./dist/util/stripAnsi.js"],
+    "./src/util/columnify.js": ["./dist/util/stripAnsi.js", "./dist/util/pad.js"],
+    "./src/util/converter.path.js": [],
+    "./src/util/converter.permissions.js": [],
+    "./src/util/converter.date.js": [],
+    "./src/util/expand.js": ["glob"],
+    "./src/util/fetch.js": ["./dist/util/expand.js"],
+    "./src/util/fileFromPath.js": [],
+    "./src/util/interfacer.js": [],
+    "./src/util/lpad.js": ["./dist/util/stripAnsi.js"],
+    "./src/util/pad.js": ["./dist/util/stripAnsi.js"],
+    "./src/util/stripAnsi.js": [],
+    "./src/util/walkDir.js": [],
+    "./src/util/walkDirRecursive.js": [],
+    "./src/util/unlinkSync.js": []
   },
   "packages": {
     "cat": {
       "dependencies": ["lodash", "vorpal-autocomplete-fs", "glob"],
       "files": [
-        "./dist/util/fetch.js",
-        "./dist/util/interfacer.js",
-        "./dist/util/lpad.js",
-        "./dist/util/stripAnsi.js",
-        "./dist/util/expand.js"
+        "./src/util/fetch.js",
+        "./src/util/interfacer.js",
+        "./src/util/lpad.js",
+        "./src/util/stripAnsi.js",
+        "./src/util/expand.js"
       ]
     },
     "cp": {
       "dependencies": ["lodash", "vorpal-autocomplete-fs", "glob"],
       "files": [
-        "./dist/util/expand.js",
-        "./dist/util/interfacer.js"
+        "./src/util/expand.js",
+        "./src/util/interfacer.js"
       ]
     },
     "false": {
       "dependencies": [],
       "files": [
-        "./dist/util/interfacer.js"
+        "./src/util/interfacer.js"
       ]
     },
     "head": {
       "dependencies": ["vorpal-autocomplete-fs", "glob"],
       "files": [
-        "./dist/util/interfacer.js",
-        "./dist/util/expand.js"
+        "./src/util/interfacer.js",
+        "./src/util/expand.js"
       ]
     },
     "kill": {
       "dependencies": ["fkill", "lodash"],
       "files": [
-        "./dist/util/interfacer.js"
+        "./src/util/interfacer.js"
       ]
     },
     "ls": {
       "dependencies": ["lodash", "chalk", "filesize", "vorpal-autocomplete-fs", "glob"],
       "files": [
-        "./dist/util/colorFile.js",
-        "./dist/util/columnify.js",
-        "./dist/util/converter.date.js",
-        "./dist/util/expand.js",
-        "./dist/util/fileFromPath.js",
-        "./dist/util/interfacer.js",
-        "./dist/util/pad.js",
-        "./dist/util/lpad.js",
-        "./dist/util/converter.permissions.js",
-        "./dist/util/stripAnsi.js",
-        "./dist/util/walkDir.js",
-        "./dist/util/walkDirRecursive.js"
+        "./src/util/colorFile.js",
+        "./src/util/columnify.js",
+        "./src/util/converter.date.js",
+        "./src/util/expand.js",
+        "./src/util/fileFromPath.js",
+        "./src/util/interfacer.js",
+        "./src/util/pad.js",
+        "./src/util/lpad.js",
+        "./src/util/converter.permissions.js",
+        "./src/util/stripAnsi.js",
+        "./src/util/walkDir.js",
+        "./src/util/walkDirRecursive.js"
       ]
     },
     "mkdir": {
       "dependencies": ["vorpal-autocomplete-fs"],
-      "files": ["./dist/util/interfacer.js"]
+      "files": ["./src/util/interfacer.js"]
     },
     "mv": {
       "dependencies": ["lodash", "vorpal-autocomplete-fs", "glob"],
       "files": [
-        "./dist/util/expand.js",
-        "./dist/util/interfacer.js"
+        "./src/util/expand.js",
+        "./src/util/interfacer.js"
       ]
     },
     "pwd": {
       "dependencies": [],
       "files": [
-        "./dist/util/interfacer.js"
+        "./src/util/interfacer.js"
       ]
     },
     "sort": {
       "dependencies": ["lodash", "vorpal-autocomplete-fs", "glob", "array-shuffle"],
       "files": [
-        "./dist/util/fetch.js",
-        "./dist/util/interfacer.js",
-        "./dist/util/stripAnsi.js",
-        "./dist/util/expand.js"
+        "./src/util/fetch.js",
+        "./src/util/interfacer.js",
+        "./src/util/stripAnsi.js",
+        "./src/util/expand.js"
       ]
     },
     "tail": {
       "dependencies": ["vorpal-autocomplete-fs", "glob"],
       "files": [
-        "./dist/util/interfacer.js",
-        "./dist/util/converter.path.js",
-        "./dist/util/expand.js"
+        "./src/util/interfacer.js",
+        "./src/util/converter.path.js",
+        "./src/util/expand.js"
       ]
     },
     "touch": {
       "dependencies": ["lodash", "fs-extra", "vorpal-autocomplete-fs"],
       "files": [
-        "./dist/util/interfacer.js",
-        "./dist/lib/sugar.js"
+        "./src/util/interfacer.js",
+        "./src/lib/sugar.js"
       ]
     },
     "true": {
       "dependencies": [],
       "files": [
-        "./dist/util/interfacer.js"
+        "./src/util/interfacer.js"
       ]
     },
     "rm": {
       "dependencies": ["vorpal-autocomplete-fs", "glob"],
       "files": [
-        "./dist/util/expand.js",
-        "./dist/util/interfacer.js",
-        "./dist/util/unlinkSync.js"
+        "./src/util/expand.js",
+        "./src/util/interfacer.js",
+        "./src/util/unlinkSync.js"
       ]
     },
     "which": {
       "dependencies": ["which"],
       "files": [
-        "./dist/util/interfacer.js"
+        "./src/util/interfacer.js"
       ]
     }
   }

@@ -2,7 +2,7 @@
   "name": "cash-kill",
   "version": "0.2.0",
   "description": "Cross-platform implementation of the Unix 'kill' command.",
-  "main": "./dist/commands/kill.js",
+  "main": "./src/commands/kill.js",
   "scripts": {},
   "repository": {
     "type": "git",

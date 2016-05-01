@@ -2,7 +2,7 @@
   "name": "cash-cp",
   "version": "0.2.0",
   "description": "Cross-platform implementation of the Unix 'cp' command.",
-  "main": "./dist/commands/cp.js",
+  "main": "./src/commands/cp.js",
   "scripts": {},
   "repository": {
     "type": "git",

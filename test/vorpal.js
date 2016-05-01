@@ -2,7 +2,7 @@
 
 require('assert');
 const should = require('should');
-const cash = require('../dist/index.js');
+const cash = require('../src/index.js');
 const commands = require('../commands.json');
 
 describe('vorpal', function () {
@@ -23,7 +23,7 @@ describe('vorpal', function () {
     (function () {
       const cmds = commands.commands;
       for (let i = 0; i < cmds.length; ++i) {
-        require(`../dist/commands/${cmds[i]}.js`)();
+        require(`../src/commands/${cmds[i]}.js`)();
       }
     }).should.not.throw();
   });

@@ -6,7 +6,7 @@ const vorpal = require('vorpal')();
 const os = require('os');
 
 const cash = require('..');
-const preparser = require('../dist/preparser.js');
+const preparser = require('../src/preparser.js');
 
 const windows = (os.platform() === 'win32');
 const path = process.env.PATH;

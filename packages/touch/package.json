@@ -2,7 +2,7 @@
   "name": "cash-touch",
   "version": "0.2.0",
   "description": "Cross-platform implementation of the Unix 'touch' command.",
-  "main": "./dist/commands/touch.js",
+  "main": "./src/commands/touch.js",
   "scripts": {},
   "repository": {
     "type": "git",

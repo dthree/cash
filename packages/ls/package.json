@@ -2,7 +2,7 @@
   "name": "cash-ls",
   "version": "0.2.0",
   "description": "Cross-platform implementation of the Unix 'ls' command.",
-  "main": "./dist/commands/ls.js",
+  "main": "./src/commands/ls.js",
   "scripts": {},
   "repository": {
     "type": "git",

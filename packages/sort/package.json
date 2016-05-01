@@ -2,7 +2,7 @@
   "name": "cash-sort",
   "version": "0.2.0",
   "description": "Cross-platform implementation of the Unix 'sort' command.",
-  "main": "./dist/commands/sort.js",
+  "main": "./src/commands/sort.js",
   "scripts": {},
   "repository": {
     "type": "git",

@@ -2,7 +2,7 @@
   "name": "cash-true",
   "version": "0.0.1",
   "description": "Cross-platform implementation of the Unix 'true' command.",
-  "main": "./dist/commands/true.js",
+  "main": "./src/commands/true.js",
   "scripts": {},
   "repository": {
     "type": "git",

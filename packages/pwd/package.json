@@ -2,7 +2,7 @@
   "name": "cash-pwd",
   "version": "0.1.0",
   "description": "Cross-platform implementation of the Unix 'pwd' command.",
-  "main": "./dist/commands/pwd.js",
+  "main": "./src/commands/pwd.js",
   "scripts": {},
   "repository": {
     "type": "git",

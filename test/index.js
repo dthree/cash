@@ -3,7 +3,7 @@
 require('assert');
 const should = require('should');
 const $ = require('shelljs');
-const delimiter = require('./../dist/delimiter.js');
+const delimiter = require('./../src/delimiter.js');
 
 let cash;
 let cashrcCopy;

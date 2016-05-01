@@ -28,8 +28,8 @@ var cd = {
     }
   },
   error: function error(e, dir) {
-    var status = undefined;
-    var stdout = undefined;
+    var status = void 0;
+    var stdout = void 0;
     if (e.code === 'ENOENT' && e.syscall === 'uv_chdir') {
       status = 1;
       stdout = '-bash: cd: ' + dir + ': No such file or directory';
