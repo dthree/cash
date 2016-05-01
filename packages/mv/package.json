@@ -2,7 +2,7 @@
   "name": "cash-mv",
   "version": "0.2.0",
   "description": "Cross-platform implementation of the Unix 'mv' command.",
-  "main": "./dist/commands/mv.js",
+  "main": "./src/commands/mv.js",
   "scripts": {},
   "repository": {
     "type": "git",

@@ -2,7 +2,7 @@
 
 require('assert');
 const should = require('should');
-const cash = require('../dist/index.js');
+const cash = require('../src/index.js');
 const $ = require('shelljs');
 
 describe('mkdir', function () {

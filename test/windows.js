@@ -2,7 +2,7 @@
 
 require('assert');
 require('should');
-const cash = require('../dist/index.js');
+const cash = require('../src/index.js');
 
 describe('windows', function () {
   it('execute a catch command', function () {

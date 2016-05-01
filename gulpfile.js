@@ -1,7 +1,6 @@
 'use strict';
 
 const $ = require('shelljs');
-const babel = require('gulp-babel');
 const changed = require('gulp-changed');
 const eslint = require('gulp-eslint');
 const fs = require('fs');
@@ -11,14 +10,6 @@ gulp.task('lint', function () {
   return gulp.src(['src/*.js', './*.js', './bin/*.js'])
     .pipe(eslint())
     .pipe(eslint.format());
-});
-gulp.task('babel', function () {
-  const bab = babel();
-  gulp.src('src/**/*.js')
-    .pipe(changed('dist'))
-    .pipe(bab)
-    .pipe(gulp.dest('dist'));
-  return;
 });
 
 gulp.task('build', function () {
@@ -71,18 +62,18 @@ gulp.task('packages', function () {
       const files = pkg.files;
       const dir = `./packages/${name}`;
       $.rm('-rf', `${dir}/dist`);
-      $.mkdir('-p', `${dir}/dist/help`);
-      $.mkdir('-p', `${dir}/dist/lib`);
-      $.mkdir('-p', `${dir}/dist/commands`);
-      $.mkdir('-p', `${dir}/dist/util`);
+      $.mkdir('-p', `${dir}/src/help`);
+      $.mkdir('-p', `${dir}/src/lib`);
+      $.mkdir('-p', `${dir}/src/commands`);
+      $.mkdir('-p', `${dir}/src/util`);
       $.mkdir('-p', `${dir}/bin`);
       const json = getJSON(name);
       const jsonMain = require('./package.json');
       json.dependencies = {};
       json.devDependencies = {};
-      const preparser = `./dist/preparser.js`;
-      const main = `./dist/commands/${name}.js`;
-      const help = `./dist/help/${name}.js`;
+      const preparser = `./src/preparser.js`;
+      const main = `./src/commands/${name}.js`;
+      const help = `./src/help/${name}.js`;
       const bin = `./bin/${name}.js`;
       $.cp('-f', main, `${dir}/${main}`);
       $.cp('-f', bin, `${dir}/${bin}`);
@@ -120,11 +111,11 @@ gulp.task('packages', function () {
 });
 
 gulp.task('watch', function () {
-  gulp.watch('src/**/*.js', ['babel', 'build', 'packages']);
-  gulp.watch('commands.json', ['babel', 'build', 'packages']);
-  gulp.watch('test/**/*.js', ['babel', 'build', 'packages']);
+  gulp.watch('src/**/*.js', ['build', 'packages']);
+  gulp.watch('commands.json', ['build', 'packages']);
+  gulp.watch('test/**/*.js', ['build', 'packages']);
 });
 
-gulp.task('default', ['babel', 'watch', 'build', 'packages']);
+gulp.task('default', ['watch', 'build', 'packages']);
 
-gulp.task('builder', ['babel', 'build', 'packages']);
+gulp.task('builder', ['build', 'packages']);

@@ -32,7 +32,7 @@ var unalias = {
     }
 
     // Pull list of aliases
-    var all = undefined;
+    var all = void 0;
     try {
       all = JSON.parse(vorpal.localStorage.getItem('aliases') || []);
     } catch (e) {
@@ -68,10 +68,10 @@ var unalias = {
     // Rebuild alias lists.
     var aliases = {};
     /* istanbul ignore next */
-    for (var i = 0; i < all.length; ++i) {
-      var item = vorpal.localStorage.getItem('alias|' + all[i]);
+    for (var _i = 0; _i < all.length; ++_i) {
+      var item = vorpal.localStorage.getItem('alias|' + all[_i]);
       if (item !== undefined && item !== null) {
-        aliases[all[i]] = item;
+        aliases[all[_i]] = item;
       }
     }
     vorpal._aliases = aliases;

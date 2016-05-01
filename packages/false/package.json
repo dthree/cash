@@ -2,7 +2,7 @@
   "name": "cash-false",
   "version": "0.0.1",
   "description": "Cross-platform implementation of the Unix 'false' command.",
-  "main": "./dist/commands/false.js",
+  "main": "./src/commands/false.js",
   "scripts": {},
   "repository": {
     "type": "git",

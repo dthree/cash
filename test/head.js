@@ -3,7 +3,7 @@
 require('assert');
 require('mocha');
 const should = require('should');
-const cash = require('../dist/index.js');
+const cash = require('../src/index.js');
 const $ = require('shelljs');
 require('shelljs/global');
 

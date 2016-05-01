@@ -7,7 +7,7 @@ module.exports = function (args, command) {
     // If we don't have to parse arguments, do
     // the quickest load: just the raw js file
     // of the command and nothing else.
-    var cmd = require('./../dist/commands/' + command)();
+    var cmd = require('./../src/commands/' + command)();
     cmd.exec.call(console, {options: {}}, {});
   } else if (pipes === false) {
     // If we need to parse args for this
@@ -15,7 +15,7 @@ module.exports = function (args, command) {
     // that one command.
     var vorpal = require('vorpal')();
     vorpal.api = {};
-    require('./../dist/commands/' + command)(vorpal);
+    require('./../src/commands/' + command)(vorpal);
     args = args.join(' ');
 
     // If we passed in a help request, load in
@@ -23,7 +23,7 @@ module.exports = function (args, command) {
     if (args.indexOf('help') > -1 || args.indexOf('?') > -1) {
       let help;
       try {
-        help = require('./../dist/help/' + command + '.js');
+        help = require('./../src/help/' + command + '.js');
         help = String(help).replace(/^\n|\n$/g, '');
       } catch (e) {}
       let cmdObj = vorpal.find(command);
@@ -44,7 +44,7 @@ module.exports = function (args, command) {
     // some messy work for something that might
     // not matter. If you're reading this and
     // have deemed it matters, do a PR.
-    var cash = require('./../dist/index');
+    var cash = require('./../src/index');
     cash.vorpal.exec(command + ' ' + args.join(' '));
   }
 };

@@ -2,8 +2,8 @@
 
 require('assert');
 const should = require('should');
-const strip = require('../dist/util/stripAnsi.js');
-const cash = require('../dist/index.js');
+const strip = require('../src/util/stripAnsi.js');
+const cash = require('../src/index.js');
 const $ = require('shelljs');
 const util = require('./util/util');
 const os = require('os');

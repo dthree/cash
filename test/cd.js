@@ -2,10 +2,10 @@
 
 require('assert');
 const should = require('should');
-const cash = require('../dist/index.js');
+const cash = require('../src/index.js');
 const util = require('./util/util');
-const pathConverter = require('../dist/util/converter.path.js');
-const delimiter = require('../dist/delimiter');
+const pathConverter = require('../src/util/converter.path.js');
+const delimiter = require('../src/delimiter');
 
 describe('cd', function () {
   before(function (done) {

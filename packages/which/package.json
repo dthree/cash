@@ -2,7 +2,7 @@
   "name": "cash-which",
   "version": "0.0.1",
   "description": "Cross-platform implementation of the Unix 'which' command.",
-  "main": "./dist/commands/which.js",
+  "main": "./src/commands/which.js",
   "scripts": {},
   "repository": {
     "type": "git",

@@ -2,9 +2,9 @@
   "name": "cash",
   "version": "0.8.0",
   "description": "Cross-platform Linux commands in pure ES6.",
-  "main": "./dist/index.js",
+  "main": "./src/index.js",
   "scripts": {
-    "test": "gulp builder; ./node_modules/istanbul/lib/cli.js cover --root './dist' -x './dist/lib/sugar.js' _mocha -- -R spec && npm run lint",
+    "test": "gulp builder; ./node_modules/istanbul/lib/cli.js cover --root './dist' -x './src/lib/sugar.js' _mocha -- -R spec && npm run lint",
     "test-win": "mocha",
     "lint": "xo ./src/*.js ./src/**/*.js ./test/*.js"
   },
@@ -74,8 +74,7 @@
     "which": "^1.2.4"
   },
   "engines": {
-    "node": ">= 4",
-    "iojs": ">= 1.0.0"
+    "node": ">= 6"
   },
   "files": [
     "commands.json",
