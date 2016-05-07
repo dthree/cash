@@ -5,7 +5,6 @@ require('mocha');
 const should = require('should');
 const cash = require('../dist/index.js');
 const $ = require('shelljs');
-require('shelljs/global');
 
 const fxt = {
   ten: 'line1\nline2\nline3\nline4\nline5\nline6\nline7\nline8\nline9\nline10\n',
@@ -17,12 +16,12 @@ const fxt = {
 
 describe('head', function () {
   before(function () {
-    'line1\nline2\nline3\nline4\nline5\nline6\nline7\nline8\nline9\nline10\nline11'.to('eleven.test');
-    'line1\nline2\nline3\nline4\nline5\nline6\nline7\nline8\nline9\nline10'.to('ten.test');
+    new $.ShellString('line1\nline2\nline3\nline4\nline5\nline6\nline7\nline8\nline9\nline10\nline11').to('eleven.test');
+    new $.ShellString('line1\nline2\nline3\nline4\nline5\nline6\nline7\nline8\nline9\nline10').to('ten.test');
   });
 
   after(function () {
-    $.rm(['eleven.test', 'ten.test']);
+    $.rm('eleven.test', 'ten.test');
   });
 
   it('should exist', function () {

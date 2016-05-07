@@ -4,7 +4,6 @@ require('assert');
 const should = require('should');
 const cash = require('../dist/index.js');
 const $ = require('shelljs');
-require('shelljs/global');
 
 function sort(dir, opts) {
   opts = opts || {};
@@ -20,13 +19,13 @@ function sort(dir, opts) {
 describe('sort', function () {
   before(function (done) {
     setTimeout(function () {
-      'zaz\nsss\nqqq\n-zbz\nBBB\nddd\nCCC\n2bbb\nccc\n'.to('./default.sort');
-      '22 zaz\n33 sss\n11 qqq\n77 ccc\n55 BBB\nddd\nCCC\n2bbb\n-zbz\n'.to('./numeric.sort');
-      '1k\na 2G\n8k\n1M\n.8K\nddd\nCCC\n7bbb\n1bbb\n5M\n4G\n3T\n2.5P\n2E\n1Z\n6bbb\n5bbb\n-zbz\n'.to('./human.sort');
-      '4mar\nMarch\nMarc\napr\nAPR\ngoats\n56sevenjan\njan345kds\ndec\ndecem\nau\nAuGuSt\nAuGurt\naug\naugust\n'.to('./month.sort');
-      '1\n2\n3\n4\n5\n26\n7\n8\n9\n10\n11\n'.to('./disorder-numeric.sort');
-      'a\nb\nc\nd\nf\ne\ng\n'.to('./disorder.sort');
-      '1\n2\n3\n4\n5\n6\n7\n8\n9\n10\n11\n12\n13\n14\n15\n16\n17\n18\n19\n20\n'.to('./numbers.sort');
+      new $.ShellString('zaz\nsss\nqqq\n-zbz\nBBB\nddd\nCCC\n2bbb\nccc\n').to('./default.sort');
+      new $.ShellString('22 zaz\n33 sss\n11 qqq\n77 ccc\n55 BBB\nddd\nCCC\n2bbb\n-zbz\n').to('./numeric.sort');
+      new $.ShellString('1k\na 2G\n8k\n1M\n.8K\nddd\nCCC\n7bbb\n1bbb\n5M\n4G\n3T\n2.5P\n2E\n1Z\n6bbb\n5bbb\n-zbz\n').to('./human.sort');
+      new $.ShellString('4mar\nMarch\nMarc\napr\nAPR\ngoats\n56sevenjan\njan345kds\ndec\ndecem\nau\nAuGuSt\nAuGurt\naug\naugust\n').to('./month.sort');
+      new $.ShellString('1\n2\n3\n4\n5\n26\n7\n8\n9\n10\n11\n').to('./disorder-numeric.sort');
+      new $.ShellString('a\nb\nc\nd\nf\ne\ng\n').to('./disorder.sort');
+      new $.ShellString('1\n2\n3\n4\n5\n6\n7\n8\n9\n10\n11\n12\n13\n14\n15\n16\n17\n18\n19\n20\n').to('./numbers.sort');
       done();
     }, 100);
   });

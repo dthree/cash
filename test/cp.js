@@ -90,8 +90,8 @@ describe('cp', function () {
   });
 
   it('should clobber existing files', function () {
-    'foxes'.to('cp-d');
-    'elephants'.to('cp-e');
+    new $.ShellString('foxes').to('cp-d');
+    new $.ShellString('elephants').to('cp-e');
     cash.cp('cp-d cp-e');
     $.test('-e', 'cp-d').should.equal(true);
     $.cat('cp-e').should.equal('foxes');
@@ -99,8 +99,8 @@ describe('cp', function () {
 
   describe('-n', function () {
     it('should not clobber existing files', function () {
-      'foxes'.to('cp-d');
-      'elephants'.to('cp-e');
+      new $.ShellString('foxes').to('cp-d');
+      new $.ShellString('elephants').to('cp-e');
       cash.cp('cp-d cp-e', {noclobber: true}).should.equal('');
       $.test('-e', 'cp-d').should.equal(true);
       $.cat('cp-d').should.equal('foxes');
@@ -110,8 +110,8 @@ describe('cp', function () {
 
   describe('-f', function () {
     it('should overwrite -n', function () {
-      'foxes'.to('cp-d');
-      'elephants'.to('cp-e');
+      new $.ShellString('foxes').to('cp-d');
+      new $.ShellString('elephants').to('cp-e');
       cash.cp('cp-d cp-e', {noclobber: true, force: true});
       $.test('-e', 'cp-d').should.equal(true);
       $.cat('cp-e').should.equal('foxes');

@@ -86,8 +86,8 @@ describe('mv', function () {
   });
 
   it('should clobber existing files', function () {
-    'foxes'.to('mv-d');
-    'elephants'.to('mv-e');
+    new $.ShellString('foxes').to('mv-d');
+    new $.ShellString('elephants').to('mv-e');
     cash.mv('mv-d mv-e');
     $.test('-e', 'mv-d').should.equal(false);
     $.cat('mv-e').should.equal('foxes');
@@ -95,8 +95,8 @@ describe('mv', function () {
 
   describe('-n', function () {
     it('should not clobber existing files', function () {
-      'foxes'.to('mv-d');
-      'elephants'.to('mv-e');
+      new $.ShellString('foxes').to('mv-d');
+      new $.ShellString('elephants').to('mv-e');
       cash.mv('mv-d mv-e', {noclobber: true}).should.equal('');
       $.test('-e', 'mv-d').should.equal(true);
       $.cat('mv-d').should.equal('foxes');
@@ -106,8 +106,8 @@ describe('mv', function () {
 
   describe('-f', function () {
     it('should overwrite -n', function () {
-      'foxes'.to('mv-d');
-      'elephants'.to('mv-e');
+      new $.ShellString('foxes').to('mv-d');
+      new $.ShellString('elephants').to('mv-e');
       cash.mv('mv-d mv-e', {noclobber: true, force: true});
       $.test('-e', 'mv-d').should.equal(false);
       $.cat('mv-e').should.equal('foxes');

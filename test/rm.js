@@ -5,22 +5,21 @@ const should = require('should');
 const cash = require('../dist/index.js');
 const fs = require('fs');
 const $ = require('shelljs');
-require('shelljs/global');
 
 describe('rm', function () {
   before(function () {
     $.mkdir('rm-test');
     $.mkdir('./rm-test/sub');
-    '1'.to('1.rm');
-    'a'.to('./rm-test/a.txt');
-    'b'.to('./rm-test/b.txt');
-    'c'.to('./rm-test/c.txt');
-    'd'.to('./rm-test/sub/d.txt');
-    'cow'.to('./rm-test/a.cows');
-    'cow'.to('./rm-test/b.cows');
-    'cow'.to('./rm-test/c.cows');
-    'goose'.to('./rm-test/a.goose');
-    'goose'.to('./rm-test/b.goose');
+    new $.ShellString('1').to('1.rm');
+    new $.ShellString('a').to('./rm-test/a.txt');
+    new $.ShellString('b').to('./rm-test/b.txt');
+    new $.ShellString('c').to('./rm-test/c.txt');
+    new $.ShellString('d').to('./rm-test/sub/d.txt');
+    new $.ShellString('cow').to('./rm-test/a.cows');
+    new $.ShellString('cow').to('./rm-test/b.cows');
+    new $.ShellString('cow').to('./rm-test/c.cows');
+    new $.ShellString('goose').to('./rm-test/a.goose');
+    new $.ShellString('goose').to('./rm-test/b.goose');
   });
 
   after(function () {
@@ -78,7 +77,7 @@ describe('rm', function () {
   describe('rm -f', function () {
     it('should remove a read only file with', function () {
       $.mkdir('-p', './rm-temp/readonly');
-      'asdf'.to('./rm-temp/readonly/file2');
+      new $.ShellString('asdf').to('./rm-temp/readonly/file2');
       fs.chmodSync('./rm-temp/readonly/file2', '0444'); // -r--r--r--
       cash.rm('./rm-temp/readonly/file2', {force: true});
       ($.ls('.').indexOf('./rm-temp/readonly/file2')).should.equal(-1);

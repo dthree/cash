@@ -15,12 +15,12 @@ const fxt = {
 
 describe('tail', function () {
   before(function () {
-    'line1\nline2\nline3\nline4\nline5\nline6\nline7\nline8\nline9\nline10\nline11\n'.to('eleven.test');
-    'line1\nline2\nline3\nline4\nline5\nline6\nline7\nline8\nline9\nline10\n'.to('ten.test');
+    new $.ShellString('line1\nline2\nline3\nline4\nline5\nline6\nline7\nline8\nline9\nline10\nline11\n').to('eleven.test');
+    new $.ShellString('line1\nline2\nline3\nline4\nline5\nline6\nline7\nline8\nline9\nline10\n').to('ten.test');
   });
 
   after(function () {
-    $.rm(['eleven.test', 'ten.test']);
+    $.rm('eleven.test', 'ten.test');
   });
 
   it('should exist and be a function', function () {
