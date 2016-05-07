@@ -24,7 +24,7 @@ describe('cash', function () {
           console.error('warning: unable to save your cashrc file');
         }
       }
-      'touch fizzlecrumbs'.to(cashrcPath);
+      new $.ShellString('touch fizzlecrumbs').to(cashrcPath);
       cash = require('..');
     });
 

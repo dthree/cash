@@ -15,10 +15,10 @@ describe('source', function () {
   before(function () {
     oldCwd = process.cwd();
     oldProcessEnv = process.env;
-    'echo "      hello world"\nalias foo bar\n'.to('a.sh');
-    `export FOO=hello
+    new $.ShellString('echo "      hello world"\nalias foo bar\n').to('a.sh');
+    new $.ShellString(`export FOO=hello
     export BAR=$FOO$FOO
-    cd ..`.to('b.sh');
+    cd ..`).to('b.sh');
     $.touch('nonreadable.txt');
     $.chmod('000', 'nonreadable.txt');
   });
@@ -26,7 +26,7 @@ describe('source', function () {
   after(function () {
     process.env = oldProcessEnv;
     $.chmod('555', 'nonreadable.txt'); // to allow deletion
-    $.rm('-f', ['a.sh', 'b.sh', 'nonreadable.txt']);
+    $.rm('-f', 'a.sh', 'b.sh', 'nonreadable.txt');
   });
 
   beforeEach(function () {

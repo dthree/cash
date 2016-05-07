@@ -26,7 +26,7 @@ module.exports = {
         const next = files.shift();
         if (next) {
           filler = double(filler);
-          filler.to(dir + next);
+          new $.ShellString(filler).to(dir + next);
           setTimeout(function () {
             write();
           }, 10);

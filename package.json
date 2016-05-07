@@ -47,7 +47,7 @@
     "gulp-eslint": "^2.0.0",
     "istanbul": "^0.4.2",
     "mocha": "^2.2.5",
-    "shelljs": "^0.6.0",
+    "shelljs": "^0.7.0",
     "should": "^7.0.3",
     "webpack": "^1.12.13",
     "xo": "^0.12.1"

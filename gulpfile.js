@@ -94,7 +94,7 @@ gulp.task('packages', function () {
       readme = readme.replace(/\{package\-name\}/g, `cash-${name}`);
       readme = readme.replace(/\{command\-name\}/g, `${name}`);
       readme = readme.replace(/\{related\}/g, related);
-      readme.to(`${dir}/README.md`);
+      new $.ShellString(readme).to(`${dir}/README.md`);
       for (let i = 0; i < files.length; ++i) {
         $.cp('-f', files[i], `${dir}/${files[i]}`);
       }

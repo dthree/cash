@@ -7,13 +7,13 @@ const $ = require('shelljs');
 
 describe('cat', function () {
   before(function () {
-    'aardvark'.to('a.test');
-    'batman'.to('b.test');
-    'dont\n\n\neat\naardvarks\n\n\n'.to('c.test2');
+    new $.ShellString('aardvark').to('a.test');
+    new $.ShellString('batman').to('b.test');
+    new $.ShellString('dont\n\n\neat\naardvarks\n\n\n').to('c.test2');
   });
 
   after(function () {
-    $.rm(['a.test', 'b.test', 'c.test2']);
+    $.rm('a.test', 'b.test', 'c.test2');
   });
 
   it('should exist and be a function', function () {
