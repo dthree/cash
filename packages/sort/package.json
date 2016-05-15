@@ -37,7 +37,7 @@
   "dependencies": {
     "lodash": "^4.0.0",
     "vorpal-autocomplete-fs": "0.0.3",
-    "glob": "^6.0.4",
+    "glob": "^7.0.3",
     "array-shuffle": "^1.0.0",
     "vorpal": "^1.10.8"
   },
