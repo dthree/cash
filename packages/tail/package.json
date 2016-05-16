@@ -36,7 +36,7 @@
   },
   "dependencies": {
     "vorpal-autocomplete-fs": "0.0.3",
-    "glob": "^6.0.4",
+    "glob": "^7.0.3",
     "vorpal": "^1.10.8"
   },
   "engines": {

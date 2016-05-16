@@ -36,7 +36,7 @@
   },
   "dependencies": {
     "lodash": "^4.0.0",
-    "fs-extra": "^0.23.1",
+    "fs-extra": "^0.26.7",
     "vorpal-autocomplete-fs": "0.0.3",
     "vorpal": "^1.10.8"
   },
