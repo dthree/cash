@@ -137,7 +137,7 @@ var app = {
 
     app.vorpal.find('exit').action(function () {
       /* istanbul ignore next */
-      process.exit(1);
+      process.exit();
     });
 
     // Load aliases
