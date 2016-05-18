@@ -22,8 +22,8 @@ module.exports = function (list) {
     files[i] = res.length > 0 ? res : list[i];
   }
   var out = [];
-  for (var i = 0; i < files.length; ++i) {
-    out = Array.isArray(files[i]) ? out.concat(files[i]) : out.concat([files[i]]);
+  for (var _i = 0; _i < files.length; ++_i) {
+    out = Array.isArray(files[_i]) ? out.concat(files[_i]) : out.concat([files[_i]]);
   }
   return out;
 };

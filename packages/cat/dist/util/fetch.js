@@ -41,9 +41,9 @@ module.exports = function (files, stdin, options) {
   var agg = files.length < 1 ? stdin : files;
   var final = [];
 
-  for (var i = 0; i < agg.length; ++i) {
-    if (agg[i] !== undefined) {
-      final.push(agg[i]);
+  for (var _i = 0; _i < agg.length; ++_i) {
+    if (agg[_i] !== undefined) {
+      final.push(agg[_i]);
     }
   }
   return final;
