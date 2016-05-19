@@ -30,9 +30,9 @@ module.exports = {
       var slf = this;
 
       var words = args.words.join(' ');
-      var argus = undefined;
+      var argus = void 0;
 
-      var cmd = undefined;
+      var cmd = void 0;
       // Only register commands if on Windows.
       /* istanbul ignore next */
       if (windows) {
@@ -67,7 +67,7 @@ module.exports = {
 
       argus.unshift(cmd);
       argus.unshift('/C');
-      var proc = undefined;
+      var proc = void 0;
       var out = '';
       try {
         proc = spawn('cmd', argus);

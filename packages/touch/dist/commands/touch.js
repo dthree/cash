@@ -119,7 +119,7 @@ var touch = {
       var mtime = options.a === true ? new Date(stat.mtime) : dateToSet;
 
       if (options.reference !== undefined) {
-        var reference = undefined;
+        var reference = void 0;
         try {
           reference = fs.statSync(options.reference);
         } catch (e) {

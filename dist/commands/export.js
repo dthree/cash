@@ -32,9 +32,9 @@ var _export = {
         }
       }
     } else {
-      var parts = String(id).trim().split(' ');
-      id = parts.shift();
-      value = parts.join(' ') || null;
+      var _parts = String(id).trim().split(' ');
+      id = _parts.shift();
+      value = _parts.join(' ') || null;
     }
 
     var validIdRegex = /^[a-zA-Z_][a-zA-Z0-9_]*$/;

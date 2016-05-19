@@ -11,23 +11,21 @@ module.exports = {
 
   refresh(vorpal, cb) {
     cb = cb || function () {};
-    username(function (err, username) {
-      if (!err) {
-        const user = username;
-        const host = String(os.hostname()).split('.')[0];
-        const home = pathConverter.unix(userHome);
-        let cwd = pathConverter.unix(process.cwd());
-        cwd = cwd.replace(home, '~');
-        let delimiter = `${user}@${host}:${cwd}$`;
-        // If we're on linux-based systems, color
-        // the prompt so we don't get confused.
-        if (!isWindows) {
-          delimiter = `\u001b[32m${delimiter}\u001b[39m`;
-        }
-        vorpal.delimiter(delimiter);
+    username().then(username => {
+      const user = username;
+      const host = String(os.hostname()).split('.')[0];
+      const home = pathConverter.unix(userHome);
+      let cwd = pathConverter.unix(process.cwd());
+      cwd = cwd.replace(home, '~');
+      let delimiter = `${user}@${host}:${cwd}$`;
+      // If we're on linux-based systems, color
+      // the prompt so we don't get confused.
+      if (!isWindows) {
+        delimiter = `\u001b[32m${delimiter}\u001b[39m`;
       }
-      cb(err);
-    });
+      vorpal.delimiter(delimiter);
+      cb(null);
+    }).catch(err => cb(err));
   },
 
   getHomeDir() {
