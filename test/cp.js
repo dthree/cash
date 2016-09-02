@@ -101,7 +101,7 @@ describe('cp', function () {
     it('should not clobber existing files', function () {
       new $.ShellString('foxes').to('cp-d');
       new $.ShellString('elephants').to('cp-e');
-      cash.cp('cp-d cp-e', {noclobber: true}).should.equal('');
+      cash.cp('cp-d cp-e', {clobber: false}).should.equal('');
       $.test('-e', 'cp-d').should.equal(true);
       $.cat('cp-d').should.equal('foxes');
       $.cat('cp-e').should.equal('elephants');

@@ -19,7 +19,7 @@ const cp = {
     args = (Array.isArray(args)) ? args : args.split(' ');
     args = args.filter(arg => String(arg).trim() !== '');
 
-    options.noclobber = (options.force === true) ? false : !options.clobber;
+    options.noclobber = (options.force === true) ? false : (options.clobber === false);
     options.recursive = (options.R === true) ? true : options.recursive;
 
     if (args.length < 1) {
