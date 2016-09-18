@@ -103,8 +103,12 @@ It was, before [Vorpal](https://github.com/dthree/vorpal).
 
 Made with ❤ by [dthree](https://github.com/dthree).
 
-Love it? Cash is brand new! Give it a :star: or a tweet to help spread the word!
+Love it? Give it a :star: or a tweet to help spread the word!
 
+
+## Notice
+
+This is now an [OPEN Open Source](http://openopensource.org/) project. I am not able to invest a significant amount of time into maintaining Cash and so am looking for volunteers who would like to be active maintainers of the project. If you are interested, shoot me a note.
 
 ## Contents
 
