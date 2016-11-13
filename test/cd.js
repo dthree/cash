@@ -9,6 +9,7 @@ const delimiter = require('../dist/delimiter');
 
 describe('cd', function () {
   before(function (done) {
+    process.stdout.columns = 1000;
     util.writeSampleDir(function () {
       process.chdir('./testing/');
       done();

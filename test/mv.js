@@ -24,6 +24,7 @@ function reset() {
 
 describe('mv', function () {
   before(function () {
+    process.stdout.columns = 1000;
     burninate();
   });
 

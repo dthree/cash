@@ -7,6 +7,7 @@ const $ = require('shelljs');
 
 describe('cat', function () {
   before(function () {
+    process.stdout.columns = 1000;
     new $.ShellString('aardvark').to('a.test');
     new $.ShellString('batman').to('b.test');
     new $.ShellString('dont\n\n\neat\naardvarks\n\n\n').to('c.test2');

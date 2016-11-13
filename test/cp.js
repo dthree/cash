@@ -29,6 +29,7 @@ function reset() {
 
 describe('cp', function () {
   before(function () {
+    process.stdout.columns = 1000;
     burninate();
   });
 

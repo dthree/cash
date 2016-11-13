@@ -31,6 +31,7 @@ describe('preparser', function () {
 
   describe('environmental variables', function () {
     before(function () {
+      process.stdout.columns = 1000;
       process.env.FOO = 'This*string\'has   $pecial${characters}';
     });
     it('should convert simple variable references', function () {
@@ -97,6 +98,7 @@ describe('preparser', function () {
   });
   describe('commands are preparsed', function () {
     before(function () {
+      process.stdout.columns = 1000;
       process.env.FOO = 'thisfiledoesntexist';
     });
 

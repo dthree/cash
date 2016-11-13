@@ -8,6 +8,7 @@ const $ = require('shelljs');
 
 describe('rm', function () {
   before(function () {
+    process.stdout.columns = 1000;
     $.mkdir('rm-test');
     $.mkdir('./rm-test/sub');
     new $.ShellString('1').to('1.rm');
