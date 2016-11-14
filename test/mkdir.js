@@ -7,6 +7,7 @@ const $ = require('shelljs');
 
 describe('mkdir', function () {
   before(function () {
+    process.stdout.columns = 1000;
     $.rm('-rf', './testabot*');
   });
 

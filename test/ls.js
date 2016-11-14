@@ -37,6 +37,7 @@ function ls(path, opts) {
 if (os.platform() !== 'win32') {
   describe('ls', function () {
     before(function (done) {
+      process.stdout.columns = 1000;
       $.mkdir('-p', './atatatest/foo/bar');
       $.touch('./atatatest/foo/bar/cows.file');
       util.writeSampleDir(function () {

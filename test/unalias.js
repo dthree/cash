@@ -20,6 +20,7 @@ function clear() {
 
 describe('alias', function () {
   before(function () {
+    process.stdout.columns = 1000;
     clear();
   });
 

@@ -8,6 +8,7 @@ let oldProcessEnv;
 
 describe('export', function () {
   before(function () {
+    process.stdout.columns = 1000;
     oldProcessEnv = process.env;
   });
 

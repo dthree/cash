@@ -48,6 +48,7 @@ module.exports = function (arr, options) {
     } else {
       // Pad the lines based on the
       // longest word.
+      /* istanbul ignore next */
       line += pad(arr[i], longest, ' ');
     }
   }

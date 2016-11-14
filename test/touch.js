@@ -8,6 +8,7 @@ const fs = require('fs-extra');
 
 describe('touch', function () {
   before(function (done) {
+    process.stdout.columns = 1000;
     util.writeSampleDir(function () {
       process.chdir('./testing/');
       done();

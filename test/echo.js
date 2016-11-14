@@ -6,6 +6,7 @@ const cash = require('../dist/index.js');
 
 describe('echo', function () {
   before(function (done) {
+    process.stdout.columns = 1000;
     done();
   });
 

@@ -18,6 +18,7 @@ function sort(dir, opts) {
 
 describe('sort', function () {
   before(function (done) {
+    process.stdout.columns = 1000;
     setTimeout(function () {
       new $.ShellString('zaz\nsss\nqqq\n-zbz\nBBB\nddd\nCCC\n2bbb\nccc\n').to('./default.sort');
       new $.ShellString('22 zaz\n33 sss\n11 qqq\n77 ccc\n55 BBB\nddd\nCCC\n2bbb\n-zbz\n').to('./numeric.sort');

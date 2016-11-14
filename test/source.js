@@ -13,6 +13,7 @@ const usage = `-cash: source: filename argument required\nsource: usage: source 
 
 describe('source', function () {
   before(function () {
+    process.stdout.columns = 1000;
     oldCwd = process.cwd();
     oldProcessEnv = process.env;
     new $.ShellString('echo "      hello world"\nalias foo bar\n').to('a.sh');

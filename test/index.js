@@ -16,6 +16,7 @@ describe('cash', function () {
 
   describe('.cashrc', function () {
     before(function () {
+      process.stdout.columns = 1000;
       cashrcPath = `${delimiter.getHomeDir()}/.cashrc`;
       cashrcCopy = `${cashrcPath}_${String(Math.random())}`;
       if ($.test('-f', cashrcPath)) {
@@ -49,6 +50,7 @@ describe('cash', function () {
 
   describe('template literals', function () {
     before(function () {
+      process.stdout.columns = 1000;
       cash = require('..');
       $.rm('-rf', 'test-template');
     });
