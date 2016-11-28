@@ -78,17 +78,6 @@ function rmdirSyncRecursive(dir, force, removeEmptyDir) {
 
     if (currFile.isDirectory()) { // Recursive function back to the beginning
       rmdirSyncRecursive(file, force, removeEmptyDir);
-    } else if (currFile.isSymbolicLink()) {
-      // Unlink symlinks
-      /* istanbul ignore next */
-      if (force || isWriteable(file)) {
-        try {
-          unlinkSync(file);
-        } catch (e) {
-          self.log(`rm: cannot remove ${file}: code ${e.code}`);
-          return 2;
-        }
-      }
     } else if (force || isWriteable(file)) {
       // Assume it's a file.
       try {
