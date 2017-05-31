@@ -29,3 +29,5 @@ node_modules
 .cmd_history
 .cmd_history/*
 .cmd_history/cmd_historycash
+
+dist/*
