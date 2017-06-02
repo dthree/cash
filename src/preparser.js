@@ -12,10 +12,9 @@ const parseEnvVariables = function (input) {
   });
 };
 
-const preparser = function (input) {
-  console.log({input})
-  input = parseEnvVariables(input);
-  return input;
-};
+// const preparser = function (input) {
+//   input = parseEnvVariables(input);
+//   return input;
+// };
 
 module.exports = preparser;
