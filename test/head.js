@@ -29,7 +29,7 @@ describe('head', function () {
     should.exist(cash.head);
   });
 
-  it('should print the first ten lines in file', function () {
+  it.only('should print the first ten lines in file', function () {
     const fixture = fxt.ten;
     cash('head eleven.test').should.equal(fixture);
   });

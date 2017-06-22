@@ -10,6 +10,7 @@ var expand = require('./../util/expand');
 
 var head = {
   exec: function exec(args, options) {
+    console.log({ args: args });
     options = options || {};
     args = args || '';
     var source = args.stdin === undefined ? 'files' : 'stdin';

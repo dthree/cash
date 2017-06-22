@@ -24,7 +24,7 @@ describe('export', function () {
     should.exist(cash.export);
   });
 
-  it('should create an export with an equal symbol', function () {
+  it.only('should create an export with an equal symbol', function () {
     (function () {
       cash.export(['foo=bar']);
     }).should.not.throw();

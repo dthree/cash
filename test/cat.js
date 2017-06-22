@@ -11,6 +11,7 @@ describe('cat', function () {
     new $.ShellString('aardvark').to('a.test');
     new $.ShellString('batman').to('b.test');
     new $.ShellString('dont\n\n\neat\naardvarks\n\n\n').to('c.test2');
+
   });
 
   after(function () {
