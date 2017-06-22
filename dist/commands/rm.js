@@ -123,12 +123,12 @@ function rmdirSyncRecursive(dir, force, removeEmptyDir) {
           }
           /* istanbul ignore next */
         } else if (er.code === 'ENOENT') {
-            // Directory did not exist, deletion was successful
-            break;
-            /* istanbul ignore next */
-          } else {
-              throw er;
-            }
+          // Directory did not exist, deletion was successful
+          break;
+          /* istanbul ignore next */
+        } else {
+          throw er;
+        }
       }
     }
   } catch (e) {

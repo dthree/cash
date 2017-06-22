@@ -4,7 +4,7 @@
 
 var parseEnvVariables = function parseEnvVariables(input) {
   var referenceRegex = /\${([a-zA-Z_][a-zA-Z0-9_]*)}|\$([a-zA-Z_][a-zA-Z0-9_]*)/g;
-
+  console.log({ input: input });
   return input.replace(referenceRegex, function (varRef, capture1, capture2, capture3) {
     var varName = capture1 || capture2 || capture3;
     // Return the value of the variable, or the empty string if not there
@@ -13,7 +13,7 @@ var parseEnvVariables = function parseEnvVariables(input) {
 };
 
 var preparser = function preparser(input) {
-  input = parseEnvVariables(input);
+  // input = parseEnvVariables(input);
   return input;
 };
 
