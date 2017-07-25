@@ -229,9 +229,9 @@ echo('foo').to('foo.txt');
 
 ## Team
 
-[![David Caccavella](https://avatars.githubusercontent.com/u/10319897?s=130)](http://github.com/dthree) | [![Nate Fischer](https://avatars.githubusercontent.com/u/5801521?s=130)](https://github.com/nfischer)
----|---|---|---|---
-[David Caccavella](http://github.com/dthree) | [Nate Fischer](https://github.com/nfischer)
+| [![David Caccavella](https://avatars.githubusercontent.com/u/10319897?s=130)](https://github.com/dthree) | [![Nate Fischer](https://avatars.githubusercontent.com/u/5801521?s=130)](https://github.com/nfischer) |
+|:---:|:---:|
+| [David Caccavella](https://github.com/dthree) | [Nate Fischer](https://github.com/nfischer) |
 
 Want to join the team? [Let us know](mailto:threedeecee@gmail.com).
 
