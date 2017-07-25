@@ -9,6 +9,7 @@ const interfacer = require('./util/interfacer');
 const delimiter = require('./delimiter.js');
 const path = require('path');
 const fs = require('fs');
+const minimist = require('minimist');
 
 let cmds;
 
@@ -45,6 +46,7 @@ const app = {
       const interpVals = [...arguments].slice(1);
       let interpStr = str[0];
       for (let i = 0, l = interpVals.length; i < l; i++) {
+        /* istanbul ignore next */
         interpStr += `${interpVals[i]}${str[i + 1]}`;
       }
       // Split into lines.  Remove blank lines and comments (start with #)
@@ -128,6 +130,26 @@ const app = {
       }
     }
 
+    self.vorpal.localEnv = Object.create(process.env);
+    const argv = minimist(process.argv.slice(2));
+
+    /* istanbul ignore next */
+    if (typeof argv.c !== 'undefined' && typeof argv.c !== 'string') {
+      console.error('cash: -c: option requires an argument');
+      process.exit(2);
+    } else if (typeof argv.c === 'string' || argv._.length > 0) {
+      for (let k = 0; k < argv._.length; k++) {
+        self.vorpal.localEnv.k = argv._[k];
+      }
+      // If -c is used, use that string, otherwise use the script-name instead
+      const script = argv.c || `source ${argv._[0]}`;
+      app.vorpal.execSync(script);
+      process.exit(0);
+    }
+
+    // Otherwise, start an interactive shell
+    self.vorpal.localEnv[0] = 'cash';
+
     app.vorpal
       .history('cash')
       .localStorage('cash')
@@ -196,6 +218,7 @@ const app = {
 
     for (let i = 0; i < locations.length; ++i) {
       try {
+        /* istanbul ignore if */
         if (!fs.statSync(locations[i]).isDirectory()) {
           app.vorpal.execSync(`source ${locations[i]}`);
           break;
