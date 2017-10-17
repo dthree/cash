@@ -6,12 +6,12 @@
   "scripts": {
     "test": "gulp builder; ./node_modules/istanbul/lib/cli.js cover --root './dist' -x './dist/lib/sugar.js' _mocha -- -R spec && npm run lint",
     "test-win": "mocha",
-    "lint": "xo ./src/*.js ./src/**/*.js ./test/*.js"
+    "lint": "xo ./src/*.js ./src/**/*.js ./test/*.js",
+    "docs": "easystatic start docs --repo=dthree/cash",
+    "docs:build": "easystatic build docs --repo=dthree/cash --domain=cash.js.org",
+    "docs:deploy": "easystatic deploy docs --repo=dthree/cash --domain=cash.js.org"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/dthree/cash.git"
-  },
+  "repository": "dthree/cash",
   "keywords": [
     "terminal",
     "emulator",

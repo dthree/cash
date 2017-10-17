@@ -1,0 +1,19 @@
+/**
+ * GitHub stats
+ */
+
+.stats__link {
+  color: rgba(255, 255, 255, .8);
+  padding-right: 1em;
+  text-decoration: none;
+  font-size: 12px;
+  font-weight: normal;
+}
+
+.stats__link:hover {
+  color: rgba(255, 255, 255, 1);
+}
+
+.stats__link svg {
+  margin-right: .5em;
+}

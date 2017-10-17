@@ -1,0 +1,49 @@
+<!doctype html>
+<html class="no-js" lang="">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title><%= title %></title>
+    <meta name="description" content="<%= description %>">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="apple-touch-icon" href="apple-touch-icon.png">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:regular,bold,italic,thin,light,bolditalic,black,medium|Syncopate" lang=en">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" href="https://code.getmdl.io/1.1.3/material.teal-pink.min.css">
+    <link rel="stylesheet" href="main.css">
+  </head>
+  <body>
+    <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
+      <%- include('header'); %>
+      <main class="mdl-layout__content">
+        <% if (id === 'home') { %><div class="hero">
+          <h1 class="hero__title">CASH</h1>
+          <p class="hero__desc">Cross-platform Linux without the suck</p>
+          <%- include('stats'); %>
+          <p>
+            <a class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent" href="/getting-started">
+              Get Started
+            </a>
+            &nbsp;
+            <a class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect" href="https://github.com/dthree/cash">
+              <i class="material-icons">link</i>
+              View on GitHub
+            </a>
+          </p>
+        </div><% } %>
+        <section class="page">
+          <div class="container">
+            <%- content %>
+          </div>
+        </section>
+        <%- include('footer'); %>
+      </main>
+    </div>
+    <script src="https://code.getmdl.io/1.1.3/material.min.js"></script>
+    <script>
+      window.ga=function(){ga.q.push(arguments)};ga.q=[];ga.l=+new Date;
+      ga('create','UA-XXXXX-Y','auto');ga('send','pageview')
+    </script>
+    <script src="https://www.google-analytics.com/analytics.js" async defer></script>
+  </body>
+</html>

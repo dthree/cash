@@ -1,0 +1,11 @@
+/**
+ * Header styles
+ */
+
+.mdl-layout__header-row {
+  padding-left: 40px;
+}
+
+.mdl-layout-title {
+  font-family: 'Syncopate', 'Helvetica', sans-serif;
+}
