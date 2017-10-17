@@ -5,6 +5,7 @@ node_js:
   - "6"
   - "5"
   - "4"
+  - "8"
 after_success: "cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js"
 branches:
   only:
