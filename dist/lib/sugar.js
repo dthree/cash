@@ -1,6 +1,6 @@
 "use strict";
 
-var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol ? "symbol" : typeof obj; };
+var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
 
 /*
  *  Sugar Library v1.4.1
@@ -146,7 +146,7 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
       Ja = "",
       Ka = {},
       La;function Ma() {
-    return "\t\n\u000b\f\r   ᠎             \u2028\u2029　﻿";
+    return "\t\n\x0B\f\r \xA0\u1680\u180E\u2000\u2001\u2002\u2003\u2004\u2005\u2006\u2007\u2008\u2009\u200A\u202F\u205F\u2028\u2029\u3000\uFEFF";
   }function Na(a, b) {
     var c = "";for (a = a.toString(); 0 < b;) {
       if (b & 1 && (c += a), b >>= 1) a += a;
@@ -216,7 +216,7 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
   });var Za, $a;
   for ($a = 0; 9 >= $a; $a++) {
     Za = s.fromCharCode($a + Ga), Ja += Za, Ka[Za] = s.fromCharCode($a + Ea);
-  }Ka[","] = "";Ka["．"] = Ia;Ka[Ia] = Ia;La = q("[" + Ja + "．," + Ia + "]", "g");
+  }Ka[","] = "";Ka["\uFF0E"] = Ia;Ka[Ia] = Ia;La = q("[" + Ja + "\uFF0E," + Ia + "]", "g");
   "use strict";H(m, !1, !1, { keys: function keys(a) {
       var b = [];if (!G(a) && !D(a) && !F(a)) throw new TypeError("Object required");I(a, function (a) {
         b.push(a);
@@ -725,9 +725,9 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
       return qc(this, b, !1, a);
     };
   });
-  "〇一二三四五六七八九十百千万".split("").forEach(function (a, b) {
+  "\u3007\u4E00\u4E8C\u4E09\u56DB\u4E94\u516D\u4E03\u516B\u4E5D\u5341\u767E\u5343\u4E07".split("").forEach(function (a, b) {
     9 < b && (b = za(10, b - 9));Lb[a] = b;
-  });xa(Lb, Ka);Mb = q("([期週周])?([〇一二三四五六七八九十百千万" + Ja + "]+)(?!昨)", "g");
+  });xa(Lb, Ka);Mb = q("([\u671F\u9031\u5468])?([\u3007\u4E00\u4E8C\u4E09\u56DB\u4E94\u516D\u4E03\u516B\u4E5D\u5341\u767E\u5343\u4E07" + Ja + "]+)(?!\u6628)", "g");
   /* istanbul ignore next */
   (function () {
     var a = W.weekdays.slice(0, 7),

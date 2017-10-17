@@ -9,6 +9,7 @@ const expand = require('./../util/expand');
 const head = {
 
   exec(args, options) {
+    console.log({args})
     options = options || {};
     args = args || '';
     const source = (args.stdin === undefined) ? 'files' : 'stdin';

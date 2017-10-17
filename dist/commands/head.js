@@ -1,6 +1,6 @@
 'use strict';
 
-var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol ? "symbol" : typeof obj; };
+var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
 
 var interfacer = require('./../util/interfacer');
 var fs = require('fs');
@@ -10,6 +10,7 @@ var expand = require('./../util/expand');
 
 var head = {
   exec: function exec(args, options) {
+    console.log({ args: args });
     options = options || {};
     args = args || '';
     var source = args.stdin === undefined ? 'files' : 'stdin';

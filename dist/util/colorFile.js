@@ -6,7 +6,7 @@ var chalk = {};
 var map = { cyan: 36, red: 31, magenta: 35 };
 Object.keys(map).forEach(function (key, value) {
   chalk[key] = function (str) {
-    return '\u001b[' + value + 'm' + str + '\u001b[39m';
+    return '\x1B[' + value + 'm' + str + '\x1B[39m';
   };
 });
 

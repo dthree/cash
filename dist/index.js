@@ -70,26 +70,24 @@ var app = {
         return;
       }
       try {
-        (function () {
-          var mod = require('./commands/' + cmd + '.js');
-          var help = void 0;
-          try {
-            help = require('./help/' + cmd + '.js');
-            help = String(help).replace(/^\n|\n$/g, '');
-          } catch (e) {
-            // .. whatever
-          }
-          self.vorpal.use(mod, {
-            parent: self
+        var mod = require('./commands/' + cmd + '.js');
+        var _help = void 0;
+        try {
+          _help = require('./help/' + cmd + '.js');
+          _help = String(_help).replace(/^\n|\n$/g, '');
+        } catch (e) {
+          // .. whatever
+        }
+        self.vorpal.use(mod, {
+          parent: self
+        });
+        var cmdObj = self.vorpal.find(cmd);
+        if (cmdObj && _help) {
+          /* istanbul ignore next */
+          cmdObj.help(function (args, cb) {
+            cb(_help);
           });
-          var cmdObj = self.vorpal.find(cmd);
-          if (cmdObj && help) {
-            /* istanbul ignore next */
-            cmdObj.help(function (args, cb) {
-              cb(help);
-            });
-          }
-        })();
+        }
       } catch (e) {
         /* istanbul ignore next */
         self.vorpal.log('Error loading command ' + cmd + ': ', e);
@@ -191,21 +189,19 @@ var app = {
     // for dev testing.
     /* istanbul ignore next */
     if (os.platform().indexOf('win') > -1) {
-      (function () {
-        var counter = 0;
-        setInterval(function () {
-          counter = counter > 0 ? 0 : counter;
-        }, 3000);
-        app.vorpal.sigint(function () {
-          counter++;
-          app.vorpal.ui.submit('');
-          if (counter > 5) {
-            app.vorpal.log('(to quit Cash, use the "exit" command)');
-            counter -= 10000;
-          }
-          return;
-        });
-      })();
+      var counter = 0;
+      setInterval(function () {
+        counter = counter > 0 ? 0 : counter;
+      }, 3000);
+      app.vorpal.sigint(function () {
+        counter++;
+        app.vorpal.ui.submit('');
+        if (counter > 5) {
+          app.vorpal.log('(to quit Cash, use the "exit" command)');
+          counter -= 10000;
+        }
+        return;
+      });
     }
 
     // Load .cashrc upon startup
@@ -238,7 +234,6 @@ var app = {
 
 cmds = {
   /* istanbul ignore next */
-
   show: function show() {
     /* istanbul ignore next */
     app.vorpal.show();
