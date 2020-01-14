@@ -20,7 +20,7 @@ module.exports = {
       // If we're on linux-based systems, color
       // the prompt so we don't get confused.
       if (!isWindows) {
-        delimiter = '\u001b[32m' + delimiter + '\u001b[39m';
+        delimiter = '\x1B[32m' + delimiter + '\x1B[39m';
       }
       vorpal.delimiter(delimiter);
       cb(null);

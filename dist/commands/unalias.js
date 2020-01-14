@@ -68,10 +68,10 @@ var unalias = {
     // Rebuild alias lists.
     var aliases = {};
     /* istanbul ignore next */
-    for (var _i = 0; _i < all.length; ++_i) {
-      var item = vorpal.localStorage.getItem('alias|' + all[_i]);
+    for (var i = 0; i < all.length; ++i) {
+      var item = vorpal.localStorage.getItem('alias|' + all[i]);
       if (item !== undefined && item !== null) {
-        aliases[all[_i]] = item;
+        aliases[all[i]] = item;
       }
     }
     vorpal._aliases = aliases;
