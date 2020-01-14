@@ -140,10 +140,10 @@ function cpdirSyncRecursive(sourceDir, destDir, options) {
       fs.symlinkSync(symlinkFull, destFile, os.platform() === 'win32' ? 'junction' : null);
       // At this point, we've hit a file actually worth copying... so copy it on over.
     } else if (fs.existsSync(destFile) && options.noclobber) {
-        // be silent
-      } else {
-          copyFileSync.call(self, srcFile, destFile);
-        }
+      // be silent
+    } else {
+      copyFileSync.call(self, srcFile, destFile);
+    }
   }
 }
 

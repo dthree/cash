@@ -1,6 +1,7 @@
 'use strict';
 
 var os = require('os');
+var execa = require('execa');
 var windows = os.platform() === 'win32';
 
 var exclusions = require('./../commands.json').windowsExclusions;
@@ -26,31 +27,26 @@ module.exports = {
       });
     }).action(function (args, cb) {
       cb = cb || function () {};
-      var spawn = require('child_process').spawn;
       var slf = this;
 
       var words = args.words.join(' ');
       var argus = void 0;
 
       var cmd = void 0;
-      // Only register commands if on Windows.
-      /* istanbul ignore next */
-      if (windows) {
-        var excluded = false;
-        for (var i = 0; i < exclusions.length; ++i) {
-          if (String(words.slice(0, exclusions[i].length)).toLowerCase() === exclusions[i].toLowerCase()) {
-            excluded = true;
-            cmd = undefined;
-            argus = undefined;
-          }
+      var excluded = false;
+      for (var i = 0; i < exclusions.length; ++i) {
+        if (String(words.slice(0, exclusions[i].length)).toLowerCase() === exclusions[i].toLowerCase()) {
+          excluded = true;
+          cmd = undefined;
+          argus = undefined;
         }
+      }
 
-        if (!excluded) {
-          var parts = words.split(' ');
-          cmd = parts.shift();
-          argus = parts;
-          argus = argus.length === 1 && argus[0] === '' ? [] : argus;
-        }
+      if (!excluded) {
+        var parts = words.split(' ');
+        cmd = parts.shift();
+        argus = parts;
+        argus = argus.length === 1 && argus[0] === '' ? [] : argus;
       }
 
       // Accommodate tests for Linux.
@@ -65,12 +61,10 @@ module.exports = {
         return;
       }
 
-      argus.unshift(cmd);
-      argus.unshift('/C');
       var proc = void 0;
       var out = '';
       try {
-        proc = spawn('cmd', argus);
+        proc = execa(cmd, argus);
       } catch (e) {
         /* istanbul ignore next */
         slf.log(e);
@@ -122,7 +116,10 @@ module.exports = {
       proc.on('close', function () {
         closed = true;
         if (String(out).trim() !== '') {
-          slf.log(String(out).replace(/\r\r/g, '\r'));
+          // Remove a trailing newline, because log() will add it back:
+          out = String(out).replace(/\n$/g, '');
+          out = String(out).replace(/\r\r/g, '\r');
+          slf.log(out);
           out = '';
         }
         if (windowsHelpFlag) {
@@ -135,6 +132,10 @@ module.exports = {
       });
 
       proc.on('error', function (data) {
+        if (data.code === 'ENOENT') {
+          windowsHelpFlag = true;
+          return;
+        }
         out += data.toString('utf8');
       });
     });

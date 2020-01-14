@@ -4,7 +4,7 @@ var interfacer = require('./../util/interfacer');
 
 var clear = {
   exec: function exec() {
-    this.log('\u001b[2J\u001b[0;0H');
+    this.log('\x1B[2J\x1B[0;0H');
     return 0;
   }
 };

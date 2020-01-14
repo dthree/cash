@@ -1,6 +1,7 @@
 'use strict';
 
 const os = require('os');
+const execa = require('execa');
 const windows = (os.platform() === 'win32');
 
 const exclusions = require('./../commands.json').windowsExclusions;
@@ -29,31 +30,26 @@ module.exports = {
       })
       .action(function (args, cb) {
         cb = cb || function () {};
-        const spawn = require('child_process').spawn;
         const slf = this;
 
         const words = args.words.join(' ');
         let argus;
 
         let cmd;
-        // Only register commands if on Windows.
-        /* istanbul ignore next */
-        if (windows) {
-          let excluded = false;
-          for (let i = 0; i < exclusions.length; ++i) {
-            if (String(words.slice(0, exclusions[i].length)).toLowerCase() === exclusions[i].toLowerCase()) {
-              excluded = true;
-              cmd = undefined;
-              argus = undefined;
-            }
+        let excluded = false;
+        for (let i = 0; i < exclusions.length; ++i) {
+          if (String(words.slice(0, exclusions[i].length)).toLowerCase() === exclusions[i].toLowerCase()) {
+            excluded = true;
+            cmd = undefined;
+            argus = undefined;
           }
+        }
 
-          if (!excluded) {
-            const parts = words.split(' ');
-            cmd = parts.shift();
-            argus = parts;
-            argus = (argus.length === 1 && argus[0] === '') ? [] : argus;
-          }
+        if (!excluded) {
+          const parts = words.split(' ');
+          cmd = parts.shift();
+          argus = parts;
+          argus = (argus.length === 1 && argus[0] === '') ? [] : argus;
         }
 
         // Accommodate tests for Linux.
@@ -68,12 +64,10 @@ module.exports = {
           return;
         }
 
-        argus.unshift(cmd);
-        argus.unshift('/C');
         let proc;
         let out = '';
         try {
-          proc = spawn('cmd', argus);
+          proc = execa(cmd, argus);
         } catch (e) {
           /* istanbul ignore next */
           slf.log(e);
@@ -125,7 +119,10 @@ module.exports = {
         proc.on('close', function () {
           closed = true;
           if (String(out).trim() !== '') {
-            slf.log(String(out).replace(/\r\r/g, '\r'));
+            // Remove a trailing newline, because log() will add it back:
+            out = String(out).replace(/\n$/g, '');
+            out = String(out).replace(/\r\r/g, '\r');
+            slf.log(out);
             out = '';
           }
           if (windowsHelpFlag) {
@@ -138,6 +135,10 @@ module.exports = {
         });
 
         proc.on('error', function (data) {
+          if (data.code === 'ENOENT') {
+            windowsHelpFlag = true;
+            return;
+          }
           out += data.toString('utf8');
         });
       });
